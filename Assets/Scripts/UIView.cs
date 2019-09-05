@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class UIView : UIController
 {
-    public int happyness;
+    
+    private int height = 30;
+    private int width;
 
-    void Start()
+
+    public void SetHappyBarSize(int happiness)
     {
-        
-    }
-
-    public void HappyBarLoosingHappyness()
-    {
-
+        width = happiness * 2;
+        var happyBarMeterRectTransform = happyBarMeter.transform as RectTransform;
+        happyBarMeterRectTransform.sizeDelta = new Vector2(width, height);
     }
 }
