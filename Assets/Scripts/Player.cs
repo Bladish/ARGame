@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private GameObject player;
     private Vector3 playerPosition;
     private Quaternion playerRotation;
-
+    private GameObject spawnedPlayer;
     public static Player instance;
 
     private void Awake()
@@ -16,17 +16,21 @@ public class Player : MonoBehaviour
         instance = this;
     }
 
-    public Player(Vector3 anchorPosition, Quaternion anchorRotation)
+    public void CreatPlayer(Vector3 anchorPosition, Quaternion anchorRotation)
     {
         playerPosition = anchorPosition;
         playerRotation = anchorRotation;
-        Instantiate(player, playerPosition, playerRotation);
+        if (spawnedPlayer == null)
+        {
+            spawnedPlayer = Instantiate(player, playerPosition, playerRotation);
+        }
+        else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
     }
 
     public void SetPlayerPosition(Vector3 position)
     {
         playerPosition = position;
-        player.transform.position = playerPosition;
+        spawnedPlayer.transform.position = playerPosition;
     }
 
     public void SetPlayerRotation(Quaternion rotation)

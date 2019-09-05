@@ -25,8 +25,7 @@ public class GameWorld : MonoBehaviour
         {
             if (hit.Trackable is DetectedPlane)
             {
-                
-                //Instantiate(player, hit.Pose.position, hit.Pose.rotation);
+                Player.instance.CreatPlayer(hit.Pose.position, hit.Pose.rotation);
             }
         }
     }
