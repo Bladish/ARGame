@@ -17,6 +17,11 @@ public class GameWorld : MonoBehaviour
     public List<GameObject> currentPlanes = new List<GameObject>();
     public GameObject planePrefab;
     public List<DetectedPlane> planeList = new List<DetectedPlane>();
+
+    public GameObject physicCube;
+
+    Touch screenTouch;
+
     void Start()
     {
         //planePrefab = Resources.Load("DetectedPlaneVisualizer") as GameObject;
@@ -26,6 +31,12 @@ public class GameWorld : MonoBehaviour
     {
         CheckIfMotionIsTracking();
         FindPlaceToSpawnPlayer();
+
+        if (InstantPreviewInput.touchCount < 1 || (screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+        {
+            GameObject cube = Instantiate(physicCube, transform.position, transform.rotation);
+        }
+
     }
 
     private void CheckIfMotionIsTracking()
@@ -45,13 +56,9 @@ public class GameWorld : MonoBehaviour
             GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
             newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
 
-            //currentPlanes.Add(newPlane);
-            //Debug.Log("Size of plane " + currentPlanes[0].transform.ToString());
-        }
-        //if (Input.touchCount > 1 || (Touch = Input.GetTouch(0)).phase != TouchPhase.Began)
-        //{
 
-        //}
+        }
+
     }
 }
 
