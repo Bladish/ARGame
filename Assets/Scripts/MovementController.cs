@@ -8,18 +8,14 @@ using Input = InstantPreviewInput;
 using UnityEngine.EventSystems;
    
 
-    public class Controller : MonoBehaviour
+    public class MovementController : MonoBehaviour
     {
         TrackableHit hit;
         public GameObject obj;
         public List<Anchor> anchors = new List<Anchor>();
 
-        void Start()
-        {
 
-        }
-
-        public void UpdateController()
+        public void MovementControllerUpdate()
         {
             MovePlayer();
         }

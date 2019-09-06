@@ -6,19 +6,21 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
-        private GameWorld gameWorld;
-        private Controller controller;
+        //private GameWorld gameWorld;
+        private MovementController movementController;
+        private UIController uiController;
         void Start()
         {
-            gameWorld = GetComponent<GameWorld>();
-            controller = GetComponent<Controller>();
+            //gameWorld = GetComponent<GameWorld>();
+            movementController = GetComponent<MovementController>();
+            uiController = GetComponent<UIController>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            gameWorld.UpdateGameWorld();
-            controller.UpdateController();
+            //gameWorld.UpdateGameWorld();
+            //movementController.MovementControllerUpdate();
         }
     }
 }

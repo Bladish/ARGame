@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIView : UIController
 {
-    
+    public GameObject happyBarMeter;
     private int height = 30;
     private int width;
 

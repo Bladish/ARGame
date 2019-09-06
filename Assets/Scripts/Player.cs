@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GoogleARCore;
 
 public class Player : MonoBehaviour
 {   
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
     public void SetPlayerRotation(Quaternion rotation)
     {
         playerRotation = rotation;
-        player.transform.rotation = playerRotation;
+        spawnedPlayer.transform.rotation = playerRotation;
     }
 
     public Vector3 GetPlayerTransform()

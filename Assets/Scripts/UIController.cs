@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     // find better link than gameobject
-    public GameObject happyBarMeter;
     private float time;
     private UIView uiView;
     private UIMath uiMath;

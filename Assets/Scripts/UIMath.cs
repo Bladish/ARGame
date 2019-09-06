@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIMath : UIController
 {
-    private float elapsedTime ;
+    private float elapsedTime;
     private float happinessTick = 432;
     public int happiness;
     public int changeInMood;
