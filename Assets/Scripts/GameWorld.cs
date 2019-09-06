@@ -38,7 +38,7 @@ public class GameWorld : MonoBehaviour
         }
         else
         {
-            Debug.Log("Stop");
+            //Debug.Log("Stop");
         }
     }
 
