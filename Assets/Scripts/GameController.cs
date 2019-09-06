@@ -7,12 +7,12 @@ using UnityEngine;
     public class GameController : MonoBehaviour
     {
         //private GameWorld gameWorld;
-        private MovementController movementController;
+        private InputManager inputManager;
         private UIController uiController;
         void Start()
         {
             //gameWorld = GetComponent<GameWorld>();
-            movementController = GetComponent<MovementController>();
+            inputManager = GetComponent<InputManager>();
             uiController = GetComponent<UIController>();
         }
 
@@ -20,7 +20,7 @@ using UnityEngine;
         void Update()
         {
             //gameWorld.UpdateGameWorld();
-            //movementController.MovementControllerUpdate();
+            inputManager.UpdateInputManager();
         }
     }
 }

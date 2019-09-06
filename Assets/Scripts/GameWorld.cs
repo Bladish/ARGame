@@ -59,7 +59,6 @@ public class GameWorld : MonoBehaviour
             newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
             
         }
-
     }
 }
 
