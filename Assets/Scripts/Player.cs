@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {   
     [SerializeField]
-    private GameObject player;
+    public GameObject player;
     private Vector3 playerPosition;
     private Quaternion playerRotation;
     private GameObject spawnedPlayer;
     public static Player instance;
-
+    
     private void Awake()
     {
         instance = this;
@@ -18,10 +18,10 @@ public class Player : MonoBehaviour
 
     public void CreatPlayer(Vector3 anchorPosition, Quaternion anchorRotation)
     {
-        playerPosition = anchorPosition;
-        playerRotation = anchorRotation;
         if (spawnedPlayer == null)
         {
+            playerPosition = anchorPosition;
+            playerRotation = anchorRotation;
             spawnedPlayer = Instantiate(player, playerPosition, playerRotation);
         }
         else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
@@ -48,4 +48,5 @@ public class Player : MonoBehaviour
     {
         return playerRotation;
     }
+
 }
