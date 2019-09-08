@@ -149,8 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b1976b8727a824190846b2cc7074d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arCamera: {fileID: 1798252156}
-  placeObject: {fileID: 0}
 --- !u!4 &140694191
 Transform:
   m_ObjectHideFlags: 0
@@ -279,8 +277,8 @@ GameObject:
   - component: {fileID: 570113234}
   - component: {fileID: 570113233}
   - component: {fileID: 570113231}
-  - component: {fileID: 570113232}
   - component: {fileID: 570113235}
+  - component: {fileID: 570113232}
   - component: {fileID: 570113236}
   - component: {fileID: 570113237}
   m_Layer: 0

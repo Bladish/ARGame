@@ -20,22 +20,16 @@ public class InputManager : MonoBehaviour
 
     public void UpdateInputManager()
     {
-        actorSpawner.SpawnActorUpdate(rayManager.UpdateRaycast(touchManager.SendTouch()));
-
-
-        touchManager.UpdateTouch();
-    }
-
-    private void MovePlayer()
-    {
-        Touch touch;
-        if (InstantPreviewInput.touchCount < 1 || (touch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+        if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
-            return;
+            Debug.Log("No Touch");
         }
-
-
+        else if (InstantPreviewInput.touchCount > 0 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
+        {
+            actorSpawner.SpawnActorUpdate(rayManager.UpdateRaycast(touchManager.SendTouch()));
+        }
     }
+
 
     //Debug.Log("Touched position: " + hit.Pose.position);
     //var anchor = RaycastManager.hit hit.Trackable.CreateAnchor(hit.Pose);

@@ -11,13 +11,13 @@ using GoogleARCore;
 /// </summary>
 public class TouchManager : MonoBehaviour
 {
-    Touch screenTouch;
+    public Touch screenTouch;
 
 
 
     public void UpdateTouch()
     {
-        if (Input.touchCount < 1 || (screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+        if (InstantPreviewInput.touchCount < 1 || (screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             return;
         }
@@ -25,7 +25,6 @@ public class TouchManager : MonoBehaviour
         {
             screenTouch = InstantPreviewInput.GetTouch(0);
         }
-
     }
 
     public Touch SendTouch()

@@ -6,10 +6,6 @@ using GoogleARCore;
 public class SpawnActor : MonoBehaviour
 {
     public GameObject actor;
-    void Start()
-    {
-        
-    }
     
     public void SpawnActorUpdate(TrackableHit spawnHit)
     {

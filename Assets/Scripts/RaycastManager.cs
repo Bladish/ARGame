@@ -16,17 +16,14 @@ public class RaycastManager : MonoBehaviour
     private TrackableHit hit;
     private Touch touch;
     private Vector3 hitArea;
+
     public void UpdateRaycastManager()
     {
         
-
-
-
-        
     }
+
     public TrackableHit UpdateRaycast(Touch touch)
     {
-
 
         TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
         if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
