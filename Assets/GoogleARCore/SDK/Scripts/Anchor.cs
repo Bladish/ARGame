@@ -40,7 +40,22 @@ namespace GoogleARCore
         private TrackingState m_LastFrameTrackingState = TrackingState.Stopped;
 
         private bool m_IsSessionDestroyed = false;
+        //SINGELTON
+        public static Anchor instance;
 
+
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
+
+        }
         /// <summary>
         /// Gets the tracking state of the anchor.
         /// </summary>

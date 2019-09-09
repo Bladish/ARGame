@@ -27,7 +27,7 @@ public class TouchManager : MonoBehaviour
         }
     }
 
-    public Touch SendTouch()
+    public Touch GetTouch()
     {
         UpdateTouch();
         return screenTouch;

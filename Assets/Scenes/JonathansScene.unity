@@ -120,49 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &140694188
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 140694191}
-  - component: {fileID: 140694189}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &140694189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140694188}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b1976b8727a824190846b2cc7074d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &140694191
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140694188}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.257072, y: 0.7347941, z: 9.458814}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360801466
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,15 +231,15 @@ GameObject:
   m_Component:
   - component: {fileID: 570113230}
   - component: {fileID: 570113229}
-  - component: {fileID: 570113234}
   - component: {fileID: 570113233}
   - component: {fileID: 570113231}
   - component: {fileID: 570113235}
   - component: {fileID: 570113232}
   - component: {fileID: 570113236}
   - component: {fileID: 570113237}
+  - component: {fileID: 570113234}
   m_Layer: 0
-  m_Name: GameControler
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,9 +322,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 570113228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c37b8da6b8c056488a80e262797bffb, type: 3}
+  m_Script: {fileID: 11500000, guid: 53b1976b8727a824190846b2cc7074d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchor: {fileID: 1930613698465500, guid: d7e51cffc46904f65957fa3aeb255467, type: 3}
 --- !u!114 &570113235
 MonoBehaviour:
   m_ObjectHideFlags: 0
