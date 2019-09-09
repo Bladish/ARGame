@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public GameObject player;
     private Vector3 playerPosition;
     private Quaternion playerRotation;
-    private GameObject spawnedPlayer;
+    public GameObject spawnedPlayer;
     public static Player instance;
     
     private void Awake()
@@ -50,4 +50,12 @@ public class Player : MonoBehaviour
         return playerRotation;
     }
 
+    private void Update()
+    {
+        LookAtCamera();
+    }
+    public void LookAtCamera()
+    {
+        spawnedPlayer.transform.LookAt(new Vector3(Camera.main.transform.position.x, spawnedPlayer.transform.position.y, Camera.main.transform.position.z));
+    }
 }

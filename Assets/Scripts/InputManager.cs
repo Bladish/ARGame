@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     private TouchManager touchManager;
     private SpawnActor actorSpawner;
     private SpawnMainAnchor anchorSpawner;
+    private Player player;
 
     TrackableHit hit;
 
@@ -19,10 +20,14 @@ public class InputManager : MonoBehaviour
         touchManager = GetComponent<TouchManager>();
         actorSpawner = GetComponent<SpawnActor>();
         anchorSpawner = GetComponent<SpawnMainAnchor>();
+        player = GetComponent<Player>();
+
     }
 
     public void UpdateInputManager()
     {
+
+
         if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             Debug.Log("No Touch");
@@ -32,12 +37,18 @@ public class InputManager : MonoBehaviour
             if (AnchorSingelton.instance == null)
             {
                 anchorSpawner.SpawnAnchor(rayManager.UpdateRaycast(touchManager.GetTouch()));
+                player.CreatPlayer(anchorSpawner.mainAnchor.transform.position, anchorSpawner.mainAnchor.transform.rotation);
+                anchorSpawner.SetAnchorAsParent(player.spawnedPlayer);
             }
             else
             {
                 return;
             }
         }
+
+
+
+
 
     }
 

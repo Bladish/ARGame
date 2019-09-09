@@ -12,13 +12,23 @@ using GoogleARCore;
 /// 
 public class SpawnMainAnchor : MonoBehaviour
 {
-    public GameObject anchor;
-    private Anchor mainAnchor;
+    public Anchor mainAnchor;
+    public GameObject visualAnchor;
 
     public void SpawnAnchor(TrackableHit anchorHit)
     {
-        Instantiate(anchor, anchorHit.Pose.position, anchorHit.Pose.rotation);
+        GameObject visualAnchorClone = Instantiate(visualAnchor, anchorHit.Pose.position, anchorHit.Pose.rotation);
         mainAnchor = anchorHit.Trackable.CreateAnchor(anchorHit.Pose);
-        anchor.transform.parent = mainAnchor.transform;
+        
+    }
+
+    public void SetAnchorAsParent(GameObject actor)
+    {
+        actor.transform.parent = mainAnchor.transform;
+    }
+
+    public void SetObjectAtAnchor(GameObject actor)
+    {
+        actor.transform.position = mainAnchor.transform.position;
     }
 }
