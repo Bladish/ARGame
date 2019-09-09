@@ -21,9 +21,3 @@ public class Eat : Player
 		set => hungerPoints = value;
 	}
 }
-
-
-	//Do same as code above
-	//This is how to use properties
-
-	//public int HungerPoints { get; set; }
