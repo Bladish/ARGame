@@ -23,20 +23,20 @@ public class Entertainment : Player
 }
 
 
-	//private int eating = 100;
-	//private int whenEating
-	//Eat eat;
+//private int eating = 100;
+//private int whenEating;
+//Eat eat;
 
-	//private void Start()
-	//{
-	//	eat = new Eat(eating);
-	//	Test();
-	//}
+//private void Start()
+//{
+//    eat = new Eat(eating);
+//    Test();
+//}
 
 
-	//public void Test()
-	//{
-	//	Debug.Log(eat.HungerPointsChange);
-	//	eat.HungerPointsChange = eating + whenEating;
-	//	Debug.Log(eat.HungerPointsChange);
-	//}
+//public void Test()
+//{
+//    Debug.Log(eat.HungerPointsChange);
+//    eat.HungerPointsChange = eating + whenEating;
+//    Debug.Log(eat.HungerPointsChange);
+//}

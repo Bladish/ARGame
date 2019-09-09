@@ -5,14 +5,25 @@ using UnityEngine;
 public class UIView : UIController
 {
     public GameObject happyBarMeter;
+    public GameObject hungerBarMeter;
     private int height = 30;
-    private int width;
+    private int happyWidth;
+    private int hungerWidth;
 
-
-    public void SetHappyBarSize(int happiness)
+    // FunPointsChange should be number from checkrules. but does not work yet
+    public void SetHappyBarSize(int FunPointsChange)
     {
-        width = happiness * 2;
+        happyWidth = FunPointsChange * 2;
         var happyBarMeterRectTransform = happyBarMeter.transform as RectTransform;
-        happyBarMeterRectTransform.sizeDelta = new Vector2(width, height);
+        happyBarMeterRectTransform.sizeDelta = new Vector2(happyWidth, height);
     }
+
+    // HungerPointsChange should be number from checkrules. but does not work yet
+    public void SetHungerBarMeter(int HungerPointsChange)
+    {
+        hungerWidth = HungerPointsChange * 2;
+        var hungerBarMeterRectTransform = hungerBarMeter.transform as RectTransform;
+        hungerBarMeterRectTransform.sizeDelta = new Vector2(hungerWidth, height);
+    }
+
 }

@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Created by Joakim
+/// Edited by Ulrik
+/// Edited by Patrik
+/// </summary>
+
 public class UIController : MonoBehaviour
 {
-    // find better link than gameobject
+    protected Eat eat;
+    protected Entertainment entertainment;
     private float time;
     private UIView uiView;
     private UIMath uiMath;
-    // happiness can be 0-100
     RectTransform rectTransform;
     
 
@@ -18,30 +24,36 @@ public class UIController : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         uiView = GetComponent<UIView>();
         uiMath = GetComponent<UIMath>();
-        uiMath.happiness = 70;
-        uiView.SetHappyBarSize(uiMath.happiness);
+        eat = GetComponent<Eat>();
+        entertainment = GetComponent<Entertainment>();
+
+        uiView.SetHungerBarMeter(eat.HungerPointsChange);
+        uiView.SetHappyBarSize(entertainment.FunPointsChange);
     }
 
-    public void HappyBarLoosingHappiness()
+    public void HappyBarLosingHappiness()
     {
 
     }
 
 
-    public void TestPlusButton()
+    // currently version 1 and 2 do the same thing. version 1 is preferable with working CheckRules 
+    public void TestFunButton()
     {
-        uiMath.happiness = uiMath.IncrementChangeHappiness(uiMath.happiness);
-        uiView.SetHappyBarSize(uiMath.happiness);
-        uiView.uiMath.CheckRulesForHappiness();
-        Debug.Log(uiMath.happiness);
+        // version 1 
+        uiMath.TestFunChange();
+      //  uiMath.CheckRules(entertainment.FunPointsChange);
+        uiView.SetHappyBarSize(uiMath.CheckRules(entertainment.FunPointsChange));
     }
 
-    public void TestMinusButton()
+    public void TestFeeding()
     {
-        uiMath.happiness = uiMath.DecrementChangeHappiness(uiMath.happiness);
-        uiView.SetHappyBarSize(uiMath.happiness);
-        uiView.uiMath.CheckRulesForHappiness();
-        Debug.Log(uiMath.happiness);
+
+    //version 2 
+        uiMath.TestHungerChange();
+        uiMath.CheckRules(eat.HungerPointsChange);
+        uiView.SetHungerBarMeter(eat.HungerPointsChange);
+        
     }
 
     void HappinessColor ()

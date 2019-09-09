@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Created by Joakim
+/// Edited by Ulrik
+/// Edited by Patrik
+/// </summary>
 public class UIMath : UIController
 {
     private float elapsedTime;
     private float happinessTick = 432;
-    public int happiness;
-    public int changeInMood;
-    
-    // Start is called before the first frame update
-    
+    private int eating = 10;
+    private int playing = 10;
+    [HideInInspector]   public int happiness;
+    [HideInInspector]   public int changeInMood;
+    internal object nummer;
+
     void TimeCheck()
     {
         if (elapsedTime % happinessTick == 0)
@@ -20,33 +27,56 @@ public class UIMath : UIController
         }
     }
 
-    public int IncrementChangeHappiness(int oldHappiness)
+  
+
+    public void TestHungerChange()
     {
-        int temp = oldHappiness;
-        temp++;
-        return temp;
+        // REMINDER remove debug logs please
+        Debug.Log("before hunger check" + eat.HungerPointsChange);
+        eat.HungerPointsChange +=  eating;
+        // temporary rule check
+        if (eat.HungerPointsChange > 100)
+        {
+            eat.HungerPointsChange = 100; 
+        }
+        Debug.Log("after hunger check" + eat.HungerPointsChange);
+        
+     
+    }
+    public void TestFunChange()
+    {
+        // REMINDER remove debug logs please
+        Debug.Log("before fun check" + entertainment.FunPointsChange);
+        entertainment.FunPointsChange += playing;
+        // temporary rule check
+        if (entertainment.FunPointsChange > 100)
+        {
+            entertainment.FunPointsChange = 100;
+        }
+        Debug.Log("after fun check" + entertainment.FunPointsChange);
+
+
     }
 
-    public int DecrementChangeHappiness(int oldHappiness)
-    {
-        int temp = oldHappiness;
-        temp--;
-        return temp;
-    }
 
-    public void CheckRulesForHappiness()
-    {
-        //happyBarMeter.GetComponent<RectTransform>();
 
-        // changes happiness according to the change designated by controller
-        if (happiness > 100)
+
+    // Does not work yet temporary ruleschecks in place, lookat Testfunchange and TestHungerChange
+    public int  CheckRules(int number)
+    {
+        if (number > 100)
         {
-            happiness = 100;
+            number = 100;
         }
-        if (happiness < 1)
+        if (number < 1)
         {
-            happiness = 1;
+            number = 1;
         }
+        Debug.Log("NUMMER"+number);
+       
+        return number;
+
+
         // at the end run happinescolor
     }
 }
