@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 /// <Author>
 /// Jonathan Aronsson Olsson
 /// Joakim Svensson
@@ -15,7 +17,7 @@ public class InputManager : MonoBehaviour
     private RaycastManager rayManager;
     private TouchManager touchManager;
     private SpawnActor actorSpawner;
-    private MainAnchorHandler anchorSpawner;
+    private MainAnchorHandler anchorHandler;
     private Player player;
 
     TrackableHit hit;
@@ -26,7 +28,7 @@ public class InputManager : MonoBehaviour
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         actorSpawner = GetComponent<SpawnActor>();
-        anchorSpawner = GetComponent<MainAnchorHandler>();
+        anchorHandler = GetComponent<MainAnchorHandler>();
         player = GetComponent<Player>();
 
     }
@@ -43,14 +45,20 @@ public class InputManager : MonoBehaviour
         {
             if (AnchorSingelton.instance == null)
             {
-                anchorSpawner.SpawnAnchor(rayManager.UpdateRaycast(touchManager.GetTouch()));
-                player.CreatPlayer(anchorSpawner.mainAnchor.transform.position, anchorSpawner.mainAnchor.transform.rotation);
-                anchorSpawner.SetAnchorAsParent(player.spawnedPlayer);
+                anchorHandler.SpawnAnchor(rayManager.UpdateRaycast(touchManager.GetTouch()));
+                player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
+                anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
             }
             else
             {
                 return;
             }
+        }
+
+
+        if (EventSystem.current.IsPointerOverGameObject(touchManager.GetTouchIndex()))
+        {
+            anchorHandler.DeatchAnchor();
         }
     }
 

@@ -13,11 +13,11 @@ using GoogleARCore;
 public class MainAnchorHandler : MonoBehaviour
 {
     public Anchor mainAnchor;
-    public GameObject visualAnchor;
+    public GameObject visualAnchor, visualAnchorClone;
 
     public void SpawnAnchor(TrackableHit anchorHit)
     {
-        GameObject visualAnchorClone = Instantiate(visualAnchor, anchorHit.Pose.position, anchorHit.Pose.rotation);
+        visualAnchorClone = Instantiate(visualAnchor, anchorHit.Pose.position, anchorHit.Pose.rotation);
         mainAnchor = anchorHit.Trackable.CreateAnchor(anchorHit.Pose);
     }
     //Child the gameobject to the anchor making it stable in the world
@@ -29,5 +29,10 @@ public class MainAnchorHandler : MonoBehaviour
     public void SetObjectAtAnchor(GameObject actor)
     {
         actor.transform.position = mainAnchor.transform.position;
+    }
+    public void DeatchAnchor()
+    {
+        Destroy(mainAnchor);
+        Destroy(visualAnchorClone);
     }
 }

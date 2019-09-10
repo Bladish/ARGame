@@ -12,7 +12,7 @@ using GoogleARCore;
 public class TouchManager : MonoBehaviour
 {
     public Touch screenTouch;
-
+    private int touchIndex;
 
 
     public void UpdateTouch()
@@ -31,6 +31,11 @@ public class TouchManager : MonoBehaviour
     {
         UpdateTouch();
         return screenTouch;
+    }
+    public int GetTouchIndex()
+    {
+        touchIndex = InstantPreviewInput.GetTouch(0).fingerId;
+        return touchIndex;
     }
     
 }
