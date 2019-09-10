@@ -30,9 +30,8 @@ public class MainAnchorHandler : MonoBehaviour
     {
         actor.transform.position = mainAnchor.transform.position;
     }
-    public void DeatachAnchor()
+    public void DetachAnchor()
     {
-        Destroy(mainAnchor);
         Destroy(visualAnchorClone);
     }
 }

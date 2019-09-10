@@ -47,6 +47,7 @@ public class InputManager : MonoBehaviour
             {
                 anchorHandler.SpawnAnchor(rayManager.UpdateRaycast(touchManager.GetTouch()));
                 player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
+                anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
             }
             else
@@ -58,7 +59,8 @@ public class InputManager : MonoBehaviour
 
         if (EventSystem.current.IsPointerOverGameObject(touchManager.GetTouchIndex()))
         {
-            anchorHandler.DeatachAnchor();
+            anchorHandler.DetachAnchor();
+
         }
     }
 
