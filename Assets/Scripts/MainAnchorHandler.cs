@@ -33,5 +33,6 @@ public class MainAnchorHandler : MonoBehaviour
     public void DetachAnchor()
     {
         Destroy(visualAnchorClone);
+        Destroy(mainAnchor);
     }
 }

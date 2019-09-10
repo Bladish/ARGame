@@ -255,7 +255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -311, y: 725}
+  m_AnchoredPosition: {x: -363, y: 763}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66310409
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 570113234}
-        m_MethodName: DeatchAnchor
+      - m_Target: {fileID: 570113235}
+        m_MethodName: Remove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -57,12 +57,13 @@ public class InputManager : MonoBehaviour
         }
 
 
-        if (EventSystem.current.IsPointerOverGameObject(touchManager.GetTouchIndex()))
-        {
-            anchorHandler.DetachAnchor();
 
-        }
     }
+
+    public void Remove(){
+            anchorHandler.DetachAnchor();
+            Destroy(player.spawnedPlayer);
+}
 
 
     //Debug.Log("Touched position: " + hit.Pose.position);
