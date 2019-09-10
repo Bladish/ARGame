@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
-
+/// <Author>
+/// Jonathan Aronsson Olsson
+/// Joakim Svensson
+/// Michael Håkansson
+/// </Author>
+/// <summary>
+/// A manager that controlls all the 
+/// </summary>
 public class InputManager : MonoBehaviour
 {
     private RaycastManager rayManager;
@@ -27,7 +34,7 @@ public class InputManager : MonoBehaviour
     public void UpdateInputManager()
     {
 
-
+        //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
         if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             Debug.Log("No Touch");
@@ -45,11 +52,6 @@ public class InputManager : MonoBehaviour
                 return;
             }
         }
-
-
-
-
-
     }
 
 

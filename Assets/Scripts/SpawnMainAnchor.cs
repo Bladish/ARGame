@@ -9,7 +9,6 @@ using GoogleARCore;
 /// <summary>
 /// Create main anchor wich all the spawnobject will connect to
 /// </summary>
-/// 
 public class SpawnMainAnchor : MonoBehaviour
 {
     public Anchor mainAnchor;
@@ -19,9 +18,8 @@ public class SpawnMainAnchor : MonoBehaviour
     {
         GameObject visualAnchorClone = Instantiate(visualAnchor, anchorHit.Pose.position, anchorHit.Pose.rotation);
         mainAnchor = anchorHit.Trackable.CreateAnchor(anchorHit.Pose);
-        
     }
-
+    //Child the gameobject to the anchor making it stable in the world
     public void SetAnchorAsParent(GameObject actor)
     {
         actor.transform.parent = mainAnchor.transform;

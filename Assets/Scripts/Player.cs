@@ -54,8 +54,13 @@ public class Player : MonoBehaviour
     {
         LookAtCamera();
     }
+
     public void LookAtCamera()
     {
-        spawnedPlayer.transform.LookAt(new Vector3(Camera.main.transform.position.x, spawnedPlayer.transform.position.y, Camera.main.transform.position.z));
+        int damping = 4;
+        var lookPos = Camera.main.transform.position - spawnedPlayer.transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        spawnedPlayer.transform.rotation = Quaternion.Slerp(spawnedPlayer.transform.rotation, rotation, Time.deltaTime * damping);
     }
 }
