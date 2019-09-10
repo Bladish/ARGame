@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour
 
         if (EventSystem.current.IsPointerOverGameObject(touchManager.GetTouchIndex()))
         {
-            anchorHandler.DeatchAnchor();
+            anchorHandler.DeatachAnchor();
         }
     }
 
