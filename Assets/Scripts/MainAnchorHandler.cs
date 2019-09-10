@@ -9,7 +9,8 @@ using GoogleARCore;
 /// <summary>
 /// Create main anchor wich all the spawnobject will connect to
 /// </summary>
-public class SpawnMainAnchor : MonoBehaviour
+
+public class MainAnchorHandler : MonoBehaviour
 {
     public Anchor mainAnchor;
     public GameObject visualAnchor;

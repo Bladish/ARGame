@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     private RaycastManager rayManager;
     private TouchManager touchManager;
     private SpawnActor actorSpawner;
-    private SpawnMainAnchor anchorSpawner;
+    private MainAnchorHandler anchorSpawner;
     private Player player;
 
     TrackableHit hit;
@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         actorSpawner = GetComponent<SpawnActor>();
-        anchorSpawner = GetComponent<SpawnMainAnchor>();
+        anchorSpawner = GetComponent<MainAnchorHandler>();
         player = GetComponent<Player>();
 
     }
