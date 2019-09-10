@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Created by Ulrik
+/// Edited by Patrik
 /// </summary>
 
 public class Entertainment : Player
@@ -18,6 +19,6 @@ public class Entertainment : Player
 	public int FunPointsChange
 	{
 		get => funPoints;
-		set => funPoints = value;
+		set => funPoints = Mathf.Clamp(value, 1, 100);
 	}
 }

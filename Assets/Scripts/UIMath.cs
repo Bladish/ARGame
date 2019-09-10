@@ -12,11 +12,30 @@ public class UIMath : UIController
 {
     private float elapsedTime;
     private float happinessTick = 432;
+    private float mVPTimeTick = 10;
     private int eating = 10;
     private int playing = 10;
+    private int lossValue = 1;
     [HideInInspector]   public int happiness;
     [HideInInspector]   public int changeInMood;
     internal object nummer;
+
+
+    //private void Start()
+    //{
+    //    elapsedTime = Time.time;
+    //}
+    //public void MVPTimeCheck()
+    //{
+    //    if (Time.time % mVPTimeTick == 0)
+    //    {
+    //        eat.HungerPointsChange -= lossValue;
+    //        entertainment.FunPointsChange -= lossValue;   
+            
+            
+    //    }
+
+    //} 
 
     void TimeCheck()
     {
@@ -34,11 +53,7 @@ public class UIMath : UIController
         // REMINDER remove debug logs please
         Debug.Log("before hunger check" + eat.HungerPointsChange);
         eat.HungerPointsChange +=  eating;
-        // temporary rule check
-        if (eat.HungerPointsChange > 100)
-        {
-            eat.HungerPointsChange = 100; 
-        }
+
         Debug.Log("after hunger check" + eat.HungerPointsChange);
         
      
@@ -48,11 +63,7 @@ public class UIMath : UIController
         // REMINDER remove debug logs please
         Debug.Log("before fun check" + entertainment.FunPointsChange);
         entertainment.FunPointsChange += playing;
-        // temporary rule check
-        if (entertainment.FunPointsChange > 100)
-        {
-            entertainment.FunPointsChange = 100;
-        }
+     
         Debug.Log("after fun check" + entertainment.FunPointsChange);
 
 
@@ -61,22 +72,24 @@ public class UIMath : UIController
 
 
 
-    // Does not work yet temporary ruleschecks in place, lookat Testfunchange and TestHungerChange
-    public int  CheckRules(int number)
-    {
-        if (number > 100)
-        {
-            number = 100;
-        }
-        if (number < 1)
-        {
-            number = 1;
-        }
-        Debug.Log("NUMMER"+number);
+    //// Does not work yet temporary ruleschecks in place, lookat Testfunchange and TestHungerChange
+    //public int  CheckRules(int number)
+    //{
+    //    number = Mathf.Clamp(number, 1, 100);
+
+    //    if (number > 100)
+    //    {
+    //        number = 100;
+    //    }
+    //    if (number < 1)
+    //    {
+    //        number = 1;
+    //    }
+    //    Debug.Log("NUMMER"+number);
        
-        return number;
+    //    return number;
 
 
-        // at the end run happinescolor
-    }
+    //    // at the end run happinescolor
+    //}
 }

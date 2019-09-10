@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Created by Ulrik
+/// Edited by Patrik
 /// </summary>
 
 public class Eat : Player
@@ -18,6 +19,6 @@ public class Eat : Player
 	public int HungerPointsChange
 	{
 		get => hungerPoints;
-		set => hungerPoints = value;
-	}
+		set => hungerPoints = Mathf.Clamp(value, 1, 100);
+    }
 }

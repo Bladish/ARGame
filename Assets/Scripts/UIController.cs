@@ -17,7 +17,15 @@ public class UIController : MonoBehaviour
     private UIView uiView;
     private UIMath uiMath;
     RectTransform rectTransform;
-    
+
+
+
+    //private void Update()
+    //{
+    //    uiMath.MVPTimeCheck();
+    //    uiView.SetHungerBarMeter(eat.HungerPointsChange);
+    //    uiView.SetHappyBarSize(entertainment.FunPointsChange);
+    //}
 
     void Start()
     {
@@ -37,21 +45,15 @@ public class UIController : MonoBehaviour
     }
 
 
-    // currently version 1 and 2 do the same thing. version 1 is preferable with working CheckRules 
     public void TestFunButton()
     {
-        // version 1 
         uiMath.TestFunChange();
-      //  uiMath.CheckRules(entertainment.FunPointsChange);
-        uiView.SetHappyBarSize(uiMath.CheckRules(entertainment.FunPointsChange));
+        uiView.SetHappyBarSize(entertainment.FunPointsChange);
     }
 
     public void TestFeeding()
     {
-
-    //version 2 
         uiMath.TestHungerChange();
-        uiMath.CheckRules(eat.HungerPointsChange);
         uiView.SetHungerBarMeter(eat.HungerPointsChange);
         
     }
