@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private SpawnActor actorSpawner;
     private MainAnchorHandler anchorHandler;
     private Player player;
+    public GameObject canvas;
 
     TrackableHit hit;
 
@@ -30,7 +31,7 @@ public class InputManager : MonoBehaviour
         actorSpawner = GetComponent<SpawnActor>();
         anchorHandler = GetComponent<MainAnchorHandler>();
         player = GetComponent<Player>();
-
+        canvas.SetActive(false);
     }
 
     public void UpdateInputManager()
@@ -49,11 +50,10 @@ public class InputManager : MonoBehaviour
                 player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
+                canvas.SetActive(true);
             }
             else if (AnchorSingelton.instance != null)
-
             {
-
                 rayManager.UpdateUnityRayCast(touchManager.GetTouch());
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
@@ -67,11 +67,11 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (AnchorSingelton.instance == null)
         {
-            Debug.Log("Rotating");
-        }
+            canvas.SetActive(false);
 
+        }
 
     }
 
