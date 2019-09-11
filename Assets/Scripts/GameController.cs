@@ -10,6 +10,7 @@ using UnityEngine;
         private InputManager inputManager;
         private UIController uiController;
         private GameWorld gameWorld;
+
         void Start()
         {
             gameWorld = GetComponent<GameWorld>();
