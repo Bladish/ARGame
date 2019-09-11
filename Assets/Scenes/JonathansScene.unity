@@ -612,7 +612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba, type: 3}
-  spawnedPlayer: {fileID: 0}
+  spawnedPlayer: {fileID: 8160086097156016126, guid: 5728c266d29648149a76e214547e8be6,
+    type: 3}
 --- !u!1 &937769429
 GameObject:
   m_ObjectHideFlags: 0
