@@ -55,7 +55,11 @@ public class InputManager : MonoBehaviour
                 return;
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Rotating");
+            player.Squeeze();
+        }
 
 
     }
