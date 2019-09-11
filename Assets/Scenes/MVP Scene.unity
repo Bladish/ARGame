@@ -1714,8 +1714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80237ab1c48a2884a81440056b02e66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happiness: 0
-  changeInMood: 0
 --- !u!114 &1934135617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efba63b3d07b4434e83281059ef591e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 954169351118447585, guid: 4da2e53c7683b58448d7740f1953dc8e, type: 3}
   spawnedPlayer: {fileID: 0}
   width: 0
   height: 0
@@ -1747,7 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e8175a489a2f44a87ec8f48d5c9d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 954169351118447585, guid: 4da2e53c7683b58448d7740f1953dc8e, type: 3}
   spawnedPlayer: {fileID: 0}
   width: 0
   height: 0
