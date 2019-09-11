@@ -10,35 +10,45 @@ using UnityEngine;
 /// </summary>
 public class UIMath : UIController
 {
-   // private float happinessTick = 432;
-    private int mVPTimeTick = 10;
-    private int eating = 10;
-    private int playing = 10;
-    [HideInInspector]   public int happiness;
-    [HideInInspector]   public int changeInMood;
-
- 
+    private int eating;
+    private int playing;
+    
+    public void UIMathUpdate()
+    {
+        eating = Mathf.Clamp(eating, 0, 100);
+        playing = Mathf.Clamp(playing, 0, 100);
+    }
     #region Hunger
     public void HungerLoss(int lossValue)
     {
-        eat.HungerPointsChange -= lossValue;
+        eating -= lossValue;
     }
 
     public void HungerGains(int gains)
     {
-        eat.HungerPointsChange +=  gains;
+        eating +=  gains;
     }
     #endregion
 
     #region Happiness
     public void HappinessLoss(int lossValue)
     {
-        entertainment.FunPointsChange -= lossValue;
+        playing -= lossValue;
     }
 
     public void HappienessGains(int gains)
     {
-        entertainment.FunPointsChange += gains;
+        playing += gains;
+    }
+
+    public int GetEating()
+    {
+        return eating;
+    }
+
+    public int GetPlaying()
+    {
+        return playing;
     }
 
     #endregion

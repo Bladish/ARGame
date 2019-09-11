@@ -11,8 +11,8 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    protected Eat eat;
-    protected Entertainment entertainment;
+    //protected Eat eat;
+    //protected Entertainment entertainment;
     private UIView uiView;
     private UIMath uiMath;
     private TimeCalculations timeCalcuations;
@@ -20,29 +20,31 @@ public class UIController : MonoBehaviour
 
 
     //  TODO: when working rename to UIUpdate() and link in GameController 
-    private void UIUpdate()
+    private void Update()
     {
         LifeLossForPlayerSeconds();
         SetBars();
+        uiMath.UIMathUpdate();
     }
-
+    //Numbers below shoud come from GameController
     void Start()
     {
         uiView = GetComponent<UIView>();
         uiMath = GetComponent<UIMath>();
-        eat = GetComponent<Eat>();
+        //eat = GetComponent<Eat>();
         timeCalcuations = GetComponent<TimeCalculations>();
-        entertainment = GetComponent<Entertainment>();
-
-        uiView.SetHungerBarMeter(eat.HungerPointsChange);
-        uiView.SetHappyBarSize(entertainment.FunPointsChange);
+        //entertainment = GetComponent<Entertainment>();
+        //Numbers below shoud come from GameController
+        uiMath.HungerGains(100);
+        uiMath.HappienessGains(100);
     }
 
     private void SetBars()
     {
-        uiView.SetHungerBarMeter(eat.HungerPointsChange);
-        uiView.SetHappyBarSize(entertainment.FunPointsChange);
+        uiView.SetHungerBarMeter(uiMath.GetEating());
+        uiView.SetHappyBarSize(uiMath.GetPlaying());
     }
+    
 
     void HappinessColor ()
     {
