@@ -15,22 +15,23 @@ public class UIController : MonoBehaviour
     protected Entertainment entertainment;
     private UIView uiView;
     private UIMath uiMath;
-    RectTransform rectTransform;
+    private TimeCalculations timeCalcuations;
+    
 
 
     //  TODO: when working rename to UIUpdate() and link in GameController 
-    private void Update()
+    private void UIUpdate()
     {
-        uiMath.MVPTimeCheck();
+        LifeLossForPlayerSeconds();
         SetBars();
     }
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
         uiView = GetComponent<UIView>();
         uiMath = GetComponent<UIMath>();
         eat = GetComponent<Eat>();
+        timeCalcuations = GetComponent<TimeCalculations>();
         entertainment = GetComponent<Entertainment>();
 
         uiView.SetHungerBarMeter(eat.HungerPointsChange);
@@ -43,19 +44,6 @@ public class UIController : MonoBehaviour
         uiView.SetHappyBarSize(entertainment.FunPointsChange);
     }
 
-
-    public void TestFunButton()
-    {
-        uiMath.TestFunChange();
-        uiView.SetHappyBarSize(entertainment.FunPointsChange);
-    }
-
-    public void TestFeeding()
-    {
-        uiMath.TestHungerChange();
-        uiView.SetHungerBarMeter(eat.HungerPointsChange);
-    }
-
     void HappinessColor ()
     {
         //checks the % of happiness
@@ -63,5 +51,15 @@ public class UIController : MonoBehaviour
         // 60-100 green
         //40- 60 yellow
         // 0-40 red
+    }
+
+    public void LifeLossForPlayerSeconds()
+    {
+        if (timeCalcuations.GetNowTime() > timeCalcuations.GetTimeRules())
+        {
+            uiMath.HappinessLoss(1);
+            uiMath.HungerLoss(1);
+            timeCalcuations.AddSecondsToTimeRules();
+        }
     }
 }

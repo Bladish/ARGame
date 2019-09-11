@@ -6,9 +6,15 @@ public class UIView : UIController
 {
     public GameObject happyBarMeter;
     public GameObject hungerBarMeter;
+    RectTransform rectTransform;
     private int height = 30;
     private int happyWidth;
     private int hungerWidth;
+
+    void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
 
     // FunPointsChange should be number from checkrules. but does not work yet
     public void SetHappyBarSize(int FunPointsChange)

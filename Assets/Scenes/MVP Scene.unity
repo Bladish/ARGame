@@ -1419,6 +1419,7 @@ GameObject:
   - component: {fileID: 1934135613}
   - component: {fileID: 1934135618}
   - component: {fileID: 1934135617}
+  - component: {fileID: 1934135619}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1598,7 +1599,7 @@ MonoBehaviour:
   height: 0
   playerZ: 0
   squeezeHeight: 0
-  funPoints: 0
+  funPoints: 100
 --- !u!114 &1934135618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1617,7 +1618,19 @@ MonoBehaviour:
   height: 0
   playerZ: 0
   squeezeHeight: 0
-  hungerPoints: 0
+  hungerPoints: 100
+--- !u!114 &1934135619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934135605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527eebe846b80c740aca680200a22a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957074900
 GameObject:
   m_ObjectHideFlags: 0
