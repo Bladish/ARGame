@@ -10,86 +10,68 @@ using UnityEngine;
 /// </summary>
 public class UIMath : UIController
 {
-    private float elapsedTime;
-    private float happinessTick = 432;
-    private float mVPTimeTick = 10;
+   // private float happinessTick = 432;
+    private int mVPTimeTick = 10;
     private int eating = 10;
     private int playing = 10;
     private int lossValue = 1;
     [HideInInspector]   public int happiness;
     [HideInInspector]   public int changeInMood;
-    internal object nummer;
 
 
-    //private void Start()
-    //{
-    //    elapsedTime = Time.time;
-    //}
-    //public void MVPTimeCheck()
-    //{
-    //    if (Time.time % mVPTimeTick == 0)
-    //    {
-    //        eat.HungerPointsChange -= lossValue;
-    //        entertainment.FunPointsChange -= lossValue;   
-            
-            
-    //    }
-
-    //} 
-
-    void TimeCheck()
+   
+    
+    public void MVPTimeCheck()
     {
-        if (elapsedTime % happinessTick == 0)
+        // TODO: Runs the check and the loss each frame during the full second elapsedtime = 10
+        // FIX: just want to run once
+        var elapsedTime = (int)Time.time;
+       // Debug.Log( "TIME" + elapsedTime);
+        if (elapsedTime % mVPTimeTick == 0)
         {
-           //changeInMood = -1;
-            //run funcion to change happibar
+            Debug.Log("TIME" + elapsedTime);
+
+            HungerLoss();
+            HappinessLoss();
         }
     }
 
-  
+    //void TimeCheck()
+    //{
+    //    if (elapsedTime % happinessTick == 0)
+    //    {
+    //       //changeInMood = -1;
+    //        //run funcion to change happibar
+    //    }
+    //}
+
+    #region Hunger
+    public void HungerLoss()
+    {
+        eat.HungerPointsChange -= lossValue;
+    }
 
     public void TestHungerChange()
     {
         // REMINDER remove debug logs please
         Debug.Log("before hunger check" + eat.HungerPointsChange);
         eat.HungerPointsChange +=  eating;
-
         Debug.Log("after hunger check" + eat.HungerPointsChange);
-        
-     
+    }
+    #endregion
+
+    #region Happiness
+    public void HappinessLoss()
+    {
+        entertainment.FunPointsChange -= lossValue;
     }
     public void TestFunChange()
     {
         // REMINDER remove debug logs please
         Debug.Log("before fun check" + entertainment.FunPointsChange);
         entertainment.FunPointsChange += playing;
-     
         Debug.Log("after fun check" + entertainment.FunPointsChange);
-
-
     }
-
-
-
-
-    //// Does not work yet temporary ruleschecks in place, lookat Testfunchange and TestHungerChange
-    //public int  CheckRules(int number)
-    //{
-    //    number = Mathf.Clamp(number, 1, 100);
-
-    //    if (number > 100)
-    //    {
-    //        number = 100;
-    //    }
-    //    if (number < 1)
-    //    {
-    //        number = 1;
-    //    }
-    //    Debug.Log("NUMMER"+number);
-       
-    //    return number;
-
-
-    //    // at the end run happinescolor
-    //}
+    #endregion
+    
 }

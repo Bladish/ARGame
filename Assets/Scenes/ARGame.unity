@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   spawnedPlayer: {fileID: 0}
-  funPoints: 0
+  funPoints: 50
 --- !u!114 &268078755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   spawnedPlayer: {fileID: 0}
-  hungerPoints: 0
+  hungerPoints: 50
 --- !u!1 &394180213
 GameObject:
   m_ObjectHideFlags: 0

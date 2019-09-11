@@ -13,19 +13,17 @@ public class UIController : MonoBehaviour
 {
     protected Eat eat;
     protected Entertainment entertainment;
-    private float time;
     private UIView uiView;
     private UIMath uiMath;
     RectTransform rectTransform;
 
 
-
-    //private void Update()
-    //{
-    //    uiMath.MVPTimeCheck();
-    //    uiView.SetHungerBarMeter(eat.HungerPointsChange);
-    //    uiView.SetHappyBarSize(entertainment.FunPointsChange);
-    //}
+    //  TODO: when working rename to UIUpdate() and link in GameController 
+    private void Update()
+    {
+        uiMath.MVPTimeCheck();
+        SetBars();
+    }
 
     void Start()
     {
@@ -39,9 +37,10 @@ public class UIController : MonoBehaviour
         uiView.SetHappyBarSize(entertainment.FunPointsChange);
     }
 
-    public void HappyBarLosingHappiness()
+    private void SetBars()
     {
-
+        uiView.SetHungerBarMeter(eat.HungerPointsChange);
+        uiView.SetHappyBarSize(entertainment.FunPointsChange);
     }
 
 
@@ -55,7 +54,6 @@ public class UIController : MonoBehaviour
     {
         uiMath.TestHungerChange();
         uiView.SetHungerBarMeter(eat.HungerPointsChange);
-        
     }
 
     void HappinessColor ()
