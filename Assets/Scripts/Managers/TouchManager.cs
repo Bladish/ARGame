@@ -17,12 +17,13 @@ public class TouchManager : MonoBehaviour
 
     public void UpdateTouch()
     {
-        if (InstantPreviewInput.touchCount < 1 || (screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+        if (InstantPreviewInput.touchCount < 1 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began || Input.touchCount < 1 && (screenTouch = Input.GetTouch(0)).phase != TouchPhase.Began)
         {
             return;
         }
-        else if (InstantPreviewInput.touchCount > 0 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
+        else if (InstantPreviewInput.touchCount > 0 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began || Input.touchCount > 0 && (screenTouch = Input.GetTouch(0)).phase == TouchPhase.Began)
         {
+            Debug.Log("Got Touch");
             screenTouch = InstantPreviewInput.GetTouch(0);
         }
     }
