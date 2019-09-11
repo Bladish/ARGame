@@ -323,7 +323,6 @@ GameObject:
   - component: {fileID: 1934135614}
   - component: {fileID: 1934135612}
   - component: {fileID: 1934135606}
-  - component: {fileID: 1934135613}
   - component: {fileID: 1934135611}
   - component: {fileID: 1934135609}
   - component: {fileID: 1934135608}
@@ -359,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28256aadbac4f2a439135dcf750cba3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba, type: 3}
+  player: {fileID: 954169351118447585, guid: 4da2e53c7683b58448d7740f1953dc8e, type: 3}
   spawnedPlayer: {fileID: 0}
 --- !u!114 &1934135608
 MonoBehaviour:
@@ -419,18 +418,6 @@ MonoBehaviour:
   arCamera: {fileID: 508487087}
   physicCube: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c,
     type: 3}
---- !u!114 &1934135613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934135605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32ccff45d22f7d42a3fbacd2a15abd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1934135614
 MonoBehaviour:
   m_ObjectHideFlags: 0

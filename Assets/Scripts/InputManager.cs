@@ -45,20 +45,31 @@ public class InputManager : MonoBehaviour
         {
             if (AnchorSingelton.instance == null)
             {
-                anchorHandler.SpawnAnchor(rayManager.UpdateRaycast(touchManager.GetTouch()));
+                anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
                 player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
+            }
+            else if (AnchorSingelton.instance != null)
+
+            {
+
+                rayManager.UpdateUnityRayCast(touchManager.GetTouch());
+                if (rayManager.rayHit.collider.CompareTag("Player"))
+                {
+                    player.Squeeze();
+                }
+
             }
             else
             {
                 return;
             }
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Rotating");
-            player.Squeeze();
         }
 
 

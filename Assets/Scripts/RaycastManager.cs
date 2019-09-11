@@ -12,17 +12,17 @@ using GoogleARCore;
 /// </summary>
 public class RaycastManager : MonoBehaviour
 {
-    private Pose pose;
     private TrackableHit hit;
-    private Touch touch;
+    public RaycastHit rayHit;
     private Vector3 hitArea;
-    
+
+
     public void UpdateRaycastManager()
     {
 
     }
     //Raycast from the touch of the screen to the real world, searching for trackables 
-    public TrackableHit UpdateRaycast(Touch touch)
+    public TrackableHit UpdateWorldRayCast(Touch touch)
     {
         TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
         if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
@@ -37,5 +37,20 @@ public class RaycastManager : MonoBehaviour
         }
 
         return hit;
+    }
+
+    public RaycastHit UpdateUnityRayCast(Touch touch)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(InstantPreviewInput.GetTouch(0).position);
+
+        if (Physics.Raycast(ray, out rayHit))
+        {
+
+
+            return rayHit;
+        }
+        return rayHit;
+
+
     }
 }
