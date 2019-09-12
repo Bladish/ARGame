@@ -31,15 +31,6 @@ public class GameWorld : MonoBehaviour
     {
         CheckIfMotionIsTracking();
         FindPlaceToSpawnPlayer();
-
-        if (InstantPreviewInput.touchCount > 0 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
-        {
-            //GameObject cube = Instantiate(physicCube, arCamera.transform.position, arCamera.transform.rotation);
-        }
-        else
-        {
-            //Debug.Log("Stop");
-        }
     }
 
     private void CheckIfMotionIsTracking()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
-using DG.Tweening;
+
 
 public class Player : MonoBehaviour
 {   
@@ -12,10 +12,6 @@ public class Player : MonoBehaviour
     private Quaternion playerRotation;
     public GameObject spawnedPlayer;
     public static Player instance;
-    public float width;
-    public float height;
-    public float playerZ;
-    public float squeezeHeight;
 
     private void Awake()
     {
@@ -29,10 +25,6 @@ public class Player : MonoBehaviour
             playerPosition = anchorPosition;
             playerRotation = anchorRotation;
             spawnedPlayer = Instantiate(player, playerPosition, playerRotation);
-            width = spawnedPlayer.transform.localScale.x;
-            height = spawnedPlayer.transform.localScale.y;
-            playerZ = spawnedPlayer.transform.localScale.z;
-            squeezeHeight = 0.2f;
         }
         else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
     }
@@ -91,6 +83,7 @@ public class Player : MonoBehaviour
         //spawnedPlayer.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 3).SetRelative(true).SetLoops(-1, LoopType.Restart).SetEase(Ease.InFlash);
     }
 
+    /*
     public void Squeeze()
     {
         Sequence mySequence = DOTween.Sequence();
@@ -104,6 +97,6 @@ public class Player : MonoBehaviour
         mySequence.PrependInterval(0.1f);
         mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height, playerZ), 0.1f));
     }
-
+    */
     
 }

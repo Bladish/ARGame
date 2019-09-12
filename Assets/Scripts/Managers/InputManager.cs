@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
 {
     private RaycastManager rayManager;
     private TouchManager touchManager;
+    private StateMachineManager stateMachineManager;
     private SpawnActor actorSpawner;
     private MainAnchorHandler anchorHandler;
     private Player player;
@@ -30,6 +31,7 @@ public class InputManager : MonoBehaviour
         touchManager = GetComponent<TouchManager>();
         actorSpawner = GetComponent<SpawnActor>();
         anchorHandler = GetComponent<MainAnchorHandler>();
+        stateMachineManager = GetComponent<StateMachineManager>();
         player = GetComponent<Player>();
         canvas.SetActive(false);
     }
@@ -50,19 +52,21 @@ public class InputManager : MonoBehaviour
                 player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
-                canvas.SetActive(true);
+                canvas.SetActive(false);
             }
             else if (AnchorSingelton.instance != null)
             {
+                canvas.SetActive(true);
                 rayManager.UpdateUnityRayCast(touchManager.GetTouch());
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
-                    player.Squeeze();
+                    Debug.Log("l0l");
                 }
 
             }
             else
             {
+                canvas.SetActive(false);
                 return;
             }
         }
@@ -70,7 +74,6 @@ public class InputManager : MonoBehaviour
         if (AnchorSingelton.instance == null)
         {
             canvas.SetActive(false);
-
         }
 
     }
