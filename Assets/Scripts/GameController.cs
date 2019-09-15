@@ -10,6 +10,7 @@ using UnityEngine;
         private InputManager inputManager;
         private UIController uiController;
         private GameWorld gameWorld;
+        private StateMachineManager playerStates;
 
         void Start()
         {
@@ -17,6 +18,7 @@ using UnityEngine;
             inputManager = GetComponent<InputManager>();
             uiController = GetComponent<UIController>();
             gameWorld = GetComponent<GameWorld>();
+            playerStates = GetComponent<StateMachineManager>();
         }
 
         // Update is called once per frame
@@ -24,6 +26,9 @@ using UnityEngine;
         {
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
+
+            //Hämta en buttonstate och 
+            //playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
         }
     }
 }

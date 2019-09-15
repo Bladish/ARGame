@@ -11,7 +11,7 @@ public class ButtonStateMachine : MonoBehaviour
         PLAYBUTTON,
         PETBUTTON
     }
-    ButtonState buttonState;
+    public ButtonState buttonState;
 
     public ButtonState ButtonStateMachineUpdate()
     {
@@ -50,5 +50,9 @@ public class ButtonStateMachine : MonoBehaviour
     public void PlayButton()
     {
         buttonState = ButtonState.PLAYBUTTON;
+    }
+
+    public ButtonState GetButtonState() {
+        return buttonState;
     }
 }

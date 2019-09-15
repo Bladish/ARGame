@@ -33,6 +33,11 @@ public class StateMachineManager : MonoBehaviour
                 break;
         }
     }
+    public void ChangePlayerState(ButtonStateMachine.ButtonState buttonState) {
+        //if (buttonState = ButtonStateMachine.ButtonState.)
+        //{
 
+        //}
+    }
 
 }

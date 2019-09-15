@@ -23,7 +23,6 @@ public class TouchManager : MonoBehaviour
         }
         else if (InstantPreviewInput.touchCount > 0 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
         {
-            Debug.Log("Got Touch");
             screenTouch = InstantPreviewInput.GetTouch(0);
         }
     }

@@ -31,7 +31,7 @@ public class RaycastManager : MonoBehaviour
             {
                 if (InstantPreviewInput.touchCount > 0 && InstantPreviewInput.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    Debug.Log("Touched position: " + hit.Pose.position);
+                    //Debug.Log("Touched position: " + hit.Pose.position);
                 }
             }
         }

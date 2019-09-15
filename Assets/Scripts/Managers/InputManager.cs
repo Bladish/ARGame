@@ -4,6 +4,7 @@ using UnityEngine;
 using GoogleARCore;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 /// <Author>
 /// Jonathan Aronsson Olsson
 /// Joakim Svensson
@@ -17,11 +18,11 @@ public class InputManager : MonoBehaviour
     private RaycastManager rayManager;
     private TouchManager touchManager;
     private StateMachineManager stateMachineManager;
-    private SpawnActor actorSpawner;
     private MainAnchorHandler anchorHandler;
     private Player player;
     public GameObject canvas;
-
+    public ButtonStateMachine buttonStateMachine;
+    private ObjectSpawnHandler objectSpawnHandler;
     TrackableHit hit;
 
 
@@ -29,17 +30,30 @@ public class InputManager : MonoBehaviour
     {
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
-        actorSpawner = GetComponent<SpawnActor>();
         anchorHandler = GetComponent<MainAnchorHandler>();
         stateMachineManager = GetComponent<StateMachineManager>();
+        buttonStateMachine = GetComponent<ButtonStateMachine>();
+        objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
         player = GetComponent<Player>();
         canvas.SetActive(false);
     }
 
     public void UpdateInputManager()
     {
+        buttonStateMachine.ButtonStateMachineUpdate();
+        RayCastLogic();
 
-        //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
+
+
+        //Kolla vilken buttonstate som är aktiv, ifall null är aktiv placera inte ut ett ankare
+
+    }
+
+
+
+    //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
+    #region RayCastLogic
+    private void RayCastLogic() {        
         if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             Debug.Log("No Touch");
@@ -57,7 +71,22 @@ public class InputManager : MonoBehaviour
             else if (AnchorSingelton.instance != null)
             {
                 canvas.SetActive(true);
-                rayManager.UpdateUnityRayCast(touchManager.GetTouch());
+
+                switch (buttonStateMachine.buttonState)
+                {
+                    case ButtonStateMachine.ButtonState.IDLEBUTTON:
+                        break;
+                    case ButtonStateMachine.ButtonState.FOODBUTTON:
+                        objectSpawnHandler.SpawnFood(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
+                        break;
+                    case ButtonStateMachine.ButtonState.PLAYBUTTON:
+                        break;
+                    case ButtonStateMachine.ButtonState.PETBUTTON:
+                        break;
+                    default:
+                        break;
+                }
+
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
                     Debug.Log("l0l");
@@ -70,36 +99,11 @@ public class InputManager : MonoBehaviour
                 return;
             }
         }
-
-        if (AnchorSingelton.instance == null)
-        {
-            canvas.SetActive(false);
-        }
-
     }
+    #endregion
 
     public void Remove(){
             anchorHandler.DetachAnchor();
             Destroy(player.spawnedPlayer);
-}
-
-
-    //Debug.Log("Touched position: " + hit.Pose.position);
-    //var anchor = RaycastManager.hit hit.Trackable.CreateAnchor(hit.Pose);
-    //var currentAnchor = anchors[anchors.Count - 1];
-    //Player.instance.SetPlayerPosition(currentAnchor.transform.position);
-    //StartCoroutine("ClearAnchors");
-    //public void PlacePlayer()
-    //{
-    //    TrackableHit hit = rayManager.ReturnHitValue();
-    //    var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-    //    Debug.Log(anchor.transform.position);
-    //}
-
-    //public IEnumerator ClearAnchors()
-    //{
-    //    yield return new WaitForSeconds(2);
-    //    anchors.RemoveRange(0, anchors.Count - 1);
-    //    ClearAnchors();
-    //}
+    }
 }
