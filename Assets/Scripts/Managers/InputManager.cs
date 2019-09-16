@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     private Player player;
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
-    private ObjectSpawnHandler objectSpawnHandler;
+    public ObjectSpawnHandler objectSpawnHandler;
     TrackableHit hit;
 
 
