@@ -12,6 +12,7 @@ public class StateMachineManager : MonoBehaviour
 {
     public enum States { Idle, Petting, Eat, Play, LookAt };
     public States state;
+
     Player player;
     PlayerMove playerMove;
     PlayerEat playerEat;
@@ -38,7 +39,7 @@ public class StateMachineManager : MonoBehaviour
                 break;
             case States.Eat:    playerEat.Eat();
                 playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedFood);
-                playerMove.PlayerMoveTo(player.spawnedPlayer.transform.position, objectHandler.spawnedFood.transform.position);
+                playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedFood);
                 break;
             case States.Play:   playerPlay.Play();
                 break;

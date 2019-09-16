@@ -10,8 +10,10 @@ public class PlayerMove : MonoBehaviour
     {
         t = 0.3f;
     }
-    public void PlayerMoveTo(  Vector3 player,  Vector3 food  )
+    public void PlayerMoveTo(  GameObject player,  GameObject food  )
     {
-        Vector3.Lerp(player, food, t);
+        Debug.Log($"Vector 3 :{player}");
+        player.transform.Translate(Vector3.forward * Time.deltaTime);
+        //Vector3.Lerp(player, food, t);
     }
 }
