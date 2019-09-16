@@ -1,7 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <Author>
+/// Jonathan Aronsson Olsson
+/// </Author>
+/// <summary>
+/// Statemachine for the games buttons
+/// </summary>
 public class ButtonStateMachine : MonoBehaviour
 {
     public enum ButtonState

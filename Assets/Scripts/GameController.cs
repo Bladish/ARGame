@@ -28,7 +28,7 @@ using UnityEngine;
             inputManager.UpdateInputManager();
 
             //Hämta en buttonstate och 
-            //playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+            playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
         }
     }
 }
