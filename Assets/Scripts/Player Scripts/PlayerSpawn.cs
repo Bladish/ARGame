@@ -19,6 +19,7 @@ public class PlayerSpawn : Player
     {
         if (spawnedPlayer == null)
         {
+            Debug.Log("WANT TO SPAWN PLAYER");
             positionPlayer = anchorPosition;
             rotationPlayer = anchorRotation;
             spawnedPlayer = Instantiate(player, positionPlayer, rotationPlayer);
@@ -26,4 +27,9 @@ public class PlayerSpawn : Player
         else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
     }
     
+    public void UpdatePlayer()
+    {
+        if(spawnedPlayer.transform.position != positionPlayer) spawnedPlayer.transform.position = positionPlayer;
+        if(spawnedPlayer.transform.rotation != rotationPlayer) spawnedPlayer.transform.rotation = rotationPlayer;
+    }
 }

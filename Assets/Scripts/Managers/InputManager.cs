@@ -19,10 +19,9 @@ public class InputManager : MonoBehaviour
     private TouchManager touchManager;
     private StateMachineManager stateMachineManager;
     private MainAnchorHandler anchorHandler;
-    private Player player;
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
-    public ObjectSpawnHandler objectSpawnHandler;
+    public Food food;
     TrackableHit hit;
 
 
@@ -33,8 +32,7 @@ public class InputManager : MonoBehaviour
         anchorHandler = GetComponent<MainAnchorHandler>();
         stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
-        objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
-        player = GetComponent<Player>();
+        food = GetComponent<Food>();
         canvas.SetActive(false);
     }
 
@@ -70,22 +68,7 @@ public class InputManager : MonoBehaviour
             else if (AnchorSingelton.instance != null)
             {
                 canvas.SetActive(true);
-
-                switch (buttonStateMachine.buttonState)
-                {
-                    case ButtonStateMachine.ButtonState.IDLEBUTTON:
-                        break;
-                    case ButtonStateMachine.ButtonState.FOODBUTTON:
-                        objectSpawnHandler.SpawnFood(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                        break;
-                    case ButtonStateMachine.ButtonState.PLAYBUTTON:
-                        break;
-                    case ButtonStateMachine.ButtonState.PETBUTTON:
-                        break;
-                    default:
-                        break;
-                }
-
+                SwitchButtonState();
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
                     Debug.Log("l0l");
@@ -104,5 +87,23 @@ public class InputManager : MonoBehaviour
     public void Remove(PlayerSpawn playerSpawn){
             anchorHandler.DetachAnchor();
             Destroy(playerSpawn.spawnedPlayer);
+    }
+
+    public void SwitchButtonState()
+    {
+        switch (buttonStateMachine.buttonState)
+        {
+            case ButtonStateMachine.ButtonState.IDLEBUTTON:
+                break;
+            case ButtonStateMachine.ButtonState.FOODBUTTON:
+                food.SpawnObject(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
+                break;
+            case ButtonStateMachine.ButtonState.PLAYBUTTON:
+                break;
+            case ButtonStateMachine.ButtonState.PETBUTTON:
+                break;
+            default:
+                break;
+        }
     }
 }

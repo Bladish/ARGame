@@ -17,8 +17,7 @@ public class StateMachineManager : MonoBehaviour
     PlayerEat playerEat;
     PlayerPlay playerPlay;
     PlayerIdle playerIdle;
-    private GameObject food;
-    private ObjectSpawnHandler objectHandler;
+    private Food food;
 
     void Start()
     {
@@ -26,7 +25,7 @@ public class StateMachineManager : MonoBehaviour
         playerEat = GetComponent<PlayerEat>();
         playerPlay = GetComponent<PlayerPlay>();
         playerIdle = GetComponent<PlayerIdle>();
-        objectHandler = GetComponent<ObjectSpawnHandler>();
+        food = GetComponent<Food>();
     }
 
     private void StateMachineUpdate()
@@ -53,7 +52,7 @@ public class StateMachineManager : MonoBehaviour
 
             case States.Eat:
                 //playerEat.Eat();
-                playerMove.RotateObjectTowardAnotherObject(player.rotationPlayer, objectHandler.spawnedFood, player);
+                playerMove.RotateObjectTowardAnotherObject(player.rotationPlayer, food.food, player);
                 playerMove.PlayerMoveTo();
                 break;
 
