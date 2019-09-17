@@ -12,42 +12,58 @@ public class StateMachineManager : MonoBehaviour
 {
     public enum States { Idle, Petting, Eat, Play, LookAt };
     public States state;
-    Player player;
+
+    PlayerMove playerMove;
     PlayerEat playerEat;
     PlayerPlay playerPlay;
     PlayerIdle playerIdle;
-    public GameObject food;
-    public ObjectSpawnHandler objectHandler;
+    private GameObject food;
+    private ObjectSpawnHandler objectHandler;
 
     void Start()
     {
-        player = GetComponent<Player>();
+        playerMove = GetComponent<PlayerMove>();
         playerEat = GetComponent<PlayerEat>();
         playerPlay = GetComponent<PlayerPlay>();
         playerIdle = GetComponent<PlayerIdle>();
         objectHandler = GetComponent<ObjectSpawnHandler>();
     }
 
-    private void Update()
+    private void StateMachineUpdate()
     {
-        switch (state)
-        {
-            case States.Idle:   playerIdle.Idle();
-                break;
-            case States.Eat:    playerEat.Eat();
-                break;
-            case States.Play:   playerPlay.Play();
-                break;
-            default:            playerIdle.Idle();
-                break;
-        }
+        
     }
+
     public void ChangePlayerState(ButtonStateMachine.ButtonState buttonState)
     {
         if (buttonState == ButtonStateMachine.ButtonState.FOODBUTTON)
         {
-            //playerEat
-            playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedFood);
+            state = States.Eat;
+        }
+    }
+
+    public void SwitchState(PlayerSpawn player)
+    {
+        Debug.Log("Current state " + state.ToString());
+        switch (state)
+        {
+            case States.Idle:
+                playerIdle.Idle();
+                break;
+
+            case States.Eat:
+                //playerEat.Eat();
+                playerEat.RotateObjectTowardAnotherObject(player.rotationPlayer, objectHandler.spawnedFood, player);
+                playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedFood);
+                break;
+
+            case States.Play:
+                playerPlay.Play();
+                break;
+
+            default:
+                playerIdle.Idle();
+                break;
         }
     }
 

@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     private Player player;
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
-    private ObjectSpawnHandler objectSpawnHandler;
+    public ObjectSpawnHandler objectSpawnHandler;
     TrackableHit hit;
 
 
@@ -41,19 +41,18 @@ public class InputManager : MonoBehaviour
     public void UpdateInputManager()
     {
         buttonStateMachine.ButtonStateMachineUpdate();
-        RayCastLogic();
+
 
 
 
         //Kolla vilken buttonstate som är aktiv, ifall null är aktiv placera inte ut ett ankare
-
     }
 
 
 
     //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
     #region RayCastLogic
-    private void RayCastLogic() {        
+    public void RayCastLogic(PlayerSpawn playerSpawn) {        
         if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             Debug.Log("No Touch");
@@ -63,9 +62,9 @@ public class InputManager : MonoBehaviour
             if (AnchorSingelton.instance == null)
             {
                 anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
+                playerSpawn.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
-                anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
+                anchorHandler.SetAnchorAsParent(playerSpawn.spawnedPlayer);
                 canvas.SetActive(false);
             }
             else if (AnchorSingelton.instance != null)
@@ -102,8 +101,8 @@ public class InputManager : MonoBehaviour
     }
     #endregion
 
-    public void Remove(){
+    public void Remove(PlayerSpawn playerSpawn){
             anchorHandler.DetachAnchor();
-            Destroy(player.spawnedPlayer);
+            Destroy(playerSpawn.spawnedPlayer);
     }
 }
