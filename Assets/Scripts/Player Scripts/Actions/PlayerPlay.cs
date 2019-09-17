@@ -10,12 +10,16 @@ public class PlayerPlay : PlayerSpawn
     public float playerZ;
     public float squeezeHeight;
     public int happieness;
-    private void Start()
+
+    public void SetWidthAndHightForPlayerPlay(GameObject spawnPlayer)
     {
+        spawnedPlayer = spawnPlayer;
         width = spawnedPlayer.transform.localScale.x;
         height = spawnedPlayer.transform.localScale.y;
         playerZ = spawnedPlayer.transform.localScale.z;
-        squeezeHeight = 1/5f;
+        squeezeHeight = 1 / 5f;
+        
+        Debug.Log("Width " + width + " Height " + height);
     }
 
     public void Play()
@@ -30,6 +34,8 @@ public class PlayerPlay : PlayerSpawn
         mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height + squeezeHeight, playerZ), 0.1f));
         mySequence.PrependInterval(0.1f);
         mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height, playerZ), 0.1f));
+        
+        
     }
 
     public void GainHappieness(int gainHappieness)

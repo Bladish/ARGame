@@ -45,8 +45,6 @@ public class RaycastManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out rayHit))
         {
-
-
             return rayHit;
         }
         return rayHit;

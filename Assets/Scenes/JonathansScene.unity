@@ -145,6 +145,9 @@ GameObject:
   - component: {fileID: 22581887}
   - component: {fileID: 22581886}
   - component: {fileID: 22581888}
+  - component: {fileID: 22581889}
+  - component: {fileID: 22581891}
+  - component: {fileID: 22581890}
   m_Layer: 0
   m_Name: GameController (1)
   m_TagString: Untagged
@@ -166,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1982637505}
   buttonStateMachine: {fileID: 0}
-  objectSpawnHandler: {fileID: 0}
+  food: {fileID: 0}
 --- !u!114 &22581873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28256aadbac4f2a439135dcf750cba3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionPlayer: {x: 0, y: 0, z: 0}
+  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
   player: {fileID: 954169351118447585, guid: 4da2e53c7683b58448d7740f1953dc8e, type: 3}
   spawnedPlayer: {fileID: 0}
 --- !u!114 &22581880
@@ -355,8 +360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
-  objectHandler: {fileID: 0}
 --- !u!114 &22581887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988297c84f8c85b44b9b59c0c26a0202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionPlayer: {x: 0, y: 0, z: 0}
+  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
+  player: {fileID: 0}
+  spawnedPlayer: {fileID: 0}
+  hungerPoints: 0
 --- !u!114 &22581888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +387,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3de589aad49e4d242a619215e5313237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionPlayer: {x: 0, y: 0, z: 0}
+  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
+  player: {fileID: 0}
+--- !u!114 &22581889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22581871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f6f94546f05f5429d4597ba949866f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionPlayer: {x: 0, y: 0, z: 0}
+  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
+  player: {fileID: 0}
+--- !u!114 &22581890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22581871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd84897ce61d7a14aaaa21e5d11a96bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionPlayer: {x: 0, y: 0, z: 0}
+  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
+  player: {fileID: 0}
+  spawnedPlayer: {fileID: 0}
+  width: 0
+  height: 0
+  playerZ: 0
+  squeezeHeight: 0
+  happieness: 0
+--- !u!114 &22581891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22581871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20a3f39ac2a6dd4a9a10e4c8cb4b7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &48590761
@@ -2661,8 +2720,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -239}
-  m_SizeDelta: {x: 10, y: 10}
+  m_AnchoredPosition: {x: -130.5, y: -628.8}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1446433807
 MonoBehaviour:

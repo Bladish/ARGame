@@ -19,9 +19,11 @@ public class InputManager : MonoBehaviour
     private TouchManager touchManager;
     private StateMachineManager stateMachineManager;
     private MainAnchorHandler anchorHandler;
+    private PlayerPlay playerPlay;
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
     public Food food;
+
     TrackableHit hit;
 
 
@@ -30,6 +32,7 @@ public class InputManager : MonoBehaviour
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         anchorHandler = GetComponent<MainAnchorHandler>();
+        playerPlay = GetComponent<PlayerPlay>();
         stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         food = GetComponent<Food>();
@@ -61,6 +64,7 @@ public class InputManager : MonoBehaviour
             {
                 anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
                 playerSpawn.CreatePlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
+                playerPlay.SetWidthAndHightForPlayerPlay(playerSpawn.spawnedPlayer);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(playerSpawn.spawnedPlayer);
                 canvas.SetActive(false);
@@ -69,9 +73,10 @@ public class InputManager : MonoBehaviour
             {
                 canvas.SetActive(true);
                 SwitchButtonState();
+                rayManager.UpdateUnityRayCast(touchManager.GetTouch());
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
-                    Debug.Log("l0l");
+                    returnTrue();
                 }
 
             }
@@ -83,6 +88,11 @@ public class InputManager : MonoBehaviour
         }
     }
     #endregion
+
+    public bool returnTrue()
+    {
+        return true;
+    }
 
     public void Remove(PlayerSpawn playerSpawn){
             anchorHandler.DetachAnchor();
