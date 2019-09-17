@@ -15,6 +15,7 @@ using UnityEngine;
         private ButtonStateMachine buttonStateMachine;
         private PlayerCamera playerCamera;
         private PlayerPlay playerPlay;
+        private Player player;
 
         void Start()
         {
@@ -27,6 +28,7 @@ using UnityEngine;
             buttonStateMachine = GetComponent<ButtonStateMachine>();
             playerCamera = GetComponent<PlayerCamera>();
             playerPlay = GetComponent<PlayerPlay>();
+            player = GetComponent<Player>();
         }
 
         // Update is called once per frame
@@ -47,11 +49,11 @@ using UnityEngine;
                 playerStates.SwitchState(playerSpawn);
             }
 
-            if (inputManager.returnTrue() == true)
-            {
-                playerPlay.Play();
-                Debug.Log("HELVETE");
-            }
+            //if (inputManager.returnTrue() == true)
+            //{
+            //    playerPlay.Play();
+            //    Debug.Log("HELVETE");
+            //}
             
         }
     }

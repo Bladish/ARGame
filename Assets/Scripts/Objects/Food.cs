@@ -8,7 +8,13 @@ public class Food : ObjectSpawnHandler
     
     public new void SpawnObject(TrackableHit hit)
     {
-        spawnedObject = Instantiate(food, hit.Pose.position, hit.Pose.rotation);
+        food = Instantiate(food, hit.Pose.position, hit.Pose.rotation);
     }
-    
+
+    public void UpdateFood()
+    {
+        food.transform.position = objectPosition;
+        food.transform.rotation = objectRotation;
+    }
+
 }

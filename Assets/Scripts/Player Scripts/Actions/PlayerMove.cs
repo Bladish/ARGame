@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : Player
+public class PlayerMove : PlayerSpawn
 {
-    float t;
+    float movementSpeed;
 
     private void Start()
     {
-        t = 0.3f;
+        //  tweak movement
+        movementSpeed = Time.deltaTime * 2f;
     }
-    public void PlayerMoveTo()
+    public void PlayerMoveTo(Vector3 foodposition, Vector3 playerPosition)
     {        //Debug.Log($"Vector 3 :{player}");
-             //player.transform.Translate(Vector3.forward * Time.deltaTime);
+        Vector3 tmp = new Vector3();     //player.transform.Translate(Vector3.forward * Time.deltaTime);
         //Need to fix this!!! under here..
-        Vector3 food = new Vector3(0, 0, 0);
-        positionPlayer = Vector3.Lerp(player.transform.position, food, t);
+        tmp = Vector3.Lerp(playerPosition, foodposition, movementSpeed);
+        SetPlayerPosition(tmp);
     }
 
-    public void RotateObjectTowardAnotherObject(Quaternion playerRotation, GameObject food, Player player)
+    public void RotateObjectTowardAnotherObject(Quaternion playerRotation, Vector3 foodPostion, Player player)
     {
         //player.gameObject.transform.Rotate(Vector3.RotateTowards(player, foodAnchor));
         int damping = 4;
-        Vector3 lookPos = food.transform.position - player.positionPlayer;
+        Vector3 lookPos = foodPostion - positionPlayer;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         player.rotationPlayer = Quaternion.Slerp(playerRotation, rotation, Time.deltaTime * damping);

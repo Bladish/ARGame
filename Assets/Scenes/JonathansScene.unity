@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 22581889}
   - component: {fileID: 22581891}
   - component: {fileID: 22581890}
+  - component: {fileID: 22581892}
   m_Layer: 0
   m_Name: GameController (1)
   m_TagString: Untagged
@@ -392,6 +393,7 @@ MonoBehaviour:
   positionPlayer: {x: 0, y: 0, z: 0}
   rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
   player: {fileID: 0}
+  spawnedPlayer: {fileID: 0}
 --- !u!114 &22581889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +442,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20a3f39ac2a6dd4a9a10e4c8cb4b7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &22581892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22581871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c3caa6f43885447a971fd80490867e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedObject: {fileID: 0}
+  objectPosition: {x: 0, y: 0, z: 0}
+  objectRotation: {x: 0, y: 0, z: 0, w: 0}
+  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
 --- !u!1 &48590761
 GameObject:
   m_ObjectHideFlags: 0

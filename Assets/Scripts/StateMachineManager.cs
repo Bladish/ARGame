@@ -52,8 +52,8 @@ public class StateMachineManager : MonoBehaviour
 
             case States.Eat:
                 //playerEat.Eat();
-                playerMove.RotateObjectTowardAnotherObject(player.rotationPlayer, food.food, player);
-                playerMove.PlayerMoveTo();
+                playerMove.RotateObjectTowardAnotherObject(player.rotationPlayer, food.objectPosition, player);
+                playerMove.PlayerMoveTo(food.objectPosition, player.positionPlayer);
                 break;
 
             case States.Play:

@@ -32,4 +32,9 @@ public class PlayerSpawn : Player
         if(spawnedPlayer.transform.position != positionPlayer) spawnedPlayer.transform.position = positionPlayer;
         if(spawnedPlayer.transform.rotation != rotationPlayer) spawnedPlayer.transform.rotation = rotationPlayer;
     }
+
+    public void SetPlayerPosition(Vector3 position)
+    {
+        positionPlayer = position; 
+    }
 }
