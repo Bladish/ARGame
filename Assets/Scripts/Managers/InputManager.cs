@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour
             if (AnchorSingelton.instance == null)
             {
                 anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                playerSpawn.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
+                playerSpawn.CreatePlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(playerSpawn.spawnedPlayer);
                 canvas.SetActive(false);

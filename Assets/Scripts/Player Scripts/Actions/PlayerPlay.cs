@@ -9,7 +9,7 @@ public class PlayerPlay : PlayerSpawn
     public float height;
     public float playerZ;
     public float squeezeHeight;
-
+    public int happieness;
     private void Start()
     {
         width = spawnedPlayer.transform.localScale.x;
@@ -30,5 +30,15 @@ public class PlayerPlay : PlayerSpawn
         mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height + squeezeHeight, playerZ), 0.1f));
         mySequence.PrependInterval(0.1f);
         mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height, playerZ), 0.1f));
+    }
+
+    public void GainHappieness(int gainHappieness)
+    {
+        happieness += gainHappieness;
+    }
+
+    public void LoseHappieness(int loseHappieness)
+    {
+        happieness -= loseHappieness;
     }
 }

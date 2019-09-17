@@ -9,21 +9,26 @@ using GoogleARCore;
 /// <summary>
 /// Player eat functionality
 /// </summary>
-public class PlayerEat : Player
+public class PlayerEat : PlayerSpawn
 {
+    private int limit;
+    public int hungerPoints;
 
-    public void Eat()
+    public void PlayerEating(int gettingFat)
     {
-        
+        hungerPoints += gettingFat;
     }
 
-    public void RotateObjectTowardAnotherObject(Quaternion playerRotation, GameObject food, Player player)
+    public void LoseHungerPoints(int lossHungerPoints)
     {
-        //player.gameObject.transform.Rotate(Vector3.RotateTowards(player, foodAnchor));
-        int damping = 4;
-        Vector3 lookPos = food.transform.position - player.positionPlayer;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        player.rotationPlayer = Quaternion.Slerp(playerRotation, rotation, Time.deltaTime * damping);
+        hungerPoints -= lossHungerPoints;
+    }
+    //TODO Fix CheckingHungerPoints
+    public void CheckingHungerPoints()
+    {
+        if(hungerPoints > limit)
+        {
+
+        }
     }
 }

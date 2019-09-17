@@ -6,7 +6,5 @@ public abstract class Player : MonoBehaviour
 {
     public Vector3 positionPlayer;
     public Quaternion rotationPlayer;
-    public int hungerPoints;
-    public int happyness;
     public GameObject player;
 }
