@@ -37,6 +37,7 @@ using UnityEngine;
             playerStates.ChangePlayerState(buttonStateMachine.GetButtonState());
             inputManager.RayCastLogic(playerSpawn);
             playerCamera.PlayerCameraUpdate();
+            playerSpawn.UpdatePlayer();
             //Hämta en buttonstate och 
 
             if (playerSpawn.spawnedPlayer != null)
