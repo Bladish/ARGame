@@ -9,22 +9,21 @@ using GoogleARCore;
 /// <summary>
 /// Player eat functionality
 /// </summary>
-public class PlayerEat : MonoBehaviour
+public class PlayerEat : Player
 {
 
     public void Eat()
     {
-
+        
     }
 
-    public void RotateObjectTowardAnotherObject(GameObject player, GameObject food)
+    public void RotateObjectTowardAnotherObject(Quaternion playerRotation, GameObject food, Player player)
     {
         //player.gameObject.transform.Rotate(Vector3.RotateTowards(player, foodAnchor));
-
         int damping = 4;
-        var lookPos = food.transform.position - player.transform.position;
+        Vector3 lookPos = food.transform.position - player.positionPlayer;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rotation, Time.deltaTime * damping);
+        player.rotationPlayer = Quaternion.Slerp(playerRotation, rotation, Time.deltaTime * damping);
     }
 }
