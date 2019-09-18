@@ -19,11 +19,10 @@ public class InputManager : MonoBehaviour
     private TouchManager touchManager;
     private StateMachineManager stateMachineManager;
     private MainAnchorHandler anchorHandler;
-    private PlayerPlay playerPlay;
+    private Player player;
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
-    public Food food;
-
+    public ObjectSpawnHandler objectSpawnHandler;
     TrackableHit hit;
 
 
@@ -32,28 +31,29 @@ public class InputManager : MonoBehaviour
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         anchorHandler = GetComponent<MainAnchorHandler>();
-        playerPlay = GetComponent<PlayerPlay>();
         stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
-        food = GetComponent<Food>();
+        objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
+        player = GetComponent<Player>();
         canvas.SetActive(false);
     }
 
     public void UpdateInputManager()
     {
         buttonStateMachine.ButtonStateMachineUpdate();
-
+        RayCastLogic();
 
 
 
         //Kolla vilken buttonstate som är aktiv, ifall null är aktiv placera inte ut ett ankare
+
     }
 
 
 
     //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
     #region RayCastLogic
-    public void RayCastLogic(Player player) {        
+    private void RayCastLogic() {        
         if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             Debug.Log("No Touch");
@@ -63,8 +63,7 @@ public class InputManager : MonoBehaviour
             if (AnchorSingelton.instance == null)
             {
                 anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                player.CreatePlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
-                playerPlay.SetWidthAndHightForPlayerPlay();
+                player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
                 anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
                 canvas.SetActive(false);
@@ -72,11 +71,25 @@ public class InputManager : MonoBehaviour
             else if (AnchorSingelton.instance != null)
             {
                 canvas.SetActive(true);
-                SwitchButtonState();
-                rayManager.UpdateUnityRayCast(touchManager.GetTouch());
+
+                switch (buttonStateMachine.buttonState)
+                {
+                    case ButtonStateMachine.ButtonState.IDLEBUTTON:
+                        break;
+                    case ButtonStateMachine.ButtonState.FOODBUTTON:
+                        objectSpawnHandler.SpawnFood(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
+                        break;
+                    case ButtonStateMachine.ButtonState.PLAYBUTTON:
+                        break;
+                    case ButtonStateMachine.ButtonState.PETBUTTON:
+                        break;
+                    default:
+                        break;
+                }
+
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
-                    returnTrue();
+                    Debug.Log("l0l");
                 }
 
             }
@@ -89,31 +102,8 @@ public class InputManager : MonoBehaviour
     }
     #endregion
 
-    public bool returnTrue()
-    {
-        return true;
-    }
-
-    public void Remove(Player player){
+    public void Remove(){
             anchorHandler.DetachAnchor();
             Destroy(player.spawnedPlayer);
-    }
-
-    public void SwitchButtonState()
-    {
-        switch (buttonStateMachine.buttonState)
-        {
-            case ButtonStateMachine.ButtonState.IDLEBUTTON:
-                break;
-            case ButtonStateMachine.ButtonState.FOODBUTTON:
-                food.SpawnObject(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                break;
-            case ButtonStateMachine.ButtonState.PLAYBUTTON:
-                break;
-            case ButtonStateMachine.ButtonState.PETBUTTON:
-                break;
-            default:
-                break;
-        }
     }
 }

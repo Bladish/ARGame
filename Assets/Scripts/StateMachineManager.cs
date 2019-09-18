@@ -13,56 +13,48 @@ public class StateMachineManager : MonoBehaviour
     public enum States { Idle, Petting, Eat, Play, LookAt };
     public States state;
 
+    Player player;
     PlayerMove playerMove;
     PlayerEat playerEat;
     PlayerPlay playerPlay;
     PlayerIdle playerIdle;
-    private Food food;
+    public GameObject food;
+    public ObjectSpawnHandler objectHandler;
 
     void Start()
     {
+        player = GetComponent<Player>();
         playerMove = GetComponent<PlayerMove>();
         playerEat = GetComponent<PlayerEat>();
         playerPlay = GetComponent<PlayerPlay>();
         playerIdle = GetComponent<PlayerIdle>();
-        food = GetComponent<Food>();
+        objectHandler = GetComponent<ObjectSpawnHandler>();
     }
 
-    private void StateMachineUpdate()
+    private void Update()
     {
-        
+        switch (state)
+        {
+            case States.Idle:   playerIdle.Idle();
+                break;
+            case States.Eat:    playerEat.Eat();
+                playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedFood);
+                playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedFood.transform.position);
+                break;
+            case States.Play:   playerPlay.Play();
+                break;
+            default:            playerIdle.Idle();
+                break;
+        }
     }
+
 
     public void ChangePlayerState(ButtonStateMachine.ButtonState buttonState)
     {
         if (buttonState == ButtonStateMachine.ButtonState.FOODBUTTON)
         {
+            //playerEat
             state = States.Eat;
-        }
-    }
-
-    public void SwitchState(Player player)
-    {
-        Debug.Log("Current state " + state.ToString());
-        switch (state)
-        {
-            case States.Idle:
-                playerIdle.Idle();
-                break;
-
-            case States.Eat:
-                //playerEat.Eat();
-                playerMove.RotateObjectTowardAnotherObject(player.rotationPlayer, food.objectPosition, player);
-                playerMove.PlayerMoveTo(food.objectPosition, player.positionPlayer);
-                break;
-
-            case States.Play:
-                playerPlay.Play();
-                break;
-
-            default:
-                playerIdle.Idle();
-                break;
         }
     }
 

@@ -135,19 +135,16 @@ GameObject:
   - component: {fileID: 22581882}
   - component: {fileID: 22581881}
   - component: {fileID: 22581880}
+  - component: {fileID: 22581879}
   - component: {fileID: 22581873}
   - component: {fileID: 22581878}
   - component: {fileID: 22581877}
   - component: {fileID: 22581874}
   - component: {fileID: 22581875}
-  - component: {fileID: 22581886}
-  - component: {fileID: 22581892}
-  - component: {fileID: 22581890}
-  - component: {fileID: 22581889}
-  - component: {fileID: 22581888}
-  - component: {fileID: 22581887}
-  - component: {fileID: 22581879}
   - component: {fileID: 22581876}
+  - component: {fileID: 22581887}
+  - component: {fileID: 22581886}
+  - component: {fileID: 22581888}
   m_Layer: 0
   m_Name: GameController (1)
   m_TagString: Untagged
@@ -169,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1982637505}
   buttonStateMachine: {fileID: 0}
-  food: {fileID: 0}
+  objectSpawnHandler: {fileID: 0}
 --- !u!114 &22581873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,18 +213,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 22581871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd84897ce61d7a14aaaa21e5d11a96bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b210438e8d9594ab1da937f155fec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  positionPlayer: {x: 0, y: 0, z: 0}
-  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
-  spawnedPlayer: {fileID: 0}
-  width: 0
-  height: 0
-  playerZ: 0
-  squeezeHeight: 0
-  happieness: 0
+  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
+  spawnedFood: {fileID: 0}
 --- !u!114 &22581877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,12 +253,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 22581871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de589aad49e4d242a619215e5313237, type: 3}
+  m_Script: {fileID: 11500000, guid: 28256aadbac4f2a439135dcf750cba3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  positionPlayer: {x: 0, y: 0, z: 0}
-  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
+  player: {fileID: 954169351118447585, guid: 4da2e53c7683b58448d7740f1953dc8e, type: 3}
   spawnedPlayer: {fileID: 0}
 --- !u!114 &22581880
 MonoBehaviour:
@@ -367,19 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
+  objectHandler: {fileID: 0}
 --- !u!114 &22581887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22581871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20a3f39ac2a6dd4a9a10e4c8cb4b7f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &22581888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,8 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988297c84f8c85b44b9b59c0c26a0202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerPoints: 0
---- !u!114 &22581889
+--- !u!114 &22581888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -401,44 +378,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 22581871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f6f94546f05f5429d4597ba949866f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de589aad49e4d242a619215e5313237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  positionPlayer: {x: 0, y: 0, z: 0}
-  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
-  spawnedPlayer: {fileID: 0}
---- !u!114 &22581890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22581871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28256aadbac4f2a439135dcf750cba3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  positionPlayer: {x: 0, y: 0, z: 0}
-  rotationPlayer: {x: 0, y: 0, z: 0, w: 0}
-  spawnedPlayer: {fileID: 0}
---- !u!114 &22581892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22581871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c3caa6f43885447a971fd80490867e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
-  objectPosition: {x: 0, y: 0, z: 0}
-  objectRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &48590761
 GameObject:
   m_ObjectHideFlags: 0

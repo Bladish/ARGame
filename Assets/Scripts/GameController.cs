@@ -11,10 +11,6 @@ using UnityEngine;
         private UIController uiController;
         private GameWorld gameWorld;
         private StateMachineManager playerStates;
-        private Player player;
-        private ButtonStateMachine buttonStateMachine;
-        private PlayerCamera playerCamera;
-        private PlayerPlay playerPlay;
 
         void Start()
         {
@@ -23,10 +19,6 @@ using UnityEngine;
             uiController = GetComponent<UIController>();
             gameWorld = GetComponent<GameWorld>();
             playerStates = GetComponent<StateMachineManager>();
-            player = GetComponent<Player>();
-            buttonStateMachine = GetComponent<ButtonStateMachine>();
-            playerCamera = GetComponent<PlayerCamera>();
-            playerPlay = GetComponent<PlayerPlay>();
         }
 
         // Update is called once per frame
@@ -34,25 +26,9 @@ using UnityEngine;
         {
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
-            uiController.UIUpdate();
-            buttonStateMachine.ButtonStateMachineUpdate();
-            playerStates.ChangePlayerState(buttonStateMachine.GetButtonState());
-            inputManager.RayCastLogic(player);
-            playerCamera.PlayerCameraUpdate();
-            player.UpdatePlayer();
+
             //Hämta en buttonstate och 
-
-            if (player.spawnedPlayer != null)
-            {
-                playerStates.SwitchState(player);
-            }
-
-            //if (inputManager.returnTrue() == true)
-            //{
-            //    playerPlay.Play();
-            //    Debug.Log("HELVETE");
-            //}
-            
+            playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
         }
     }
 }
