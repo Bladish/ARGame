@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class CubeTestTween : MonoBehaviour
 {
+	public ParticleSystem patPartical;
+
     float width;
     float height;
 	float baseRotX, baseRotY, baseRotZ;
@@ -24,7 +26,9 @@ public class CubeTestTween : MonoBehaviour
 		t += Time.deltaTime;
 		if (Input.GetKeyDown(KeyCode.E) && t > 0.8f)
         {
-            PlayerScale();			
+			//patPartical.Stop();
+            PlayerScale();
+			patPartical.Play();
 			t = 0;
 		}
     }
