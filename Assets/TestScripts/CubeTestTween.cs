@@ -8,6 +8,7 @@ public class CubeTestTween : MonoBehaviour
     float width;
     float height;
 	float baseRotX, baseRotY, baseRotZ;
+	float t = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +23,18 @@ public class CubeTestTween : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E))
+	{
+		t += Time.deltaTime;
+		if (Input.GetKeyDown(KeyCode.E) && t > 0.8f)
         {
 			Tween();
-        }
+			t = 0;
+		}
     }
 
     private void Tween()
     {
+
 		//transform.DOScale(new Vector3(0.2f, -0.2f, 0), 0.5f).SetLoops(1, LoopType.);
 
 		// Changes scale on cube
@@ -46,27 +50,34 @@ public class CubeTestTween : MonoBehaviour
 		//mySequence.Append(transform.DOScale(new Vector3(width, height, transform.localScale.z), 0.1f));
 
 		// Eating Chicken
-		//Sequence mySequence1 = DOTween.Sequence();
-		//mySequence1.Append(transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
-		//mySequence1.PrependInterval(0.1f);
-		//mySequence1.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
-		//mySequence1.PrependInterval(0.1f);
-		//mySequence1.Append(transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
-		//mySequence1.PrependInterval(0.1f);
-		//mySequence1.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
-		//mySequence1.PrependInterval(0.1f);
-		//mySequence1.Append(transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0.1f));
+		Sequence mySequence1 = DOTween.Sequence();
+		mySequence1.Append(transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
+		mySequence1.PrependInterval(0.1f);
+		mySequence1.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
+		mySequence1.PrependInterval(0.1f);
+		mySequence1.Append(transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
+		mySequence1.PrependInterval(0.1f);
+		mySequence1.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
+		mySequence1.PrependInterval(0.1f);
+		mySequence1.Append(transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0.1f));
 
 		// Walking Chicken
-		Sequence mySequence2 = DOTween.Sequence();
-		mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 20f), 0.2f).SetLoops(1, LoopType.Restart));
-		mySequence2.PrependInterval(0.1f);
-		//mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.3f).SetLoops(1, LoopType.Restart));
-		//mySequence2.PrependInterval(0.1f);
-		mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, -20f), 0.2f).SetLoops(1, LoopType.Restart));
-		mySequence2.PrependInterval(0.1f);
-		mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.2f).SetLoops(1, LoopType.Restart));
-		mySequence2.PrependInterval(0.1f);
-		mySequence2.Append(transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0.1f));
+		//Sequence mySequence2 = DOTween.Sequence();
+		//	mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 20f), 0.2f).SetLoops(1, LoopType.Restart));
+		//	mySequence2.PrependInterval(0.1f);
+		//	//mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.3f).SetLoops(1, LoopType.Restart));
+		//	//mySequence2.PrependInterval(0.1f);
+		//	mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, -20f), 0.2f).SetLoops(1, LoopType.Restart));
+		//	mySequence2.PrependInterval(0.1f);
+		//	mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.2f).SetLoops(1, LoopType.Restart));
+		//	mySequence2.PrependInterval(0.1f);
+		//	mySequence2.Append(transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0f));
+
+		//StartCoroutine("TweenDelay");
+	}
+
+	public IEnumerator TweenDelay ()
+	{
+		yield return new WaitForSeconds(1);
 	}
 }
