@@ -86,7 +86,7 @@ public class InputManager : MonoBehaviour
                     default:
                         break;
                 }
-
+                rayManager.UpdateUnityRayCast(touchManager.screenTouch);
                 if (rayManager.rayHit.collider.CompareTag("Player"))
                 {
                     Debug.Log("l0l");

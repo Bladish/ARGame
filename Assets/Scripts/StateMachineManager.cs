@@ -18,8 +18,7 @@ public class StateMachineManager : MonoBehaviour
     PlayerEat playerEat;
     PlayerPlay playerPlay;
     PlayerIdle playerIdle;
-    public GameObject food;
-    public ObjectSpawnHandler objectHandler;
+    private ObjectSpawnHandler objectHandler;
 
     void Start()
     {

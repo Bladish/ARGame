@@ -18,7 +18,6 @@ public class GameWorld : MonoBehaviour
     public GameObject planePrefab;
     public List<DetectedPlane> planeList = new List<DetectedPlane>();
     public Camera arCamera;
-    public GameObject physicCube;
 
     Touch screenTouch;
 
@@ -52,12 +51,3 @@ public class GameWorld : MonoBehaviour
         }
     }
 }
-
-//if(Frame.Raycast(Screen.height / 2, Screen.width / 2, TrackableHitFlags.PlaneWithinPolygon, out hit))
-//{
-//    if (hit.Trackable is DetectedPlane)
-//    {
-
-//        //Instantiate(player, hit.Pose.position, hit.Pose.rotation);
-//    }
-//}
