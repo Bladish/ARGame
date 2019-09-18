@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerPlay : PlayerSpawn
+public class PlayerPlay : Player
 {
     public float width;
     public float height;
     public float playerZ;
     public float squeezeHeight;
     public int happieness;
-
-    public void SetWidthAndHightForPlayerPlay(GameObject spawnPlayer)
+    public void SetWidthAndHightForPlayerPlay()
     {
-        spawnedPlayer = spawnPlayer;
         width = spawnedPlayer.transform.localScale.x;
         height = spawnedPlayer.transform.localScale.y;
         playerZ = spawnedPlayer.transform.localScale.z;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : PlayerSpawn
+public class PlayerMove : Player
 {
     float movementSpeed;
 
@@ -16,7 +16,6 @@ public class PlayerMove : PlayerSpawn
         Vector3 tmp = new Vector3();     //player.transform.Translate(Vector3.forward * Time.deltaTime);
         //Need to fix this!!! under here..
         tmp = Vector3.Lerp(playerPosition, foodposition, movementSpeed);
-        SetPlayerPosition(tmp);
     }
 
     public void RotateObjectTowardAnotherObject(Quaternion playerRotation, Vector3 foodPostion, Player player)

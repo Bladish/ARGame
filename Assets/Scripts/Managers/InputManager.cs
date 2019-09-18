@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
 
     //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
     #region RayCastLogic
-    public void RayCastLogic(PlayerSpawn playerSpawn) {        
+    public void RayCastLogic(Player player) {        
         if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
         {
             Debug.Log("No Touch");
@@ -63,10 +63,10 @@ public class InputManager : MonoBehaviour
             if (AnchorSingelton.instance == null)
             {
                 anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                playerSpawn.CreatePlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
-                playerPlay.SetWidthAndHightForPlayerPlay(playerSpawn.spawnedPlayer);
+                player.CreatePlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
+                playerPlay.SetWidthAndHightForPlayerPlay();
                 anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
-                anchorHandler.SetAnchorAsParent(playerSpawn.spawnedPlayer);
+                anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
                 canvas.SetActive(false);
             }
             else if (AnchorSingelton.instance != null)
@@ -94,9 +94,9 @@ public class InputManager : MonoBehaviour
         return true;
     }
 
-    public void Remove(PlayerSpawn playerSpawn){
+    public void Remove(Player player){
             anchorHandler.DetachAnchor();
-            Destroy(playerSpawn.spawnedPlayer);
+            Destroy(player.spawnedPlayer);
     }
 
     public void SwitchButtonState()

@@ -9,7 +9,7 @@ using GoogleARCore;
 /// <summary>
 /// Player eat functionality
 /// </summary>
-public class PlayerEat : PlayerSpawn
+public class PlayerEat : MonoBehaviour
 {
     private int limit;
     public int hungerPoints;
