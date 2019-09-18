@@ -15,6 +15,7 @@ using System;
 /// </summary>
 public class InputManager : MonoBehaviour
 {
+    #region Managers 
     private RaycastManager rayManager;
     private TouchManager touchManager;
     private StateMachineManager stateMachineManager;
@@ -24,10 +25,11 @@ public class InputManager : MonoBehaviour
     public ButtonStateMachine buttonStateMachine;
     public ObjectSpawnHandler objectSpawnHandler;
     TrackableHit hit;
-
+    #endregion 
 
     void Start()
     {
+        #region GetComponents
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         anchorHandler = GetComponent<MainAnchorHandler>();
@@ -35,6 +37,8 @@ public class InputManager : MonoBehaviour
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
         player = GetComponent<Player>();
+        #endregion
+
         canvas.SetActive(false);
     }
 
@@ -42,14 +46,11 @@ public class InputManager : MonoBehaviour
     {
         buttonStateMachine.ButtonStateMachineUpdate();
         RayCastLogic();
-
-
-
+        
         //Kolla vilken buttonstate som är aktiv, ifall null är aktiv placera inte ut ett ankare
 
     }
-
-
+    
 
     //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
     #region RayCastLogic
