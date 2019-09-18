@@ -41,7 +41,7 @@ public class StateMachineManager : MonoBehaviour
         }
     }
 
-    public void SwitchState(PlayerSpawn player)
+    public void SwitchState(Player player)
     {
         Debug.Log("Current state " + state.ToString());
         switch (state)

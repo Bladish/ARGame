@@ -11,11 +11,10 @@ using UnityEngine;
         private UIController uiController;
         private GameWorld gameWorld;
         private StateMachineManager playerStates;
-        private PlayerSpawn playerSpawn;
+        private Player player;
         private ButtonStateMachine buttonStateMachine;
         private PlayerCamera playerCamera;
         private PlayerPlay playerPlay;
-        private Player player;
 
         void Start()
         {
@@ -24,11 +23,10 @@ using UnityEngine;
             uiController = GetComponent<UIController>();
             gameWorld = GetComponent<GameWorld>();
             playerStates = GetComponent<StateMachineManager>();
-            playerSpawn = GetComponent<PlayerSpawn>();
+            player = GetComponent<Player>();
             buttonStateMachine = GetComponent<ButtonStateMachine>();
             playerCamera = GetComponent<PlayerCamera>();
             playerPlay = GetComponent<PlayerPlay>();
-            player = GetComponent<Player>();
         }
 
         // Update is called once per frame
@@ -39,14 +37,14 @@ using UnityEngine;
             uiController.UIUpdate();
             buttonStateMachine.ButtonStateMachineUpdate();
             playerStates.ChangePlayerState(buttonStateMachine.GetButtonState());
-            inputManager.RayCastLogic(playerSpawn);
+            inputManager.RayCastLogic(player);
             playerCamera.PlayerCameraUpdate();
-            playerSpawn.UpdatePlayer();
+            player.UpdatePlayer();
             //Hämta en buttonstate och 
 
-            if (playerSpawn.spawnedPlayer != null)
+            if (player.spawnedPlayer != null)
             {
-                playerStates.SwitchState(playerSpawn);
+                playerStates.SwitchState(player);
             }
 
             //if (inputManager.returnTrue() == true)

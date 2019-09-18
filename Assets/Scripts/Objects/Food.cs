@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
-public class Food : ObjectSpawnHandler
+public class Food : MonoBehaviour
 {
     public GameObject food;
-    
-    public new void SpawnObject(TrackableHit hit)
+    public Vector3 objectPosition;
+    public Quaternion objectRotation;
+    public void SpawnObject(TrackableHit hit)
     {
         food = Instantiate(food, hit.Pose.position, hit.Pose.rotation);
     }
