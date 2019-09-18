@@ -6,10 +6,8 @@ using DG.Tweening;
 public class PlayerPlay : MonoBehaviour
 {
     Player player;
-    public float width;
-    public float height;
-    public float playerZ;
-    public float squeezeHeight;
+    private float width, height, playerZ;
+    private float squeezeHeight;
 
     private void Start()
     {

@@ -314,8 +314,6 @@ MonoBehaviour:
   planePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 3}
   arCamera: {fileID: 0}
-  physicCube: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c,
-    type: 3}
 --- !u!114 &22581884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,8 +353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
-  objectHandler: {fileID: 0}
 --- !u!114 &22581887
 MonoBehaviour:
   m_ObjectHideFlags: 0
