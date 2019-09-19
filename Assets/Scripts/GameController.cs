@@ -7,7 +7,6 @@ using UnityEngine;
     public class GameController : MonoBehaviour
     {
         private InputManager inputManager;
-        private UIController uiController;
         private GameWorld gameWorld;
         private StateMachineManager playerStates;
         private ObjectSpawnHandler objectSpawnHandler;
@@ -17,12 +16,11 @@ using UnityEngine;
 
         void Start()
         {
-            gameWorld = GetComponent<GameWorld>();
             inputManager = GetComponent<InputManager>();
-            uIController = GetComponent<UIController>();
             gameWorld = GetComponent<GameWorld>();
             playerStates = GetComponent<StateMachineManager>();
             objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
+            uIController = GetComponent<UIController>();
             stateMachineManager = GetComponent<StateMachineManager>();
             uIMath = GetComponent<UIMath>();
         }
@@ -34,7 +32,7 @@ using UnityEngine;
             uIController.UIControllerUpdate();
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
-            inputManager.baws.Resize(inputManager.player.spawnedPlayer, (float)uIMath.eating);
+            inputManager.baws.Resize(inputManager.player.spawnedPlayer, (float)uIMath.GetEating());
             if(objectSpawnHandler.foodList.Count > 0)
             {
                 objectSpawnHandler.UpdateDestroyFood();
