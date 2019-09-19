@@ -338,9 +338,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1849194849}
     - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: toyPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: food
       value: 
       objectReference: {fileID: 1706429030240464914, guid: 119b575aa6475a942a4bcad19daa5e58,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: 80dd7ec4cb3a61c4e880a729145b1e3c,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: 47d2ae698582659419bb67c1cf554e7e,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: 0e51be3c75242b142b6c72a0cc510bca,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: ba2b9f5eec16ea04c8e3ae0c61cb7822,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: toyPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4276390385151098323, guid: 9fe49a9d76a964e47a82d28770b54c51,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994605a252d2cb04281773375d59aa31, type: 3}

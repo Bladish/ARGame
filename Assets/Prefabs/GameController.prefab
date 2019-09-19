@@ -128,9 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b355590c72d98d347be071e97ea9b1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   canvas: {fileID: 0}
   buttonStateMachine: {fileID: 1654037536}
   objectSpawnHandler: {fileID: 1654037540}
+  baws: {fileID: 0}
 --- !u!114 &1654037530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80237ab1c48a2884a81440056b02e66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eating: 0
+  playing: 0
 --- !u!114 &1654037539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b210438e8d9594ab1da937f155fec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: {fileID: 8968040364164544864, guid: 8553de15449c843478a42a6e88b9df1c, type: 3}
   spawnedFood: {fileID: 0}
+  spawnedToy: {fileID: 0}
+  toyPrefabs:
+  - {fileID: 4276390385151098323, guid: 9fe49a9d76a964e47a82d28770b54c51, type: 3}
+  toyList: []
+  foodPrefabs:
+  - {fileID: -927199367670048503, guid: ba2b9f5eec16ea04c8e3ae0c61cb7822, type: 3}
+  - {fileID: -927199367670048503, guid: 0e51be3c75242b142b6c72a0cc510bca, type: 3}
+  - {fileID: -927199367670048503, guid: 80dd7ec4cb3a61c4e880a729145b1e3c, type: 3}
+  - {fileID: -927199367670048503, guid: 47d2ae698582659419bb67c1cf554e7e, type: 3}
+  foodList: []
+  foodTimer: 3
+  toyTimer: 3
 --- !u!114 &1365687109
 MonoBehaviour:
   m_ObjectHideFlags: 0
