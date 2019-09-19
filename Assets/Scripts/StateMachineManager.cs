@@ -34,15 +34,16 @@ public class StateMachineManager : MonoBehaviour
     {
         switch (state)
         {
-            case States.Idle:   playerIdle.Idle();
+            case States.Idle:
                 break;
-            case States.Eat:    playerEat.Eat();
+            case States.Eat:
                 playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedFood);
                 playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedFood.transform.position);
                 break;
-            case States.Play:   playerPlay.Play();
+            case States.Play:
+                playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedToy.transform.position);
                 break;
-            default:            playerIdle.Idle();
+            default:
                 break;
         }
     }
