@@ -12,14 +12,14 @@ public class PlayerPlay : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
-        width = player.spawnedPlayer.transform.localScale.x;
-        height = player.spawnedPlayer.transform.localScale.y;
-        playerZ = player.spawnedPlayer.transform.localScale.z;
         squeezeHeight = 1/5f;
     }
 
     public void Play()
     {
+        height = player.spawnedPlayer.transform.localScale.y;
+        width = player.spawnedPlayer.transform.localScale.x;
+        playerZ = player.spawnedPlayer.transform.localScale.z;
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(player.spawnedPlayer.transform.DOScale(new Vector3(width, height - squeezeHeight, playerZ), 0.1f));
         mySequence.PrependInterval(0.1f);
