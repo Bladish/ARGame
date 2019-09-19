@@ -11,6 +11,8 @@ using UnityEngine;
         private GameWorld gameWorld;
         private StateMachineManager playerStates;
         private ObjectSpawnHandler objectSpawnHandler;
+        private UIController uIController;
+        private StateMachineManager stateMachineManager;
 
         void Start()
         {
@@ -20,12 +22,15 @@ using UnityEngine;
             gameWorld = GetComponent<GameWorld>();
             playerStates = GetComponent<StateMachineManager>();
             objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
+            uiController = GetComponent<UIController>();
+            stateMachineManager = GetComponent<StateMachineManager>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            stateMachineManager.StateMachineManagerUpdate();
+            uIController.UIControllerUpdate();
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
 

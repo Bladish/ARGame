@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
 
 
     //  TODO: when working rename to UIUpdate() and link in GameController 
-    private void Update()
+    public void UIControllerUpdate()
     {
         LifeLossForPlayerSeconds();
         SetBars();
