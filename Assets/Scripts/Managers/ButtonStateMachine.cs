@@ -66,4 +66,5 @@ public class ButtonStateMachine : MonoBehaviour
     public ButtonState GetButtonState() {
         return buttonState;
     }
+
 }

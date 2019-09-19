@@ -10,48 +10,100 @@ using UnityEngine;
 /// </summary>
 public class StateMachineManager : MonoBehaviour
 {
-    public enum States { Idle, Petting, Eat, Play, LookAt };
-    public States state;
+    public enum PlayerState { Idle, PlayerLook, PlayerMove, Play, Eating, PlayerPlay, PlayerDie, PlayerRessurect };
 
-    Player player;
-    PlayerMove playerMove;
-    PlayerEat playerEat;
-    PlayerPlay playerPlay;
-    PlayerIdle playerIdle;
-    Tweens tweens;
-    private ObjectSpawnHandler objectHandler;
+    #region Managers
+    [HideInInspector]
+    public Player player;
+    [HideInInspector]
+    public PlayerState playerState;
+    [HideInInspector]
+    public PlayerMove playerMove;
+    [HideInInspector]
+    public PlayerRotate playerRotate;
+    [HideInInspector]
+    public PlayerEat playerEat;
+    [HideInInspector]
+    public PlayerPlay playerPlay;
+    [HideInInspector]
+    public PlayerIdle playerIdle;
+    [HideInInspector]
+    public Tweens tweens;
+    #endregion
 
-    void Start()
+
+    void awake()
     {
+        #region GetComponents
         player = GetComponent<Player>();
         playerMove = GetComponent<PlayerMove>();
+        playerRotate = GetComponent<PlayerRotate>();
         playerEat = GetComponent<PlayerEat>();
         playerPlay = GetComponent<PlayerPlay>();
         playerIdle = GetComponent<PlayerIdle>();
-        objectHandler = GetComponent<ObjectSpawnHandler>();
         tweens = GetComponent<Tweens>();
+        #endregion
     }
 
-    public void StateMachineManagerUpdate()
+public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy)
     {
-        switch (state)
+        switch (playerState)
         {
-            case States.Idle:
+            case PlayerState.Idle:
+                //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, random spinn, random barrelroll
                 break;
-            case States.Eat:
-                if (objectHandler.spawnedFood != null)
+
+            case PlayerState.PlayerLook:
+                if (spawnedToy != null)
                 {
-                    playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedFood);
-                    playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedFood.transform.position);
-                    tweens.PlayerPeck(player.spawnedPlayer);
+                    playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedToy);
+                    playerState = PlayerState.PlayerMove;
+                }
+                if (spawnedFood != null)
+                {
+                    playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedFood);
+                    playerState = PlayerState.PlayerMove;
                 }
                 break;
-            case States.Play:
-                if (objectHandler.spawnedToy != null)
+
+            case PlayerState.PlayerMove:
+                if (spawnedToy != null)
                 {
-                    playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedToy);
-                    playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedToy.transform.position);
+                    playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedToy.transform.position);
+                    //When chicken has moved to food start Tween
+                    //TIMER or coroutine
+                    tweens.PlayerWalk(player.spawnedPlayer);
+
+                    playerState = PlayerState.Eating;
                 }
+                if (spawnedFood != null)
+                {
+                    playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedFood.transform.position);
+                    // ~~~~
+                    // ~~~~
+                    tweens.PlayerWalk(player.spawnedPlayer);
+                    playerState = PlayerState.Eating;
+
+                }
+                break;
+
+            case PlayerState.Play:
+                break;
+
+            case PlayerState.Eating:
+                tweens.PlayerPeck(player.spawnedPlayer);
+                //TIMER For Pecking
+                playerState = PlayerState.Idle;
+                break;
+
+            case PlayerState.PlayerPlay:
+                break;
+
+            case PlayerState.PlayerDie:
+                tweens.PlayerScaleExplode(player.spawnedPlayer);
+                break;
+
+            case PlayerState.PlayerRessurect:
                 break;
             default:
                 break;
@@ -63,13 +115,11 @@ public class StateMachineManager : MonoBehaviour
     {
         if (buttonState == ButtonStateMachine.ButtonState.FOODBUTTON)
         {
-            //playerEat
-            state = States.Eat;
+            playerState = PlayerState.PlayerLook;
         }
         if (buttonState == ButtonStateMachine.ButtonState.PLAYBUTTON)
         {
-            //playerEat
-            state = States.Play;
+            playerState = PlayerState.PlayerLook;
         }
     }
 

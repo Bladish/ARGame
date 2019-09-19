@@ -13,8 +13,8 @@ public class UIController : MonoBehaviour
 {
     //protected Eat eat;
     //protected Entertainment entertainment;
-    private UIView uiView;
-    private UIMath uiMath;
+    public UIView uiView;
+    public UIMath uiMath;
     private TimeCalculations timeCalcuations;
     
 

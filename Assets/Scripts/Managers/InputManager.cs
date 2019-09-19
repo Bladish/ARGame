@@ -16,98 +16,49 @@ using System;
 public class InputManager : MonoBehaviour
 {
     #region Managers 
-    private RaycastManager rayManager;
-    private TouchManager touchManager;
-    private StateMachineManager stateMachineManager;
-    private MainAnchorHandler anchorHandler;
-    [HideInInspector]public Player player;
-    public GameObject canvas;
+    [HideInInspector]
+    public GameWorld gameWorld;
+    [HideInInspector]
+    public RaycastManager rayManager;
+    [HideInInspector]
+    public TouchManager touchManager;
+    [HideInInspector]
+    public MainAnchorHandler anchorHandler;
+    //[HideInInspector]
+    //public StateMachineManager stateMachineManager;
+    [HideInInspector]
     public ButtonStateMachine buttonStateMachine;
+    [HideInInspector]
     public ObjectSpawnHandler objectSpawnHandler;
-    [HideInInspector]public BAWS baws;
-    TrackableHit hit;
-    #endregion 
+    [HideInInspector]
+    public BAWS baws;
+    #endregion
 
-    void Start()
+    TrackableHit hit;
+
+    void Awake()
     {
         #region GetComponents
+        gameWorld = GetComponent<GameWorld>();
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         anchorHandler = GetComponent<MainAnchorHandler>();
-        stateMachineManager = GetComponent<StateMachineManager>();
+        //stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
-        player = GetComponent<Player>();
         baws = GetComponent<BAWS>();
         #endregion
-
-        canvas.SetActive(false);
+        
     }
+
+
 
     public void UpdateInputManager()
     {
+        gameWorld.UpdateGameWorld();
         buttonStateMachine.ButtonStateMachineUpdate();
-        RayCastLogic();
         
-        //Kolla vilken buttonstate som är aktiv, ifall null är aktiv placera inte ut ett ankare
-
     }
-    
 
-    //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
-    #region RayCastLogic
-    private void RayCastLogic() {        
-        if (InstantPreviewInput.touchCount < 1 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
-        {
-            Debug.Log("No Touch");
-        }
-        else if (InstantPreviewInput.touchCount > 0 && (touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
-        {
-            if (AnchorSingelton.instance == null)
-            {
-                anchorHandler.SpawnAnchor(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                player.CreatPlayer(anchorHandler.mainAnchor.transform.position, anchorHandler.mainAnchor.transform.rotation);
-                anchorHandler.SetAnchorAsParent(anchorHandler.visualAnchorClone);
-                anchorHandler.SetAnchorAsParent(player.spawnedPlayer);
-                canvas.SetActive(false);
-            }
-            else if (AnchorSingelton.instance != null)
-            {
-                canvas.SetActive(true);
 
-                switch (buttonStateMachine.buttonState)
-                {
-                    case ButtonStateMachine.ButtonState.IDLEBUTTON:
-                        break;
-                    case ButtonStateMachine.ButtonState.FOODBUTTON:
-                        objectSpawnHandler.SpawnFood(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                        break;
-                    case ButtonStateMachine.ButtonState.PLAYBUTTON:
-                        objectSpawnHandler.SpawnToy(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
-                        break;
-                    case ButtonStateMachine.ButtonState.PETBUTTON:
-                        break;
-                    default:
-                        break;
-                }
-                rayManager.UpdateUnityRayCast(touchManager.screenTouch);
-                if (rayManager.rayHit.collider.CompareTag("Player"))
-                {
-                    Debug.Log("l0l");
-                }
-
-            }
-            else
-            {
-                canvas.SetActive(false);
-                return;
-            }
-        }
-    }
-    #endregion
-
-    public void Remove(){
-            anchorHandler.DetachAnchor();
-            Destroy(player.spawnedPlayer);
-    }
 }

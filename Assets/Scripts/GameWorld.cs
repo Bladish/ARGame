@@ -19,26 +19,19 @@ public class GameWorld : MonoBehaviour
     public List<DetectedPlane> planeList = new List<DetectedPlane>();
     public Camera arCamera;
 
-    Touch screenTouch;
-
-    void Start()
-    {
-        //planePrefab = Resources.Load("DetectedPlaneVisualizer") as GameObject;
-    }
-
     public void UpdateGameWorld()
     {
-        CheckIfMotionIsTracking();
+        //CheckIfMotionIsTracking();
         FindPlaceToSpawnPlayer();
     }
 
-    private void CheckIfMotionIsTracking()
-    {
-        if (Session.Status != SessionStatus.Tracking)
-        {
-            return;
-        }
-    }
+    //private void CheckIfMotionIsTracking()
+    //{
+    //    if (Session.Status != SessionStatus.Tracking)
+    //    {
+    //        return;
+    //    }
+    //}
     
     private void FindPlaceToSpawnPlayer()
     {

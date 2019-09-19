@@ -78,7 +78,7 @@ public class Tweens : MonoBehaviour
         mySequence2.Append(player.transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0f));
     }
 
-    private void PlayerScaleExplode(GameObject player)
+    public void PlayerScaleExplode(GameObject player)
     {
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(player.transform.DOScale(new Vector3(width, player.transform.localScale.y / 5, player.transform.localScale.z), 0.1f));
@@ -93,5 +93,18 @@ public class Tweens : MonoBehaviour
         //PlayerScaleExplode();
         yield return new WaitForSeconds(1.4f);
         tweenParticle.Play();
+    }
+
+    public void PetPlayer(GameObject player) {
+        Sequence mySequence = DOTween.Sequence();
+        mySequence.Append(player.transform.DOScale(new Vector3(width, height - 1 / 5f, baseRotZ), 0.1f));
+        mySequence.PrependInterval(0.1f);
+        mySequence.Append(player.transform.DOScale(new Vector3(width, height + 1/5f, baseRotZ), 0.1f));
+        mySequence.PrependInterval(0.1f);
+        mySequence.Append(player.transform.DOScale(new Vector3(width, height - 1/5f, baseRotZ), 0.1f));
+        mySequence.PrependInterval(0.1f);
+        mySequence.Append(player.transform.DOScale(new Vector3(width, height + 1/5f, baseRotZ), 0.1f));
+        mySequence.PrependInterval(0.1f);
+        mySequence.Append(player.transform.DOScale(new Vector3(width, height, baseRotZ), 0.1f));
     }
 }
