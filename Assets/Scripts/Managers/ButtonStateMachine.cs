@@ -17,6 +17,12 @@ public class ButtonStateMachine : MonoBehaviour
         PETBUTTON
     }
     public ButtonState buttonState;
+    StateMachineManager stateMachineManager;
+
+    private void Start()
+    {
+        stateMachineManager = GetComponent<StateMachineManager>();
+    }
 
     public ButtonState ButtonStateMachineUpdate()
     {

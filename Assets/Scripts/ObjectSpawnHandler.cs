@@ -37,6 +37,8 @@ public class ObjectSpawnHandler : MonoBehaviour
             t = 0;
         }
     }
+    
+  
     public void UpdateDestroyToy()
     {
         t += Time.deltaTime;
@@ -58,4 +60,5 @@ public class ObjectSpawnHandler : MonoBehaviour
 
     }
     #endregion
+    
 }
