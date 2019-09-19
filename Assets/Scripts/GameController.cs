@@ -13,6 +13,7 @@ using UnityEngine;
         private ObjectSpawnHandler objectSpawnHandler;
         private UIController uIController;
         private StateMachineManager stateMachineManager;
+        private UIMath uIMath;
 
         void Start()
         {
@@ -24,6 +25,7 @@ using UnityEngine;
             objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
             uiController = GetComponent<UIController>();
             stateMachineManager = GetComponent<StateMachineManager>();
+            uIMath = GetComponent<UIMath>();
         }
 
         // Update is called once per frame
@@ -33,7 +35,7 @@ using UnityEngine;
             uIController.UIControllerUpdate();
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
-
+            inputManager.baws.Resize(inputManager.player.spawnedPlayer, (float)uIMath.eating);
             if(objectSpawnHandler.foodList.Count > 0)
             {
                 objectSpawnHandler.UpdateDestroyFood();
