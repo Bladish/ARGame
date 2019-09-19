@@ -45,7 +45,7 @@ public class ObjectSpawnHandler : MonoBehaviour
         if (t > toyTimer)
         {
             Destroy(spawnedToy);
-            foodList.Remove(spawnedToy);
+            toyList.Remove(spawnedToy);
             t = 0;
         }
     }
@@ -56,7 +56,12 @@ public class ObjectSpawnHandler : MonoBehaviour
         Debug.Log($"Spawned food at{hit.Pose.position}");
         int randomToy = Random.Range(0, toyPrefabs.Count);
         // change lookrotation
-        spawnedToy = Instantiate(toyPrefabs[randomToy], hit.Pose.position, hit.Pose.rotation) ;
+        if (toyList.Count < 1)
+        {
+            spawnedToy = Instantiate(toyPrefabs[randomToy], hit.Pose.position, hit.Pose.rotation);
+            toyList.Add(spawnedToy);
+        }
+        
 
     }
     #endregion

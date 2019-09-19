@@ -10,22 +10,22 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
         type: 3}
       propertyPath: m_Name
-      value: chickenpiano
+      value: PianoMain
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -162.33261
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 180.82161
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.2086763
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
         type: 3}
@@ -66,6 +66,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -3224774270894968448, guid: 3bc1a4a5a7ecfd24fb2dde9acea728d3,
         type: 3}

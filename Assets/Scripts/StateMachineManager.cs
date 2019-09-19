@@ -47,8 +47,9 @@ public class StateMachineManager : MonoBehaviour
                 }
                 break;
             case States.Play:
-                if (objectHandler.spawnedFood != null)
+                if (objectHandler.spawnedToy != null)
                 {
+                    playerEat.RotateObjectTowardAnotherObject(player.spawnedPlayer, objectHandler.spawnedToy);
                     playerMove.PlayerMoveTo(player.spawnedPlayer, objectHandler.spawnedToy.transform.position);
                 }
                 break;
@@ -64,6 +65,11 @@ public class StateMachineManager : MonoBehaviour
         {
             //playerEat
             state = States.Eat;
+        }
+        if (buttonState == ButtonStateMachine.ButtonState.PLAYBUTTON)
+        {
+            //playerEat
+            state = States.Play;
         }
     }
 
