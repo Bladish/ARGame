@@ -32,7 +32,7 @@ using UnityEngine;
             uIController.UIControllerUpdate();
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
-            inputManager.baws.Resize(inputManager.player.spawnedPlayer, (float)uIMath.GetEating());
+
             if(objectSpawnHandler.foodList.Count > 0)
             {
                 objectSpawnHandler.UpdateDestroyFood();
@@ -43,6 +43,7 @@ using UnityEngine;
             }
             //Hämta en buttonstate och 
             playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+            
         }
     }
 }

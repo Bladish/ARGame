@@ -24,7 +24,6 @@ public class InputManager : MonoBehaviour
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
     public ObjectSpawnHandler objectSpawnHandler;
-    [HideInInspector]public BAWS baws;
     TrackableHit hit;
     #endregion 
 
@@ -38,7 +37,6 @@ public class InputManager : MonoBehaviour
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
         player = GetComponent<Player>();
-        baws = GetComponent<BAWS>();
         #endregion
 
         canvas.SetActive(false);
