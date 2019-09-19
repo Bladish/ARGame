@@ -6,6 +6,9 @@ using GoogleARCore;
 public class ObjectSpawnHandler : MonoBehaviour
 {
     public GameObject spawnedFood;
+    public GameObject spawnedToy;
+
+    public List<GameObject> toyPrefabs;
 
     public List<GameObject> foodPrefabs;
     public List<GameObject> foodList;
@@ -13,12 +16,13 @@ public class ObjectSpawnHandler : MonoBehaviour
     public float foodTimer = 3;
     private float t = 0;
 
+    #region Food
     public void SpawnFood(TrackableHit hit) {
         Debug.Log($"Spawned food at{hit.Pose.position}");
-        int randomNum = Random.Range(0, foodPrefabs.Count);
+        int randomFood = Random.Range(0, foodPrefabs.Count);
         if (foodList.Count < 1)
         {
-            spawnedFood = Instantiate(foodPrefabs[randomNum], hit.Pose.position, hit.Pose.rotation);
+            spawnedFood = Instantiate(foodPrefabs[randomFood], hit.Pose.position, hit.Pose.rotation);
             foodList.Add(spawnedFood);
         }
     }
@@ -34,5 +38,15 @@ public class ObjectSpawnHandler : MonoBehaviour
         }
         
     }
+    #endregion
+    #region Toy
+    public void SpawnToy(TrackableHit hit)
+    {
+        Debug.Log($"Spawned food at{hit.Pose.position}");
+        int randomToy = Random.Range(0, toyPrefabs.Count);
+        // change lookrotation
+        spawnedToy = Instantiate(toyPrefabs[randomToy], hit.Pose.position, hit.Pose.rotation) ;
 
+    }
+    #endregion
 }
