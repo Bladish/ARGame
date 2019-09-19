@@ -83,6 +83,7 @@ public class InputManager : MonoBehaviour
                         objectSpawnHandler.SpawnFood(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
                         break;
                     case ButtonStateMachine.ButtonState.PLAYBUTTON:
+                        objectSpawnHandler.SpawnToy(rayManager.UpdateWorldRayCast(touchManager.GetTouch()));
                         break;
                     case ButtonStateMachine.ButtonState.PETBUTTON:
                         break;

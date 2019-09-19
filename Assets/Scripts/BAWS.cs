@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BAWS : MonoBehaviour
 {
-
     float size = 0.3f;
 
     public void Resize(GameObject player, float percentage)
