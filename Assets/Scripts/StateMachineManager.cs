@@ -30,7 +30,7 @@ public class StateMachineManager : MonoBehaviour
         objectHandler = GetComponent<ObjectSpawnHandler>();
     }
 
-    private void Update()
+    public void StateMachineManagerUpdate()
     {
         switch (state)
         {

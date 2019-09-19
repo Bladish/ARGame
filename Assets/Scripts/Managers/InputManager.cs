@@ -20,10 +20,11 @@ public class InputManager : MonoBehaviour
     private TouchManager touchManager;
     private StateMachineManager stateMachineManager;
     private MainAnchorHandler anchorHandler;
-    private Player player;
+    [HideInInspector]public Player player;
     public GameObject canvas;
     public ButtonStateMachine buttonStateMachine;
     public ObjectSpawnHandler objectSpawnHandler;
+    [HideInInspector]public BAWS baws;
     TrackableHit hit;
     #endregion 
 
@@ -37,6 +38,7 @@ public class InputManager : MonoBehaviour
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
         player = GetComponent<Player>();
+        baws = GetComponent<BAWS>();
         #endregion
 
         canvas.SetActive(false);

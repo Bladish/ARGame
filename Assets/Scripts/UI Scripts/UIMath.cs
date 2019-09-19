@@ -10,8 +10,8 @@ using UnityEngine;
 /// </summary>
 public class UIMath : UIController
 {
-    private int eating;
-    private int playing;
+    public int eating;
+    public int playing;
     
     public void UIMathUpdate()
     {
