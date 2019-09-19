@@ -6,7 +6,6 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
-        //private GameWorld gameWorld;
         private InputManager inputManager;
         private UIController uiController;
         private GameWorld gameWorld;
@@ -24,6 +23,7 @@ using UnityEngine;
         // Update is called once per frame
         void Update()
         {
+
             gameWorld.UpdateGameWorld();
             inputManager.UpdateInputManager();
 
