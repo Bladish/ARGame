@@ -19,11 +19,10 @@ using UnityEngine;
         {
             gameWorld = GetComponent<GameWorld>();
             inputManager = GetComponent<InputManager>();
-            uiController = GetComponent<UIController>();
+            uIController = GetComponent<UIController>();
             gameWorld = GetComponent<GameWorld>();
             playerStates = GetComponent<StateMachineManager>();
             objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
-            uiController = GetComponent<UIController>();
             stateMachineManager = GetComponent<StateMachineManager>();
             uIMath = GetComponent<UIMath>();
         }
