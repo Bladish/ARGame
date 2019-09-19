@@ -61,7 +61,7 @@ public class UIController : MonoBehaviour
         {
             uiMath.HappinessLoss(1);
             uiMath.HungerLoss(1);
-            timeCalcuations.AddSecondsToTimeRules();
+            timeCalcuations.AddTimeToTimeRules();
         }
     }
 }

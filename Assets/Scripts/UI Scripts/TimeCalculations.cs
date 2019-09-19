@@ -6,16 +6,14 @@ using UnityEngine;
 public class TimeCalculations : MonoBehaviour
 {
     private DateTime now;
-    private DateTime lastFeed;
-    private DateTime lastPlayed;
-    private TimeSpan timeDifference;
     private DateTime timeRules;
-    private Double minutsToAdd = 1.00;
-    private Double secondsToAdd = 10.00;
-
+    private DateTime lastPlayed;
+    private readonly Double minutsToAdd = 14.00;
+    private readonly Double secondsToAdd = 24.00;
+    private PlayerPrefs timeSave;
     void Start()
     {
-        timeRules = DateTime.Now.AddSeconds(secondsToAdd);           
+        now = DateTime.Now;
     }
 
     private void Update()
@@ -25,14 +23,9 @@ public class TimeCalculations : MonoBehaviour
 
     public void Eating()
     {
-        lastFeed = now;
-        timeRules = now.AddMinutes(minutsToAdd);
+        AddTimeToTimeRules();
     }
 
-    public void CalculateTimeDifference()
-    {
-        timeDifference = now - lastFeed;
-    }
 
     public DateTime GetNowTime()
     {
@@ -44,13 +37,8 @@ public class TimeCalculations : MonoBehaviour
         return timeRules;
     }
 
-    public void SetTimeRules(DateTime setTimeRules)
+    public void AddTimeToTimeRules()
     {
-        timeRules = setTimeRules;
-    }
-
-    public void AddSecondsToTimeRules()
-    {
-        timeRules = DateTime.Now.AddSeconds(secondsToAdd);
+        timeRules = DateTime.Now.AddMinutes(minutsToAdd).AddSeconds(secondsToAdd) ;
     }
 }
