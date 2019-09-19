@@ -39,7 +39,10 @@ using UnityEngine;
             {
                 objectSpawnHandler.UpdateDestroyFood();
             }
-
+            if (objectSpawnHandler.toyList.Count > 0)
+            {
+                objectSpawnHandler.UpdateDestroyToy();
+            }
             //Hämta en buttonstate och 
             playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
         }

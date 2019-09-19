@@ -9,11 +9,11 @@ public class ObjectSpawnHandler : MonoBehaviour
     public GameObject spawnedToy;
 
     public List<GameObject> toyPrefabs;
-
+    public List<GameObject> toyList;
     public List<GameObject> foodPrefabs;
     public List<GameObject> foodList;
 
-    public float foodTimer = 3;
+    public float foodTimer = 3, toyTimer = 3;
     private float t = 0;
 
     #region Food
@@ -36,7 +36,16 @@ public class ObjectSpawnHandler : MonoBehaviour
             foodList.Remove(spawnedFood);
             t = 0;
         }
-        
+    }
+    public void UpdateDestroyToy()
+    {
+        t += Time.deltaTime;
+        if (t > toyTimer)
+        {
+            Destroy(spawnedToy);
+            foodList.Remove(spawnedToy);
+            t = 0;
+        }
     }
     #endregion
     #region Toy
