@@ -59,6 +59,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                     playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedToy);
                     //TIMER
                     playerState = PlayerState.PlayerMove;
+                    Debug.Log("TIME TO MOVE");
                 }
                 if (spawnedFood != null)
                 {
@@ -71,6 +72,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (spawnedToy != null)
                 {
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedToy.transform.position);
+                    Debug.Log("I¨M MOVING");
                     //When chicken has moved to food start Tween
                     //TIMER or coroutine
                     tweens.PlayerWalk(player.spawnedPlayer);
@@ -111,17 +113,5 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
         }
     }
 
-
-    public void ChangePlayerState(ButtonStateMachine.ButtonState buttonState)
-    {
-        if (buttonState == ButtonStateMachine.ButtonState.FOODBUTTON)
-        {
-            playerState = PlayerState.PlayerLook;
-        }
-        if (buttonState == ButtonStateMachine.ButtonState.PLAYBUTTON)
-        {
-            playerState = PlayerState.PlayerLook;
-        }
-    }
 
 }

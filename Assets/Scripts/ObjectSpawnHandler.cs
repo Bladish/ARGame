@@ -7,7 +7,6 @@ public class ObjectSpawnHandler : MonoBehaviour
 {
     public GameObject spawnedFood;
     public GameObject spawnedToy;
-
     public List<GameObject> toyPrefabs;
     public List<GameObject> toyList;
     public List<GameObject> foodPrefabs;

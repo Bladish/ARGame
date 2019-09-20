@@ -343,22 +343,30 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1810413787}
-    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: inputManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: uiController
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: stateMachineManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: arCamera
       value: 
       objectReference: {fileID: 556217897}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1706429030240464914, guid: 119b575aa6475a942a4bcad19daa5e58,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8763156040775023163, guid: 48a6081995773c64b80af3b546569acf,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8289353787740200604, guid: 4eccbf06e6ef71a45a8a59ba47928de1,
+        type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6395388319862616996, guid: 1552696f9565ecf4a838f355e45fe329,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994605a252d2cb04281773375d59aa31, type: 3}
 --- !u!114 &1421208926 stripped

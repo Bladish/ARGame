@@ -41,7 +41,7 @@ using UnityEngine;
             //Player stateMachine
             stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy);
 
-            stateMachineManager.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+            Debug.Log(inputManager.buttonStateMachine.GetButtonState());
 
             //UI Controller
             uiController.UIControllerUpdate();
@@ -81,9 +81,11 @@ using UnityEngine;
                             break;
                         case ButtonStateMachine.ButtonState.FOODBUTTON:
                             inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
                             break;
                         case ButtonStateMachine.ButtonState.PLAYBUTTON:
                             inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
                             break;
                         case ButtonStateMachine.ButtonState.PETBUTTON:
                             inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
