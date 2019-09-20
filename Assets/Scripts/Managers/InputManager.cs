@@ -16,21 +16,19 @@ using System;
 public class InputManager : MonoBehaviour
 {
     #region Managers 
-    //[HideInInspector]
+    [HideInInspector]
     public GameWorld gameWorld;
-    //[HideInInspector]
+    [HideInInspector]
     public RaycastManager rayManager;
-    //[HideInInspector]
+    [HideInInspector]
     public TouchManager touchManager;
-    //[HideInInspector]
+    [HideInInspector]
     public MainAnchorHandler anchorHandler;
-    //[HideInInspector]
-    //public StateMachineManager stateMachineManager;
-    //[HideInInspector]
+    [HideInInspector]
     public ButtonStateMachine buttonStateMachine;
-    //[HideInInspector]
+    [HideInInspector]
     public ObjectSpawnHandler objectSpawnHandler;
-    //[HideInInspector]
+    [HideInInspector]
     public BAWS baws;
     #endregion
 
@@ -43,7 +41,6 @@ public class InputManager : MonoBehaviour
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         anchorHandler = GetComponent<MainAnchorHandler>();
-        //stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
         baws = gameObject.GetComponent<BAWS>();

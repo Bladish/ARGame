@@ -13,21 +13,21 @@ public class StateMachineManager : MonoBehaviour
     public enum PlayerState { Idle, PlayerLook, PlayerMove, Play, Eating, PlayerPlay, PlayerDie, PlayerRessurect };
 
     #region Managers
-    //[HideInInspector]
+    [HideInInspector]
     public Player player;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerState playerState;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerMove playerMove;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerRotate playerRotate;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerEat playerEat;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerPlay playerPlay;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerIdle playerIdle;
-    //[HideInInspector]
+    [HideInInspector]
     public Tweens tweens;
     #endregion
 

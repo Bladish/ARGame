@@ -343,6 +343,18 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1810413787}
+    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: stateMachineManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: arCamera
       value: 

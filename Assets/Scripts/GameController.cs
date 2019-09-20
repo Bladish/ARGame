@@ -6,9 +6,11 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
-        
+        [HideInInspector]
         public InputManager inputManager;
+        [HideInInspector]
         public UIController uiController;
+        [HideInInspector]
         public StateMachineManager stateMachineManager;
         public GameObject canvas;
         public void Start()
