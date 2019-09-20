@@ -13,26 +13,26 @@ public class StateMachineManager : MonoBehaviour
     public enum PlayerState { Idle, PlayerLook, PlayerMove, Play, Eating, PlayerPlay, PlayerDie, PlayerRessurect };
 
     #region Managers
-    [HideInInspector]
+    //[HideInInspector]
     public Player player;
-    [HideInInspector]
+    //[HideInInspector]
     public PlayerState playerState;
-    [HideInInspector]
+    //[HideInInspector]
     public PlayerMove playerMove;
-    [HideInInspector]
+    //[HideInInspector]
     public PlayerRotate playerRotate;
-    [HideInInspector]
+    //[HideInInspector]
     public PlayerEat playerEat;
-    [HideInInspector]
+    //[HideInInspector]
     public PlayerPlay playerPlay;
-    [HideInInspector]
+    //[HideInInspector]
     public PlayerIdle playerIdle;
-    [HideInInspector]
+    //[HideInInspector]
     public Tweens tweens;
     #endregion
 
 
-    void awake()
+    public void start()
     {
         #region GetComponents
         player = GetComponent<Player>();
@@ -57,6 +57,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (spawnedToy != null)
                 {
                     playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedToy);
+                    //TIMER
                     playerState = PlayerState.PlayerMove;
                 }
                 if (spawnedFood != null)

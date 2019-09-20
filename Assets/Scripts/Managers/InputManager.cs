@@ -16,27 +16,27 @@ using System;
 public class InputManager : MonoBehaviour
 {
     #region Managers 
-    [HideInInspector]
+    //[HideInInspector]
     public GameWorld gameWorld;
-    [HideInInspector]
+    //[HideInInspector]
     public RaycastManager rayManager;
-    [HideInInspector]
+    //[HideInInspector]
     public TouchManager touchManager;
-    [HideInInspector]
+    //[HideInInspector]
     public MainAnchorHandler anchorHandler;
     //[HideInInspector]
     //public StateMachineManager stateMachineManager;
-    [HideInInspector]
+    //[HideInInspector]
     public ButtonStateMachine buttonStateMachine;
-    [HideInInspector]
+    //[HideInInspector]
     public ObjectSpawnHandler objectSpawnHandler;
-    [HideInInspector]
+    //[HideInInspector]
     public BAWS baws;
     #endregion
 
     TrackableHit hit;
 
-    void Awake()
+    public void start()
     {
         #region GetComponents
         gameWorld = GetComponent<GameWorld>();
@@ -46,7 +46,7 @@ public class InputManager : MonoBehaviour
         //stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
-        baws = GetComponent<BAWS>();
+        baws = gameObject.GetComponent<BAWS>();
         #endregion
         
     }

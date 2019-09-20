@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 1365687109}
   - component: {fileID: 48408521}
   - component: {fileID: 48408522}
+  - component: {fileID: 1133696324}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -62,6 +63,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c6cd3a0b0ae6a4484ac30cda064532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 1654037529}
+  uiController: {fileID: 1654037537}
+  stateMachineManager: {fileID: 1654037535}
+  canvas: {fileID: 0}
 --- !u!114 &1654037525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,11 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b355590c72d98d347be071e97ea9b1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  canvas: {fileID: 0}
+  gameWorld: {fileID: 1654037525}
+  rayManager: {fileID: 1654037527}
+  touchManager: {fileID: 1654037528}
+  anchorHandler: {fileID: 1654037526}
   buttonStateMachine: {fileID: 1654037536}
   objectSpawnHandler: {fileID: 1654037540}
-  baws: {fileID: 0}
+  baws: {fileID: 48408522}
 --- !u!114 &1654037530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +216,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153f2fc742b759843abb86429ef813cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  player: {fileID: 1654037530}
+  playerState: 0
+  playerMove: {fileID: 1654037534}
+  playerRotate: {fileID: 1133696324}
+  playerEat: {fileID: 1654037532}
+  playerPlay: {fileID: 1654037533}
+  playerIdle: {fileID: 1654037531}
+  tweens: {fileID: 48408521}
 --- !u!114 &1654037536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ba170264dc4104ba9350a003d167aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
   happyBarMeter: {fileID: 0}
   hungerBarMeter: {fileID: 0}
 --- !u!114 &1654037538
@@ -249,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80237ab1c48a2884a81440056b02e66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
   eating: 0
   playing: 0
 --- !u!114 &1654037539
@@ -263,6 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86127ba3ae034e34fb3412535cc0b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 1654037537}
+  uiMath: {fileID: 1654037538}
 --- !u!114 &1654037540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,9 +301,10 @@ MonoBehaviour:
   - {fileID: 4276390385151098323, guid: 9fe49a9d76a964e47a82d28770b54c51, type: 3}
   toyList: []
   foodPrefabs:
-  - {fileID: 1706429030240464914, guid: 119b575aa6475a942a4bcad19daa5e58, type: 3}
-  - {fileID: 8763156040775023163, guid: 48a6081995773c64b80af3b546569acf, type: 3}
-  - {fileID: 8289353787740200604, guid: 4eccbf06e6ef71a45a8a59ba47928de1, type: 3}
+  - {fileID: -927199367670048503, guid: ba2b9f5eec16ea04c8e3ae0c61cb7822, type: 3}
+  - {fileID: -927199367670048503, guid: 0e51be3c75242b142b6c72a0cc510bca, type: 3}
+  - {fileID: -927199367670048503, guid: 80dd7ec4cb3a61c4e880a729145b1e3c, type: 3}
+  - {fileID: -927199367670048503, guid: 47d2ae698582659419bb67c1cf554e7e, type: 3}
   foodList: []
   foodTimer: 3
   toyTimer: 3
@@ -323,5 +344,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa6e7ab8a85a2634dab4a575b544ef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1133696324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612387532048272093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d038f4bae1e74f94593171c317dad82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

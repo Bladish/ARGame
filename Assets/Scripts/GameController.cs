@@ -7,24 +7,26 @@ using UnityEngine;
     public class GameController : MonoBehaviour
     {
         
-        private InputManager inputManager;
-        private UIController uiController;
-        private StateMachineManager stateMachineManager;
+        public InputManager inputManager;
+        public UIController uiController;
+        public StateMachineManager stateMachineManager;
         public GameObject canvas;
-        void Awake()
+        public void start()
         {
             inputManager = GetComponent<InputManager>();
             uiController = GetComponent<UIController>();
             stateMachineManager = GetComponent<StateMachineManager>();
         }
 
-        void Update()
+        public void Update()
         {
             //Inputmanager
             inputManager.UpdateInputManager();
-
-            inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
-
+            RayCastAndTouchWithSpawnLogic();
+            //if (stateMachineManager.player.spawnedPlayer == null)
+            //{
+            //    inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
+            //}
             if (inputManager.objectSpawnHandler.foodList.Count > 0)
             {
                 inputManager.objectSpawnHandler.UpdateDestroyFood();
@@ -33,8 +35,7 @@ using UnityEngine;
             {
                 inputManager.objectSpawnHandler.UpdateDestroyToy();
             }
-
-
+            
             //Player stateMachine
             stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy);
 
@@ -43,10 +44,7 @@ using UnityEngine;
             //UI Controller
             uiController.UIControllerUpdate();
             
-
-            ///////////
-            RayCastAndTouchWithSpawnLogic();
-            //////////
+            
 
         }
 
@@ -59,17 +57,27 @@ using UnityEngine;
             }
             else if (InstantPreviewInput.touchCount > 0 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
             {
+                Debug.Log(AnchorSingelton.instance);
                 if (AnchorSingelton.instance == null)
                 {
                     VisualizeCanvas(true);
+
                     inputManager.anchorHandler.SpawnAnchor(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
-                    stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
+                    Debug.Log("Anchor2");
+                    if (stateMachineManager.player.spawnedPlayer == null)
+                    {
+                        stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
+                    }
+                    Debug.Log("Anchor3");
                     inputManager.anchorHandler.SetAnchorAsParent(inputManager.anchorHandler.visualAnchorClone);
+                    Debug.Log("Anchor4");
                     inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
+                    Debug.Log("SPAWN ANCHOR5");
                 }   
                 else if (AnchorSingelton.instance != null)
                 {
                     VisualizeCanvas(true);
+                    Debug.Log("ELSE");
 
                     switch (inputManager.buttonStateMachine.buttonState)
                     {
@@ -91,11 +99,11 @@ using UnityEngine;
                         default:
                             break;
                     }
-                    inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
-                    if (inputManager.rayManager.rayHit.collider.CompareTag("Player"))
-                    {
-                        Debug.Log("l0l");
-                    }
+                    //inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
+                    //if (inputManager.rayManager.rayHit.collider.CompareTag("Player"))
+                    //{
+                    //    Debug.Log("l0l");
+                    //}
 
                 }
                 else
