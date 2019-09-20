@@ -723,6 +723,11 @@ PrefabInstance:
       propertyPath: tweenParticle
       value: 
       objectReference: {fileID: 1813154512}
+    - target: {fileID: 2106772134497223826, guid: 4da2e53c7683b58448d7740f1953dc8e,
+        type: 3}
+      propertyPath: ease
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4da2e53c7683b58448d7740f1953dc8e, type: 3}
 --- !u!1 &1257918547
@@ -917,6 +922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ba170264dc4104ba9350a003d167aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
   happyBarMeter: {fileID: 0}
   hungerBarMeter: {fileID: 0}
 --- !u!114 &1699024019
@@ -931,6 +938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86127ba3ae034e34fb3412535cc0b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
 --- !u!114 &1699024020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,6 +952,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c6cd3a0b0ae6a4484ac30cda064532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 0}
+  uiController: {fileID: 0}
+  stateMachineManager: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!4 &1699024021
 Transform:
   m_ObjectHideFlags: 0
