@@ -42,6 +42,7 @@ public class Save : MonoBehaviour
             PlayerPrefs.SetInt(keysToPlayerPrefs[i], saveToPlayerPrefs[i]);
             
         }
+        Debug.Log("Game Saved");
         saveToPlayerPrefs.Clear();
     }
 }

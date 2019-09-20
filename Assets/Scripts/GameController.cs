@@ -6,25 +6,30 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
-        
-        private InputManager inputManager;
-        private UIController uiController;
-        private StateMachineManager stateMachineManager;
+        [HideInInspector]
+        public InputManager inputManager;
+        [HideInInspector]
+        public UIController uiController;
+        [HideInInspector]
+        public StateMachineManager stateMachineManager;
         public GameObject canvas;
-        void Awake()
+        float t = 0;
+        public void Start()
         {
             inputManager = GetComponent<InputManager>();
             uiController = GetComponent<UIController>();
             stateMachineManager = GetComponent<StateMachineManager>();
         }
 
-        void Update()
+        public void Update()
         {
             //Inputmanager
             inputManager.UpdateInputManager();
-
-            inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
-
+            RayCastAndTouchWithSpawnLogic();
+            //if (stateMachineManager.player.spawnedPlayer == null)
+            //{
+            //    inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
+            //}
             if (inputManager.objectSpawnHandler.foodList.Count > 0)
             {
                 inputManager.objectSpawnHandler.UpdateDestroyFood();
@@ -33,20 +38,16 @@ using UnityEngine;
             {
                 inputManager.objectSpawnHandler.UpdateDestroyToy();
             }
-
-
+            
             //Player stateMachine
-            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy);
+            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy, t);
 
-            stateMachineManager.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+            Debug.Log(inputManager.buttonStateMachine.GetButtonState());
 
             //UI Controller
             uiController.UIControllerUpdate();
-            
 
-            ///////////
-            RayCastAndTouchWithSpawnLogic();
-            //////////
+            t += Time.deltaTime;
 
         }
 
@@ -62,13 +63,18 @@ using UnityEngine;
                 if (AnchorSingelton.instance == null)
                 {
                     VisualizeCanvas(true);
+
                     inputManager.anchorHandler.SpawnAnchor(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
-                    stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
+                    if (stateMachineManager.player.spawnedPlayer == null)
+                    {
+                        stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
+                    }
                     inputManager.anchorHandler.SetAnchorAsParent(inputManager.anchorHandler.visualAnchorClone);
                     inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
                 }   
                 else if (AnchorSingelton.instance != null)
                 {
+                    
                     VisualizeCanvas(true);
 
                     switch (inputManager.buttonStateMachine.buttonState)
@@ -76,10 +82,16 @@ using UnityEngine;
                         case ButtonStateMachine.ButtonState.IDLEBUTTON:
                             break;
                         case ButtonStateMachine.ButtonState.FOODBUTTON:
-                            inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            if (t > 2)
+                            {
+                                inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                                stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
+                                t = 0;
+                            }
                             break;
                         case ButtonStateMachine.ButtonState.PLAYBUTTON:
                             inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
                             break;
                         case ButtonStateMachine.ButtonState.PETBUTTON:
                             inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
@@ -91,11 +103,11 @@ using UnityEngine;
                         default:
                             break;
                     }
-                    inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
-                    if (inputManager.rayManager.rayHit.collider.CompareTag("Player"))
-                    {
-                        Debug.Log("l0l");
-                    }
+                    //inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
+                    //if (inputManager.rayManager.rayHit.collider.CompareTag("Player"))
+                    //{
+                    //    Debug.Log("l0l");
+                    //}
 
                 }
                 else
@@ -114,5 +126,8 @@ using UnityEngine;
         private void VisualizeCanvas(bool canvasBool) {
             canvas.SetActive(canvasBool);
         }
+
     }
+
+
 }

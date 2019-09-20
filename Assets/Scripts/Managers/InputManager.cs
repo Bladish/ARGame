@@ -24,8 +24,6 @@ public class InputManager : MonoBehaviour
     public TouchManager touchManager;
     [HideInInspector]
     public MainAnchorHandler anchorHandler;
-    //[HideInInspector]
-    //public StateMachineManager stateMachineManager;
     [HideInInspector]
     public ButtonStateMachine buttonStateMachine;
     [HideInInspector]
@@ -36,17 +34,16 @@ public class InputManager : MonoBehaviour
 
     TrackableHit hit;
 
-    void Awake()
+    public void start()
     {
         #region GetComponents
         gameWorld = GetComponent<GameWorld>();
         rayManager = GetComponent<RaycastManager>();
         touchManager = GetComponent<TouchManager>();
         anchorHandler = GetComponent<MainAnchorHandler>();
-        //stateMachineManager = GetComponent<StateMachineManager>();
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
-        baws = GetComponent<BAWS>();
+        baws = gameObject.GetComponent<BAWS>();
         #endregion
         
     }

@@ -13,7 +13,9 @@ public class UIController : MonoBehaviour
 {
     //protected Eat eat;
     //protected Entertainment entertainment;
+    [HideInInspector]
     public UIView uiView;
+    [HideInInspector]
     public UIMath uiMath;
     private TimeCalculations timeCalcuations;
     

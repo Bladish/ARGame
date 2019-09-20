@@ -1592,6 +1592,8 @@ GameObject:
   - component: {fileID: 1676751027}
   - component: {fileID: 1676751025}
   - component: {fileID: 1676751026}
+  - component: {fileID: 1676751028}
+  - component: {fileID: 1676751029}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1611,6 +1613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ba170264dc4104ba9350a003d167aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
   happyBarMeter: {fileID: 1580006863}
   hungerBarMeter: {fileID: 1167667427}
 --- !u!114 &1676751021
@@ -1625,6 +1629,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80237ab1c48a2884a81440056b02e66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
+  eating: 0
+  playing: 0
 --- !u!114 &1676751022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1637,6 +1645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86127ba3ae034e34fb3412535cc0b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  uiMath: {fileID: 0}
 --- !u!114 &1676751023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1687,7 +1697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faccc48e79bc5574ea4ebacc32d30149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedHealth: 0
 --- !u!114 &1676751027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1700,6 +1709,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d2b7d33da9ba744b8c858a125c15a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1676751028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676751019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d0fc060cb6934ebddc7fffd41d3ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  day: 19
+  hour: 15
+  minute: 20
+  second: 20
+--- !u!114 &1676751029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676751019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45880cdbee47b2f448f35a32ccf2f98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeValue: 0
 --- !u!1 &1779070555
 GameObject:
   m_ObjectHideFlags: 0
