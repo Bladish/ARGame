@@ -11,7 +11,7 @@ using UnityEngine;
         public UIController uiController;
         public StateMachineManager stateMachineManager;
         public GameObject canvas;
-        public void start()
+        public void Start()
         {
             inputManager = GetComponent<InputManager>();
             uiController = GetComponent<UIController>();
