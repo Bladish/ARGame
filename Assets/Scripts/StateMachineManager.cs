@@ -13,27 +13,28 @@ public class StateMachineManager : MonoBehaviour
     public enum PlayerState { Idle, PlayerLook, PlayerMove, Play, Eating, PlayerPlay, PlayerDie, PlayerRessurect };
 
     #region Managers
-    //[HideInInspector]
+    [HideInInspector]
     public Player player;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerState playerState;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerMove playerMove;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerRotate playerRotate;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerEat playerEat;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerPlay playerPlay;
-    //[HideInInspector]
+    [HideInInspector]
     public PlayerIdle playerIdle;
-    //[HideInInspector]
+    [HideInInspector]
     public Tweens tweens;
     #endregion
 
 
     public void start()
     {
+
         #region GetComponents
         player = GetComponent<Player>();
         playerMove = GetComponent<PlayerMove>();
@@ -45,8 +46,10 @@ public class StateMachineManager : MonoBehaviour
         #endregion
     }
 
-public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy)
+public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, float t)
     {
+        t += Time.deltaTime;
+        Debug.Log(playerState);
         switch (playerState)
         {
             case PlayerState.Idle:
@@ -57,13 +60,22 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (spawnedToy != null)
                 {
                     playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedToy);
+                   
                     //TIMER
+                    
                     playerState = PlayerState.PlayerMove;
+                    Debug.Log("TIME TO MOVE");
                 }
                 if (spawnedFood != null)
-                {
+                { 
+                    if(t < 1)
                     playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedFood);
-                    playerState = PlayerState.PlayerMove;
+                    else if (t > 1)
+                    
+                    {
+                        playerState = PlayerState.PlayerMove;
+                        
+                    }                
                 }
                 break;
 
@@ -71,19 +83,22 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (spawnedToy != null)
                 {
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedToy.transform.position);
+                    Debug.Log("I¨M MOVING");
                     //When chicken has moved to food start Tween
                     //TIMER or coroutine
-                    tweens.PlayerWalk(player.spawnedPlayer);
+                    //tweens.PlayerWalk(player.spawnedPlayer);
 
                     playerState = PlayerState.Eating;
                 }
                 if (spawnedFood != null)
                 {
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedFood.transform.position);
-                    // ~~~~
-                    // ~~~~
-                    tweens.PlayerWalk(player.spawnedPlayer);
-                    playerState = PlayerState.Eating;
+
+                    if (t > 3)
+                    {
+                        //tweens.PlayerWalk(player.spawnedPlayer);
+                        playerState = PlayerState.Eating;
+                    }
 
                 }
                 break;
@@ -92,8 +107,11 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 break;
 
             case PlayerState.Eating:
-                tweens.PlayerPeck(player.spawnedPlayer);
+                //tweens.PlayerPeck(player.spawnedPlayer);
                 //TIMER For Pecking
+                Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                tweens.tweenParticle.Play();
+                //tweens.tweenParticle.Stop();
                 playerState = PlayerState.Idle;
                 break;
 
@@ -111,17 +129,5 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
         }
     }
 
-
-    public void ChangePlayerState(ButtonStateMachine.ButtonState buttonState)
-    {
-        if (buttonState == ButtonStateMachine.ButtonState.FOODBUTTON)
-        {
-            playerState = PlayerState.PlayerLook;
-        }
-        if (buttonState == ButtonStateMachine.ButtonState.PLAYBUTTON)
-        {
-            playerState = PlayerState.PlayerLook;
-        }
-    }
 
 }

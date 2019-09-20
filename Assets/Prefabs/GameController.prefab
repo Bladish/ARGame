@@ -63,9 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c6cd3a0b0ae6a4484ac30cda064532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 1654037529}
-  uiController: {fileID: 1654037537}
-  stateMachineManager: {fileID: 1654037535}
+  inputManager: {fileID: 0}
+  uiController: {fileID: 0}
+  stateMachineManager: {fileID: 0}
   canvas: {fileID: 0}
 --- !u!114 &1654037525
 MonoBehaviour:
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainAnchor: {fileID: 0}
-  visualAnchor: {fileID: 8417808177581051316, guid: c049e6bf9612cdc4d829e71aa31a5ba6,
+  visualAnchor: {fileID: 1384416727882566512, guid: 57f3ff1a669a56948bdb23b29a05f93e,
     type: 3}
   visualAnchorClone: {fileID: 0}
 --- !u!114 &1654037527
@@ -301,10 +301,10 @@ MonoBehaviour:
   - {fileID: 4276390385151098323, guid: 9fe49a9d76a964e47a82d28770b54c51, type: 3}
   toyList: []
   foodPrefabs:
-  - {fileID: -927199367670048503, guid: ba2b9f5eec16ea04c8e3ae0c61cb7822, type: 3}
-  - {fileID: -927199367670048503, guid: 0e51be3c75242b142b6c72a0cc510bca, type: 3}
-  - {fileID: -927199367670048503, guid: 80dd7ec4cb3a61c4e880a729145b1e3c, type: 3}
-  - {fileID: -927199367670048503, guid: 47d2ae698582659419bb67c1cf554e7e, type: 3}
+  - {fileID: 1706429030240464914, guid: 119b575aa6475a942a4bcad19daa5e58, type: 3}
+  - {fileID: 8763156040775023163, guid: 48a6081995773c64b80af3b546569acf, type: 3}
+  - {fileID: 8289353787740200604, guid: 4eccbf06e6ef71a45a8a59ba47928de1, type: 3}
+  - {fileID: 6395388319862616996, guid: 1552696f9565ecf4a838f355e45fe329, type: 3}
   foodList: []
   foodTimer: 3
   toyTimer: 3

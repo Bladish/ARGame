@@ -11,5 +11,7 @@ public class PlayerRotate : MonoBehaviour {
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rotation, Time.deltaTime * damping);
+
+
     }
 }

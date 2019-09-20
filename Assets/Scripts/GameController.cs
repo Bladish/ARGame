@@ -6,11 +6,14 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
-        
+        [HideInInspector]
         public InputManager inputManager;
+        [HideInInspector]
         public UIController uiController;
+        [HideInInspector]
         public StateMachineManager stateMachineManager;
         public GameObject canvas;
+        float t = 0;
         public void Start()
         {
             inputManager = GetComponent<InputManager>();
@@ -37,14 +40,14 @@ using UnityEngine;
             }
             
             //Player stateMachine
-            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy);
+            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy, t);
 
-            stateMachineManager.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+            Debug.Log(inputManager.buttonStateMachine.GetButtonState());
 
             //UI Controller
             uiController.UIControllerUpdate();
-            
-            
+
+            t += Time.deltaTime;
 
         }
 
@@ -71,6 +74,7 @@ using UnityEngine;
                 }   
                 else if (AnchorSingelton.instance != null)
                 {
+                    
                     VisualizeCanvas(true);
 
                     switch (inputManager.buttonStateMachine.buttonState)
@@ -78,10 +82,16 @@ using UnityEngine;
                         case ButtonStateMachine.ButtonState.IDLEBUTTON:
                             break;
                         case ButtonStateMachine.ButtonState.FOODBUTTON:
-                            inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            if (t > 2)
+                            {
+                                inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                                stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
+                                t = 0;
+                            }
                             break;
                         case ButtonStateMachine.ButtonState.PLAYBUTTON:
                             inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
                             break;
                         case ButtonStateMachine.ButtonState.PETBUTTON:
                             inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
@@ -116,5 +126,8 @@ using UnityEngine;
         private void VisualizeCanvas(bool canvasBool) {
             canvas.SetActive(canvasBool);
         }
+
     }
+
+
 }
