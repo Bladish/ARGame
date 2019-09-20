@@ -57,27 +57,21 @@ using UnityEngine;
             }
             else if (InstantPreviewInput.touchCount > 0 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
             {
-                Debug.Log(AnchorSingelton.instance);
                 if (AnchorSingelton.instance == null)
                 {
                     VisualizeCanvas(true);
 
                     inputManager.anchorHandler.SpawnAnchor(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
-                    Debug.Log("Anchor2");
                     if (stateMachineManager.player.spawnedPlayer == null)
                     {
                         stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
                     }
-                    Debug.Log("Anchor3");
                     inputManager.anchorHandler.SetAnchorAsParent(inputManager.anchorHandler.visualAnchorClone);
-                    Debug.Log("Anchor4");
                     inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
-                    Debug.Log("SPAWN ANCHOR5");
                 }   
                 else if (AnchorSingelton.instance != null)
                 {
                     VisualizeCanvas(true);
-                    Debug.Log("ELSE");
 
                     switch (inputManager.buttonStateMachine.buttonState)
                     {
