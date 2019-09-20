@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
-{
+public class PlayerMove : MonoBehaviour {
     float t;
 
-    private void Start()
+private void Start()
     {
         t = Time.deltaTime;
     }

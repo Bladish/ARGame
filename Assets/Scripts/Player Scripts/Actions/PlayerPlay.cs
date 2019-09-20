@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerPlay : MonoBehaviour
-{
+public class PlayerPlay : MonoBehaviour {
     Player player;
     private float width, height, playerZ;
     private float squeezeHeight;

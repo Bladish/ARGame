@@ -6,43 +6,113 @@ using UnityEngine;
 
     public class GameController : MonoBehaviour
     {
+        
         private InputManager inputManager;
-        private GameWorld gameWorld;
-        private StateMachineManager playerStates;
-        private ObjectSpawnHandler objectSpawnHandler;
-        private UIController uIController;
+        private UIController uiController;
         private StateMachineManager stateMachineManager;
-        private UIMath uIMath;
-
-        void Start()
+        public GameObject canvas;
+        void Awake()
         {
             inputManager = GetComponent<InputManager>();
-            gameWorld = GetComponent<GameWorld>();
-            playerStates = GetComponent<StateMachineManager>();
-            objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
-            uIController = GetComponent<UIController>();
+            uiController = GetComponent<UIController>();
             stateMachineManager = GetComponent<StateMachineManager>();
-            uIMath = GetComponent<UIMath>();
         }
 
-        // Update is called once per frame
         void Update()
         {
-            stateMachineManager.StateMachineManagerUpdate();
-            uIController.UIControllerUpdate();
-            gameWorld.UpdateGameWorld();
+            //Inputmanager
             inputManager.UpdateInputManager();
-            inputManager.baws.Resize(inputManager.player.spawnedPlayer, (float)uIMath.GetEating());
-            if(objectSpawnHandler.foodList.Count > 0)
+
+            inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
+
+            if (inputManager.objectSpawnHandler.foodList.Count > 0)
             {
-                objectSpawnHandler.UpdateDestroyFood();
+                inputManager.objectSpawnHandler.UpdateDestroyFood();
             }
-            if (objectSpawnHandler.toyList.Count > 0)
+            if (inputManager.objectSpawnHandler.toyList.Count > 0)
             {
-                objectSpawnHandler.UpdateDestroyToy();
+                inputManager.objectSpawnHandler.UpdateDestroyToy();
             }
-            //Hämta en buttonstate och 
-            playerStates.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+
+
+            //Player stateMachine
+            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy);
+
+            stateMachineManager.ChangePlayerState(inputManager.buttonStateMachine.GetButtonState());
+
+            //UI Controller
+            uiController.UIControllerUpdate();
+            
+
+            ///////////
+            RayCastAndTouchWithSpawnLogic();
+            //////////
+
+        }
+
+        private void RayCastAndTouchWithSpawnLogic() {
+            //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
+
+            if (InstantPreviewInput.touchCount < 1 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+            {
+                Debug.Log("No Touch");
+            }
+            else if (InstantPreviewInput.touchCount > 0 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
+            {
+                if (AnchorSingelton.instance == null)
+                {
+                    VisualizeCanvas(true);
+                    inputManager.anchorHandler.SpawnAnchor(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                    stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
+                    inputManager.anchorHandler.SetAnchorAsParent(inputManager.anchorHandler.visualAnchorClone);
+                    inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
+                }   
+                else if (AnchorSingelton.instance != null)
+                {
+                    VisualizeCanvas(true);
+
+                    switch (inputManager.buttonStateMachine.buttonState)
+                    {
+                        case ButtonStateMachine.ButtonState.IDLEBUTTON:
+                            break;
+                        case ButtonStateMachine.ButtonState.FOODBUTTON:
+                            inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            break;
+                        case ButtonStateMachine.ButtonState.PLAYBUTTON:
+                            inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                            break;
+                        case ButtonStateMachine.ButtonState.PETBUTTON:
+                            inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
+                            if (inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch).transform.tag == "Player")
+                            {
+                                stateMachineManager.tweens.PetPlayer(stateMachineManager.player.spawnedPlayer);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
+                    if (inputManager.rayManager.rayHit.collider.CompareTag("Player"))
+                    {
+                        Debug.Log("l0l");
+                    }
+
+                }
+                else
+                {
+                    VisualizeCanvas(false);
+                    return;
+                }
+            }
+        }
+
+        //public void Remove() {
+        //    anchorHandler.DetachAnchor();
+        //    Destroy(player.spawnedPlayer);
+        //}
+
+        private void VisualizeCanvas(bool canvasBool) {
+            canvas.SetActive(canvasBool);
         }
     }
 }
