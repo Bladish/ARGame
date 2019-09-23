@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CubeTestTween : MonoBehaviour
 {
 	public ParticleSystem tweenParticle;
+	public Ease ease = Ease.Linear;
 
     float width;
     float height;
@@ -26,7 +27,8 @@ public class CubeTestTween : MonoBehaviour
 		t += Time.deltaTime;
 		if (Input.GetKeyDown(KeyCode.E) && t > 0.8f)
 		{
-			StartCoroutine(timeDelay());
+			//StartCoroutine(timeDelay());
+			PlayerWalk();
 			t = 0;
 		}
 	}
@@ -62,15 +64,13 @@ public class CubeTestTween : MonoBehaviour
     public void PlayerWalk()
     {
         Sequence mySequence2 = DOTween.Sequence();
-        mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 20f), 0.2f).SetLoops(1, LoopType.Restart));
-        mySequence2.PrependInterval(0.1f);
-        mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.3f).SetLoops(1, LoopType.Restart));
-        mySequence2.PrependInterval(0.1f);
-        mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, -20f), 0.2f).SetLoops(1, LoopType.Restart));
-        mySequence2.PrependInterval(0.1f);
-        mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.2f).SetLoops(1, LoopType.Restart));
-        mySequence2.PrependInterval(0.1f);
-        mySequence2.Append(transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0f));
+		mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 15f), 0.2f).SetLoops(1, LoopType.Restart).SetEase(ease, 10f));
+		mySequence2.PrependInterval(0.1f);
+		mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, -15f), 0.4f).SetLoops(1, LoopType.Restart).SetEase(ease, 10f));
+		mySequence2.PrependInterval(0.1f);
+		mySequence2.Append(transform.DORotate(new Vector3(0f, 0f, 0f), 0.2f).SetLoops(1, LoopType.Restart).SetEase(ease, 10f));
+		mySequence2.PrependInterval(0.1f);
+		mySequence2.Append(transform.DORotate(new Vector3(baseRotX, baseRotY, baseRotZ), 0f).SetEase(ease, 10f));
 	}
 
 	private void PlayerScaleExplode()

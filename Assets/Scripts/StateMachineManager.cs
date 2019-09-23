@@ -96,7 +96,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
 
                     if (t > 3)
                     {
-                        //tweens.PlayerWalk(player.spawnedPlayer);
+                        tweens.PlayerWalk(player.spawnedPlayer);
                         playerState = PlayerState.Eating;
                     }
 
