@@ -43,7 +43,6 @@ using UnityEngine;
             stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy, inputManager.anchorHandler.visualAnchorClone, t);
 
 
-            Debug.Log(inputManager.buttonStateMachine.GetButtonState());
 
             //UI Controller
             uiController.UIControllerUpdate();
@@ -57,7 +56,7 @@ using UnityEngine;
 
             if (InstantPreviewInput.touchCount < 1 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
             {
-                Debug.Log("No Touch");
+
             }
             else if (InstantPreviewInput.touchCount > 0 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
             {

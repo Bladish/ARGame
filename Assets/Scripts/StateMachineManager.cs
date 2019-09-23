@@ -51,7 +51,6 @@ public class StateMachineManager : MonoBehaviour
 public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, GameObject anchor, float t)
     {
         t += Time.deltaTime;
-        Debug.Log(playerState);
         switch (playerState)
         {
             case PlayerState.Idle:
@@ -70,7 +69,6 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                     //TIMER
                     
                     playerState = PlayerState.PlayerMove;
-                    Debug.Log("TIME TO MOVE");
                 }
                 if (spawnedFood != null)
                 { 
@@ -89,7 +87,6 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (spawnedToy != null)
                 {
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedToy.transform.position);
-                    Debug.Log("I¨M MOVING");
                     //When chicken has moved to food start Tween
                     //TIMER or coroutine
                     //tweens.PlayerWalk(player.spawnedPlayer);

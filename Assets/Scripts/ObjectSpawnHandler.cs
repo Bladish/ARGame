@@ -24,7 +24,6 @@ public class ObjectSpawnHandler : MonoBehaviour
 
     #region Food
     public void SpawnFood(TrackableHit hit) {
-        Debug.Log($"Spawned food at{hit.Pose.position}");
         int randomFood = Random.Range(0, foodPrefabs.Count);
         if (foodList.Count < 1)
         {
@@ -46,7 +45,7 @@ public class ObjectSpawnHandler : MonoBehaviour
         }
     }
     
-  
+    
     public void UpdateDestroyToy()
     {
         t += Time.deltaTime;
@@ -61,7 +60,7 @@ public class ObjectSpawnHandler : MonoBehaviour
     #region Toy
     public void SpawnToy(TrackableHit hit)
     {
-        Debug.Log($"Spawned food at{hit.Pose.position}");
+
         int randomToy = Random.Range(0, toyPrefabs.Count);
         // change lookrotation
         if (toyList.Count < 1)
