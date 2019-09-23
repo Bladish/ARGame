@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 /// <Author>
 /// Michael Håkansson
 /// Jonathan Aronsson Olsson
@@ -50,6 +51,7 @@ public class StateMachineManager : MonoBehaviour
 
 public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, GameObject anchor, float t)
     {
+        Debug.Log(player.spawnedPlayer.transform.rotation);
         Debug.Log(playerState);
         t += Time.deltaTime;
         time += Time.deltaTime;
@@ -91,11 +93,12 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             case PlayerState.PlayerMove:
                 if (spawnedToy != null)
                 {
+                    if (time > 1f)
+                    {
+                        //tweens.PlayerWalk(player.spawnedPlayer);
+                        time = 0;
+                    }
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedToy.transform.position);
-                    //When chicken has moved to food start Tween
-                    //TIMER or coroutine
-                    //tweens.PlayerWalk(player.spawnedPlayer);
-
                     if (t > 3)
                     {
                         playerState = PlayerState.Play;
@@ -103,8 +106,13 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 }
                 if (spawnedFood != null)
                 {
+                    //if (time > 0.5f)
+                    //{
+                    //    tweens.PlayerWalk(player.spawnedPlayer);
+                    //    time = 0;
+                    //}
+
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedFood.transform.position);
-                    //tweens.PlayerWalk(player.spawnedPlayer);
                     if (t > 3)
                     {                      
                         playerState = PlayerState.Eating;
@@ -123,16 +131,21 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 break;
 
             case PlayerState.Eating:
-                //tweens.PlayerPeck(player.spawnedPlayer);
-                //TIMER For Pecking
-                //Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
-                tweens.tweenParticle.Play();
-                //tweens.tweenParticle.Stop();
+
                 if (t < 6)
                 {
                     if (time > 1)
                     {
-                        tweens.PlayerPeck(player.spawnedPlayer);
+                        Sequence mySequence1 = DOTween.Sequence();
+                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
+                        mySequence1.PrependInterval(0.1f);
+                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
+                        mySequence1.PrependInterval(0.1f);
+                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
+                        mySequence1.PrependInterval(0.1f);
+                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
+                        mySequence1.PrependInterval(0.1f);
+                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(player.transform.localRotation.x, player.transform.localRotation.y, player.transform.localRotation.z), 0.1f));
                         time = 0;
                     }
                 }
@@ -157,6 +170,5 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 break;
         }
     }
-
 
 }
