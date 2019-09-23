@@ -32,7 +32,7 @@ public class StateMachineManager : MonoBehaviour
     #endregion
 
 
-    public void start()
+    public void Start()
     {
 
         #region GetComponents

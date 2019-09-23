@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
 
     TrackableHit hit;
 
-    public void start()
+    public void Start()
     {
         #region GetComponents
         gameWorld = GetComponent<GameWorld>();
