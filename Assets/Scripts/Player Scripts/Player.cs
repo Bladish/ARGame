@@ -12,11 +12,14 @@ public class Player : MonoBehaviour
     private Quaternion playerRotation;
     public GameObject spawnedPlayer;
     public static Player instance;
+    [HideInInspector]
+    public Vector3 startPos;
 
     private void Awake()
     {
         instance = this;
     }
+
 
     public void CreatPlayer(Vector3 anchorPosition, Quaternion anchorRotation)
     {
@@ -24,7 +27,8 @@ public class Player : MonoBehaviour
         {
             playerPosition = anchorPosition;
             playerRotation = anchorRotation;
-            spawnedPlayer = Instantiate(player, playerPosition, playerRotation);
+            spawnedPlayer = Instantiate(player, playerPosition, playerRotation);           
+            startPos = playerPosition;
         }
         else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
     }

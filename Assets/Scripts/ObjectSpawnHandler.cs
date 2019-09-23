@@ -11,9 +11,16 @@ public class ObjectSpawnHandler : MonoBehaviour
     public List<GameObject> toyList;
     public List<GameObject> foodPrefabs;
     public List<GameObject> foodList;
+    [HideInInspector]
+    public StateMachineManager stateMachineManager;
 
     public float foodTimer = 3, toyTimer = 3;
     private float t = 0;
+
+    private void Start()
+    {
+        stateMachineManager = GetComponent<StateMachineManager>();
+    }
 
     #region Food
     public void SpawnFood(TrackableHit hit) {
@@ -21,7 +28,9 @@ public class ObjectSpawnHandler : MonoBehaviour
         int randomFood = Random.Range(0, foodPrefabs.Count);
         if (foodList.Count < 1)
         {
-            spawnedFood = Instantiate(foodPrefabs[randomFood], hit.Pose.position, hit.Pose.rotation);
+            //spawnedFood = Instantiate(foodPrefabs[randomFood], hit.Pose.position, hit.Pose.rotation);
+            spawnedFood = Instantiate(foodPrefabs[randomFood], new Vector3(hit.Pose.position.x, stateMachineManager.player.spawnedPlayer.transform.position.y, hit.Pose.position.z), hit.Pose.rotation);
+            //spawnedFood.transform.position = new Vector3(spawnedFood.transform.position.x, 0, spawnedFood.transform.position.z);
             foodList.Add(spawnedFood);
         }
     }

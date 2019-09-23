@@ -29,12 +29,13 @@ public class StateMachineManager : MonoBehaviour
     public PlayerIdle playerIdle;
     [HideInInspector]
     public Tweens tweens;
+    //[HideInInspector]
+    public MainAnchorHandler mainAnchorHandler;
     #endregion
 
 
     public void Start()
     {
-
         #region GetComponents
         player = GetComponent<Player>();
         playerMove = GetComponent<PlayerMove>();
@@ -43,10 +44,11 @@ public class StateMachineManager : MonoBehaviour
         playerPlay = GetComponent<PlayerPlay>();
         playerIdle = GetComponent<PlayerIdle>();
         tweens = GetComponent<Tweens>();
+        mainAnchorHandler = GetComponent<MainAnchorHandler>();
         #endregion
     }
 
-public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, float t)
+public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject anchor, GameObject spawnedToy, float t)
     {
         t += Time.deltaTime;
         Debug.Log(playerState);
@@ -54,6 +56,10 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
         {
             case PlayerState.Idle:
                 //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, random spinn, random barrelroll
+                playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
+                if(player.spawnedPlayer != null)
+                playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
+
                 break;
 
             case PlayerState.PlayerLook:
@@ -93,10 +99,9 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (spawnedFood != null)
                 {
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedFood.transform.position);
-
+                    //tweens.PlayerWalk(player.spawnedPlayer);
                     if (t > 3)
-                    {
-                        tweens.PlayerWalk(player.spawnedPlayer);
+                    {                      
                         playerState = PlayerState.Eating;
                     }
 
