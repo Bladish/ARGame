@@ -60,7 +60,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             case PlayerState.Idle:
                 //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, random spinn, random barrelroll
                 playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
-                if(player.spawnedPlayer != null)
+                if (player.spawnedPlayer != null)
                 playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
 
                 break;
@@ -81,11 +81,9 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 { 
                     if(t < 1)
                     playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedFood);
-                    else if (t > 1)
-                    
+                    else if (t > 1)                   
                     {
-                        playerState = PlayerState.PlayerMove;
-                        
+                        playerState = PlayerState.PlayerMove;                       
                     }                
                 }
                 break;
@@ -136,16 +134,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 {
                     if (time > 1)
                     {
-                        Sequence mySequence1 = DOTween.Sequence();
-                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
-                        mySequence1.PrependInterval(0.1f);
-                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
-                        mySequence1.PrependInterval(0.1f);
-                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
-                        mySequence1.PrependInterval(0.1f);
-                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
-                        mySequence1.PrependInterval(0.1f);
-                        mySequence1.Append(player.spawnedPlayer.transform.DORotate(new Vector3(player.transform.localRotation.x, player.transform.localRotation.y, player.transform.localRotation.z), 0.1f));
+                        tweens.PlayerPeck(player.spawnedPlayer);
                         time = 0;
                     }
                 }

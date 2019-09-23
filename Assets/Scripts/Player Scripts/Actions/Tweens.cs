@@ -25,12 +25,12 @@ public class Tweens : MonoBehaviour
 
     void Update()
     {
-        t += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.E) && t > 0.8f)
-        {
-            StartCoroutine(timeDelay());
-            t = 0;
-        }
+        //t += Time.deltaTime;
+        //if (Input.GetKeyDown(KeyCode.E) && t > 0.8f)
+        //{
+        //    StartCoroutine(timeDelay());
+        //    t = 0;
+        //}
     }
 
     private void PlayerScale(GameObject player)
@@ -50,15 +50,15 @@ public class Tweens : MonoBehaviour
     public void PlayerPeck(GameObject player)
     {
         Sequence mySequence1 = DOTween.Sequence();
-        mySequence1.Append(player.transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
+        mySequence1.Append(player.transform.DOLocalRotate(new Vector3(player.transform.rotation.x + 60, player.transform.rotation.y, player.transform.rotation.z), 0.1f).SetLoops(1, LoopType.Incremental));
         mySequence1.PrependInterval(0.1f);
-        mySequence1.Append(player.transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
+        mySequence1.Append(player.transform.DOLocalRotate(new Vector3(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z), 0.1f));
         mySequence1.PrependInterval(0.1f);
-        mySequence1.Append(player.transform.DORotate(new Vector3(60f, 0f, 0f), 0.1f).SetLoops(1, LoopType.Restart));
+        mySequence1.Append(player.transform.DOLocalRotate(new Vector3(player.transform.rotation.x + 60, player.transform.rotation.y, player.transform.rotation.z), 0.1f).SetLoops(1, LoopType.Restart));
         mySequence1.PrependInterval(0.1f);
-        mySequence1.Append(player.transform.DORotate(new Vector3(0f, 0f, 0f), 0.1f));
+        mySequence1.Append(player.transform.DOLocalRotate(new Vector3(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z), 0.1f));
         mySequence1.PrependInterval(0.1f);
-        mySequence1.Append(player.transform.DORotate(new Vector3(player.transform.localRotation.x, player.transform.localRotation.y, player.transform.localRotation.z), 0.1f));
+        mySequence1.Append(player.transform.DOLocalRotate(new Vector3(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z), 0.1f));
     }
 
     public void PlayerWalk(GameObject player)

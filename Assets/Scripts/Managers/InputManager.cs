@@ -30,6 +30,7 @@ public class InputManager : MonoBehaviour
     public ObjectSpawnHandler objectSpawnHandler;
     [HideInInspector]
     public BAWS baws;
+    public bool generateWorldToggle;
     #endregion
 
     TrackableHit hit;
@@ -44,17 +45,25 @@ public class InputManager : MonoBehaviour
         buttonStateMachine = GetComponent<ButtonStateMachine>();
         objectSpawnHandler = GetComponent<ObjectSpawnHandler>();
         baws = gameObject.GetComponent<BAWS>();
-        #endregion
-        
+        #endregion      
     }
 
 
 
     public void UpdateInputManager()
     {
-        gameWorld.UpdateGameWorld();
-        buttonStateMachine.ButtonStateMachineUpdate();
-        
+        if (generateWorldToggle)
+        {
+            gameWorld.UpdateGameWorld();
+        }
+
+        buttonStateMachine.ButtonStateMachineUpdate();        
+    }
+
+    public void ToggleGenerateWorld()
+    {
+        generateWorldToggle = !generateWorldToggle;
+        Debug.Log(generateWorldToggle);
     }
 
 

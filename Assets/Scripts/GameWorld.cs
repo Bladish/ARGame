@@ -39,8 +39,7 @@ public class GameWorld : MonoBehaviour
         for (int i = 0; i < planeList.Count; i++)
         {
             GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
-            newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
-            
+            newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);            
         }
     }
 }
