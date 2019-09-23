@@ -40,7 +40,7 @@ using UnityEngine;
             }
             
             //Player stateMachine
-            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.anchorHandler.visualAnchorClone, inputManager.objectSpawnHandler.spawnedToy, t);
+            stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy, inputManager.anchorHandler.visualAnchorClone, t);
 
 
             Debug.Log(inputManager.buttonStateMachine.GetButtonState());

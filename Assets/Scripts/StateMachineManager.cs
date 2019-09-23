@@ -48,7 +48,7 @@ public class StateMachineManager : MonoBehaviour
         #endregion
     }
 
-public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject anchor, GameObject spawnedToy, float t)
+public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, GameObject anchor, float t)
     {
         t += Time.deltaTime;
         Debug.Log(playerState);
