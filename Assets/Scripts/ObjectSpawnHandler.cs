@@ -13,8 +13,8 @@ public class ObjectSpawnHandler : MonoBehaviour
     public List<GameObject> foodList;
     [HideInInspector]
     public StateMachineManager stateMachineManager;
-
-    public float foodTimer = 3, toyTimer = 3;
+    [HideInInspector]
+    public float foodTimer = 5, toyTimer = 5;
     private float t = 0;
 
     private void Start()

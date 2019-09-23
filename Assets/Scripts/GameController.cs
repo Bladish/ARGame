@@ -90,8 +90,12 @@ using UnityEngine;
                             }
                             break;
                         case ButtonStateMachine.ButtonState.PLAYBUTTON:
-                            inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
-                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
+                            if (t > 2)
+                            {
+                                inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                                stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
+                                t = 0;
+                            }
                             break;
                         case ButtonStateMachine.ButtonState.PETBUTTON:
                             inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);

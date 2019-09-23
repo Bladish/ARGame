@@ -32,7 +32,7 @@ public class StateMachineManager : MonoBehaviour
     //[HideInInspector]
     public MainAnchorHandler mainAnchorHandler;
     #endregion
-
+    float time;
 
     public void Start()
     {
@@ -50,7 +50,9 @@ public class StateMachineManager : MonoBehaviour
 
 public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, GameObject anchor, float t)
     {
+        Debug.Log(playerState);
         t += Time.deltaTime;
+        time += Time.deltaTime;
         switch (playerState)
         {
             case PlayerState.Idle:
@@ -64,11 +66,14 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             case PlayerState.PlayerLook:
                 if (spawnedToy != null)
                 {
-                    playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedToy);
-                   
-                    //TIMER
-                    
-                    playerState = PlayerState.PlayerMove;
+                    if (t < 1)
+                    {
+                        playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, spawnedToy);
+                    }
+                    else if (t > 1)
+                    {
+                        playerState = PlayerState.PlayerMove;
+                    }
                 }
                 if (spawnedFood != null)
                 { 
@@ -91,7 +96,10 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                     //TIMER or coroutine
                     //tweens.PlayerWalk(player.spawnedPlayer);
 
-                    playerState = PlayerState.Eating;
+                    if (t > 3)
+                    {
+                        playerState = PlayerState.Play;
+                    }
                 }
                 if (spawnedFood != null)
                 {
@@ -106,15 +114,34 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 break;
 
             case PlayerState.Play:
+                //Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                tweens.tweenParticle.Play();
+                if (t > 6)
+                {
+                    playerState = PlayerState.Idle;
+                }
                 break;
 
             case PlayerState.Eating:
                 //tweens.PlayerPeck(player.spawnedPlayer);
                 //TIMER For Pecking
-                Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                //Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
                 tweens.tweenParticle.Play();
                 //tweens.tweenParticle.Stop();
-                playerState = PlayerState.Idle;
+                if (t < 6)
+                {
+                    if (time > 1)
+                    {
+                        tweens.PlayerPeck(player.spawnedPlayer);
+                        time = 0;
+                    }
+                }
+                else if (t > 6)
+                {
+                    Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                    playerState = PlayerState.Idle;
+                }
+
                 break;
 
             case PlayerState.PlayerPlay:

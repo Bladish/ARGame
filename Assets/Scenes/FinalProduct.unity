@@ -367,6 +367,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6395388319862616996, guid: 1552696f9565ecf4a838f355e45fe329,
         type: 3}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: foodTimer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: toyTimer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994605a252d2cb04281773375d59aa31, type: 3}
 --- !u!114 &1421208926 stripped
