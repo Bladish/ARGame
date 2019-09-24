@@ -432,6 +432,10 @@ PrefabInstance:
       propertyPath: arCamera
       value: 
       objectReference: {fileID: 556217897}
+    - target: {fileID: 1654037535, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: changeInt
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994605a252d2cb04281773375d59aa31, type: 3}
 --- !u!114 &1421208926 stripped

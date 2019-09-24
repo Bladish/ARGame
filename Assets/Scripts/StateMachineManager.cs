@@ -34,6 +34,7 @@ public class StateMachineManager : MonoBehaviour
     float time;
     float idleTimer;
     float jumpTimer;
+    public int changeInt;
     Rigidbody playerRb;
     public void Start()
     {
@@ -56,6 +57,8 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
         t += Time.deltaTime;
         time += Time.deltaTime;
         idleTimer += Time.deltaTime;
+        
+
         switch (playerState)
         {
             case PlayerState.Idle:
@@ -65,40 +68,51 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (player.spawnedPlayer != null)
                     playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
 
+
                 if (idleTimer > 5)
                 {
-                    switch (IdleStateRandomizer())
+                    jumpTimer += Time.deltaTime;
+                    switch (changeInt)
                     {
                         case 0:
+                            Debug.Log("JUMPING");
                             playerRb = player.GetPlayerRb();
-                            Debug.Log("Jump");
-                            jumpTimer += Time.deltaTime;
-                            if (jumpTimer < 3)
+                            if (true)
                             {
-                                if (time > 1)
+                                if (jumpTimer > 1)
                                 {
                                     playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
-                                    time = 0;
+                                    jumpTimer = 0;
+                                    idleTimer = 0;
                                 }
                             }
-                            else if (jumpTimer > 3)
-                            {
-                                jumpTimer = 0;
-                                idleTimer = 0;
-                            }
+                            
 
                             break;
                         case 1:
-                            Debug.Log("Move");
-                            playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
+                            Debug.Log("Moving");
 
+                            playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
+                            if (jumpTimer > 5)
+                            {
+                                idleTimer = 0;
+                                jumpTimer = 0;
+                            }
                             break;
                         case 2:
-                            Debug.Log("test");
-                            //player.spawnedPlayer.gameObject.transform.localScale = new Vector3(Random.Range(0.1f, 2f), Random.Range(0.1f, 0.6f), Random.Range(1f, 2f));
+                            Debug.Log("FUCK");
+
+                            if (jumpTimer > 5)
+                            {
+                                idleTimer = 0;
+                                jumpTimer = 0;
+                            }
+                            break;
+                        default:
                             break;
                     }
                 }
+
                 break;
             case PlayerState.PlayerLook:
                 if (spawnedToy != null)
@@ -195,7 +209,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
 
     public int IdleStateRandomizer()
     {
-        int randomNum = Random.Range(0, 3);
+        int randomNum = Random.Range(0, 0);
         return randomNum;
     }
 }
