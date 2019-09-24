@@ -56,15 +56,6 @@ public class GameController : MonoBehaviour
         uiController.UIControllerUpdate();
 
         t += Time.deltaTime;
-
-        if(timeCalculations.GetNowTime() > timeCalculations.GetTimeRules())
-        {
-            //TODO Add so player take damages 
-            uiController.UIMathGainAndLooseHunger(-1);
-            uiController.UIMathGainAndLooseHappieness(-1);
-            timeCalculations.AddTimeToTimeRules();
-        }
-
     }
 
     private void RayCastAndTouchWithSpawnLogic() {
@@ -150,7 +141,6 @@ public class GameController : MonoBehaviour
     private void CallingGameMathForHungerAndHappienessLoss()
     {
         int happienessAndHungerLossValue = gameMath.CalculateHappienessAndHungerLoss();
-        uiController.UIMathGainAndLooseHunger(-happienessAndHungerLossValue);
-        uiController.UIMathGainAndLooseHappieness(-happienessAndHungerLossValue);
+        uiController.LifeLossForPlayerOnGameStart(happienessAndHungerLossValue);
     }
 }
