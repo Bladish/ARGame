@@ -416,14 +416,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: happyBarMeter
-      value: 
-      objectReference: {fileID: 1079215108}
-    - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: hungerBarMeter
-      value: 
-      objectReference: {fileID: 1447437462}
     - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: canvas
       value: 
@@ -434,8 +426,16 @@ PrefabInstance:
       objectReference: {fileID: 556217897}
     - target: {fileID: 1654037535, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: changeInt
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: happyBarMeter
+      value: 
+      objectReference: {fileID: 1079215108}
+    - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: hungerBarMeter
+      value: 
+      objectReference: {fileID: 1447437462}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994605a252d2cb04281773375d59aa31, type: 3}
 --- !u!114 &1421208926 stripped
@@ -895,10 +895,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1421208927}
-    - target: {fileID: 447993934, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1974113869876626651, guid: 3a811717ad7793b4cbf65bcc2933b028,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -929,6 +925,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 1611801952, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 447993934, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 442281720, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -946,10 +950,6 @@ PrefabInstance:
     - target: {fileID: 2088146810, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
       propertyPath: m_Type
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1611801952, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}

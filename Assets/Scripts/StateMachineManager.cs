@@ -33,7 +33,7 @@ public class StateMachineManager : MonoBehaviour
     #endregion
     float time;
     float idleTimer;
-    float jumpTimer;
+    float anotherTimer;
     public int changeInt;
     Rigidbody playerRb;
     public void Start()
@@ -65,53 +65,62 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, 
                 //random spinn, random barrelroll
 
-                if (player.spawnedPlayer != null)
-                    playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
-
-
-                if (idleTimer > 5)
+             #region PlayerIDLE
+                if (idleTimer > 4)
                 {
-                    jumpTimer += Time.deltaTime;
+                    anotherTimer += Time.deltaTime;
                     switch (changeInt)
                     {
                         case 0:
                             Debug.Log("JUMPING");
                             playerRb = player.GetPlayerRb();
-                            if (true)
+
+                            if (anotherTimer < 3)
                             {
-                                if (jumpTimer > 1)
+                                if (time > 1)
                                 {
                                     playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
-                                    jumpTimer = 0;
-                                    idleTimer = 0;
+                                    time = 0;
                                 }
                             }
-                            
-
+                            else if (anotherTimer > 3)
+                            {
+                                idleTimer = 0;
+                                anotherTimer = 0;
+                            }
                             break;
                         case 1:
                             Debug.Log("Moving");
-
+                            playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
                             playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
-                            if (jumpTimer > 5)
+                            if (anotherTimer > 3)
                             {
                                 idleTimer = 0;
-                                jumpTimer = 0;
+                                anotherTimer = 0;
                             }
                             break;
                         case 2:
-                            Debug.Log("FUCK");
-
-                            if (jumpTimer > 5)
+                            Debug.Log("Spin me round round");
+                            if (anotherTimer < 3)
+                            {
+                                if (time > 1)
+                                {
+                                    Quaternion target = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+                                    player.spawnedPlayer.transform.rotation = Quaternion.Slerp(player.spawnedPlayer.transform.rotation, target , 1);
+                                    time = 0;
+                                }
+                            }
+                            else if (anotherTimer > 3)
                             {
                                 idleTimer = 0;
-                                jumpTimer = 0;
+                                anotherTimer = 0;
                             }
                             break;
                         default:
                             break;
                     }
                 }
+                #endregion
 
                 break;
             case PlayerState.PlayerLook:
@@ -207,9 +216,23 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
         }
     }
 
-    public int IdleStateRandomizer()
-    {
-        int randomNum = Random.Range(0, 0);
-        return randomNum;
-    }
+
 }
+
+
+/*
+                if (t< 6)
+                {
+                    if (time > 1)
+                    {
+                        tweens.PlayerPeck(player.spawnedPlayer);
+                        time = 0;
+                    }
+                }
+                else if (t > 6)
+                {
+                    Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+playerState = PlayerState.Idle;
+                }
+
+    */
