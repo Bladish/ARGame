@@ -52,10 +52,10 @@ public class InputManager : MonoBehaviour
 
     public void UpdateInputManager()
     {
-        if (generateWorldToggle)
-        {
+        //if (generateWorldToggle)
+        //{
             gameWorld.UpdateGameWorld();
-        }
+        //}
 
         buttonStateMachine.ButtonStateMachineUpdate();        
     }
