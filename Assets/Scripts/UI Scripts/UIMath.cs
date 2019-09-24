@@ -14,20 +14,17 @@ public class UIMath : UIController
     public int eating;
     public int playing;
     
-    public void UIMathUpdate()
-    {
-        eating = Mathf.Clamp(eating, 0, 100);
-        playing = Mathf.Clamp(playing, 0, 100);
-    }
     #region Hunger
     public void HungerLoss(int lossValue)
     {
         eating -= lossValue;
+        eating = Mathf.Clamp(eating, 0, 100);
     }
 
     public void HungerGains(int gains)
     {
         eating +=  gains;
+        eating = Mathf.Clamp(eating, 0, 100);
     }
     #endregion
 
@@ -35,11 +32,13 @@ public class UIMath : UIController
     public void HappinessLoss(int lossValue)
     {
         playing -= lossValue;
+        playing = Mathf.Clamp(playing, 0, 100);
     }
 
     public void HappienessGains(int gains)
     {
         playing += gains;
+        playing = Mathf.Clamp(playing, 0, 100);
     }
 
     public int GetEating()

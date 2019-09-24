@@ -17,16 +17,13 @@ public class UIController : MonoBehaviour
     public UIView uiView;
     [HideInInspector]
     public UIMath uiMath;
-    private TimeCalculations timeCalcuations;
     
 
 
     //  TODO: when working rename to UIUpdate() and link in GameController 
     public void UIControllerUpdate()
     {
-        LifeLossForPlayerSeconds();
         SetBars();
-        uiMath.UIMathUpdate();
     }
     //Numbers below shoud come from GameController
     void Start()
@@ -34,7 +31,6 @@ public class UIController : MonoBehaviour
         uiView = GetComponent<UIView>();
         uiMath = GetComponent<UIMath>();
         //eat = GetComponent<Eat>();
-        timeCalcuations = GetComponent<TimeCalculations>();
         //entertainment = GetComponent<Entertainment>();
         //Numbers below shoud come from GameController
         uiMath.HungerGains(100);
@@ -56,20 +52,15 @@ public class UIController : MonoBehaviour
         // 0-40 red
     }
 
-    public void LifeLossForPlayerSeconds()
+    public void LifeLossForPlayer(int i)
     {
-        if (timeCalcuations.GetNowTime() > timeCalcuations.GetTimeRules())
-        {
-            uiMath.HappinessLoss(1);
-            uiMath.HungerLoss(1);
-            timeCalcuations.AddTimeToTimeRules();
-        }
+       uiMath.HappinessLoss(i);
+       uiMath.HungerLoss(i);
     }
 
     public void LifeLossForPlayerOnGameStart(int i)
     {
         uiMath.HappinessLoss(i);
         uiMath.HungerLoss(i);
-        timeCalcuations.AddTimeToTimeRules();
     }
 }

@@ -15,13 +15,14 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Vector3 startPos;
     Rigidbody playerRb;
+    private int hungerPoints;
+    private int happienessPoints;
 
     private void Awake()
     {
         instance = this;
 
     }
-
 
     public void CreatPlayer(Vector3 anchorPosition, Quaternion anchorRotation)
     {
@@ -34,18 +35,6 @@ public class Player : MonoBehaviour
         }
         else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
     }
-
-    /*
-    public void MovePlayer(Vector3 anchorPosition)
-    {
-        Vector3 originPos;
-        originPos = spawnedPlayer.transform.position;
-        if(spawnedPlayer.transform.position == anchorPosition)
-            originPos = spawnedPlayer.transform.position;
-        else
-            Vector3.Lerp(originPos, anchorPosition, Time.deltaTime / 5);
-    }
-    */
 
     public void SetPlayerPosition(Vector3 position)
     {
@@ -69,32 +58,43 @@ public class Player : MonoBehaviour
         return playerRotation;
     }
 
-  
-
-    public void Rotate()
-    {
-        //spawnedPlayer.transform.DORotate(new Vector3(0, 360, 0), 2, RotateMode.FastBeyond360).SetRelative(true).SetLoops(1, LoopType.Restart).SetEase(Ease.Linear);
-        //spawnedPlayer.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 3).SetRelative(true).SetLoops(-1, LoopType.Restart).SetEase(Ease.InFlash);
-    }
     public Rigidbody GetPlayerRb()
     {
         playerRb = spawnedPlayer.GetComponent<Rigidbody>();
         return playerRb;
     }
-    /*
-    public void Squeeze()
+   
+    public void PlayerGainHungerPoints(int i)
     {
-        Sequence mySequence = DOTween.Sequence();
-        mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height - squeezeHeight, playerZ), 0.1f));
-        mySequence.PrependInterval(0.1f);
-        mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height + squeezeHeight, playerZ), 0.1f));
-        mySequence.PrependInterval(0.1f);
-        mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height - squeezeHeight, playerZ), 0.1f));
-        mySequence.PrependInterval(0.1f);
-        mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height + squeezeHeight, playerZ), 0.1f));
-        mySequence.PrependInterval(0.1f);
-        mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height, playerZ), 0.1f));
+        hungerPoints += i;
+        hungerPoints = Mathf.Clamp(hungerPoints, 0, 100);
     }
-    */
 
+    public void PlayerLossHungerPoints(int i)
+    {
+        hungerPoints -= i;
+        hungerPoints = Mathf.Clamp(hungerPoints, 0, 100);
+    }
+
+    public void PlayerGainHappienessPoints(int i)
+    {
+        happienessPoints += i;
+        happienessPoints = Mathf.Clamp(happienessPoints, 0, 100);
+    }
+
+    public void PlayerLossHappienessPoints(int i)
+    {
+        happienessPoints -= i;
+        happienessPoints = Mathf.Clamp(happienessPoints, 0, 100);
+    }
+
+    public int GetHappienessPoints()
+    {
+        return happienessPoints;
+    }
+
+    public int GetHungerPoints()
+    {
+        return hungerPoints;
+    }
 }

@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     private TimeCalculations timeCalculations;
     private Save save;
     private Load load;
+    private Player player;
 
     public void Start()
     {
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
         timeCalculations = GetComponent<TimeCalculations>();
         save = GetComponent<Save>();
         load = GetComponent<Load>();
+        player = GetComponent<Player>();
         //Making sure player and ui take damage when the game boot up. TODO Add player. 
         load.LoadGameState();
         gameMath.GetingGameState();
@@ -59,11 +61,20 @@ public class GameController : MonoBehaviour
 
 
         //Saving Game State. TODO to get player hunger and happieness
-        if (timeCalculations.GetNowTime() > timeCalculations.GetTimeRules()) save.SaveGameState(100, 100, timeCalculations.GetNowTime());
+        if (timeCalculations.GetNowTime() > timeCalculations.GetTimeRules()) save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
         //UI Controller
         uiController.UIControllerUpdate();
 
-        t += Time.deltaTime;
+        //Player And UI Update
+        if (timeCalculations.GetNowTime() > timeCalculations.GetTimeRules())
+        {
+            player.PlayerLossHappienessPoints(1);
+            player.PlayerLossHungerPoints(1);
+            uiController.LifeLossForPlayer(1);
+            Debug.Log("PlayerLoosing HP");
+            timeCalculations.AddTimeToTimeRules();
+        }
+            t += Time.deltaTime;
 
     }
 
@@ -151,5 +162,7 @@ public class GameController : MonoBehaviour
     {
         int happienessAndHungerLossValue = gameMath.CalculateHappienessAndHungerLoss();
         uiController.LifeLossForPlayerOnGameStart(happienessAndHungerLossValue);
+        player.PlayerLossHappienessPoints(happienessAndHungerLossValue);
+        player.PlayerLossHungerPoints(happienessAndHungerLossValue);
     }
 }

@@ -173,6 +173,12 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1840767688}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1079215108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7862985357964614312, guid: 3a811717ad7793b4cbf65bcc2933b028,
+    type: 3}
+  m_PrefabInstance: {fileID: 1849194848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1100282169
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,11 +340,11 @@ PrefabInstance:
     - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: happyBarMeter
       value: 
-      objectReference: {fileID: 1849194850}
+      objectReference: {fileID: 1079215108}
     - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: hungerBarMeter
       value: 
-      objectReference: {fileID: 1849194849}
+      objectReference: {fileID: 1447437462}
     - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: canvas
       value: 
@@ -347,34 +353,6 @@ PrefabInstance:
       propertyPath: arCamera
       value: 
       objectReference: {fileID: 556217897}
-    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: foodPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1706429030240464914, guid: 119b575aa6475a942a4bcad19daa5e58,
-        type: 3}
-    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: foodPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 8763156040775023163, guid: 48a6081995773c64b80af3b546569acf,
-        type: 3}
-    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: foodPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 8289353787740200604, guid: 4eccbf06e6ef71a45a8a59ba47928de1,
-        type: 3}
-    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: foodPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 6395388319862616996, guid: 1552696f9565ecf4a838f355e45fe329,
-        type: 3}
-    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: foodTimer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1654037540, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: toyTimer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994605a252d2cb04281773375d59aa31, type: 3}
 --- !u!114 &1421208926 stripped
@@ -383,7 +361,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1421208925}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421208928}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22a5f93215f8c5d4691c329b1c666141, type: 3}
@@ -395,31 +373,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1421208925}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421208928}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b355590c72d98d347be071e97ea9b1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1421208928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 612387532048272093, guid: 994605a252d2cb04281773375d59aa31,
-    type: 3}
-  m_PrefabInstance: {fileID: 1421208925}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1421208929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421208928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45880cdbee47b2f448f35a32ccf2f98b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeValue: 0
 --- !u!1 &1423843690
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +411,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1447437462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3354143613616848091, guid: 3a811717ad7793b4cbf65bcc2933b028,
+    type: 3}
+  m_PrefabInstance: {fileID: 1849194848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1586909007
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,15 +733,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
---- !u!1 &1849194849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 818810895738513970, guid: 3a811717ad7793b4cbf65bcc2933b028,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849194848}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1849194850 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7415305700124416174, guid: 3a811717ad7793b4cbf65bcc2933b028,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849194848}
-  m_PrefabAsset: {fileID: 0}
