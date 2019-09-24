@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     float t = 0;
     private GameMath gameMath;
     private TimeCalculations timeCalculations;
+    private Save save;
     public void Start()
     {
         inputManager = GetComponent<InputManager>();
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
         stateMachineManager = GetComponent<StateMachineManager>();
         gameMath = GetComponent<GameMath>();
         timeCalculations = GetComponent<TimeCalculations>();
+        save = GetComponent<Save>();
 
         //Making sure player and ui take damage when the game boot up. TODO Add player. 
         CallingGameMathForHungerAndHappienessLoss();
@@ -56,6 +58,9 @@ public class GameController : MonoBehaviour
         uiController.UIControllerUpdate();
 
         t += Time.deltaTime;
+
+        //Saving Game State. TODO to get player hunger and happieness
+        if (timeCalculations.GetNowTime() > timeCalculations.GetTimeRules()) save.SaveGameState(100, 100, timeCalculations.GetNowTime());
     }
 
     private void RayCastAndTouchWithSpawnLogic() {
