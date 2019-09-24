@@ -47,7 +47,23 @@ public class UIController : MonoBehaviour
         uiView.SetHappyBarSize(uiMath.GetPlaying());
     }
     
+    public void UIMathGainAndLooseHunger(int i)
+    {
+        if (i >= 0)
+        {
+            uiMath.HungerGains(i);
+        }
+        else uiMath.HappinessLoss(i);
+    }
 
+    public void UIMathGainAndLooseHappieness(int i)
+    {
+        if (i >= 0)
+        {
+            uiMath.HappienessGains(i);
+        }
+        else uiMath.HappinessLoss(i);
+    }
     void HappinessColor ()
     {
         //checks the % of happiness

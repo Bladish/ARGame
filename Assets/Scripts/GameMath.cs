@@ -10,18 +10,23 @@ public class GameMath : MonoBehaviour
     int tmpDay;
     int tmpHour;
     int tmpMinute;
-    int tmpSecond;
     int calculateDayToHours;
     public int timeValue;
     int returnHappienessAndHungerLoss;
+    
+    void Awake()
+    {
+        GetingGameState();
+        CalculateLoadGameState();
+    }
     public void CalculateLoadGameState()
     {
-        if (tmpYear > 0 || tmpMonth > 0) Debug.Log("Dead as fuck");
-        if (tmpDay > 1) Debug.Log("Dead as fuck");
+        if (tmpYear > 0 || tmpMonth > 0) timeValue = 14000;
+        if (tmpDay > 1) timeValue = 14000;
         if (tmpDay == 1)
         {
             calculateDayToHours = (tmpDay * 24) - PlayerPrefs.GetInt("Hour");
-            if (tmpHour >= 0) Debug.Log("Dead as fuck");
+            if (tmpHour >= 0) timeValue = 14000;
             else
             {
                 calculateDayToHours = DateTime.Now.Hour + calculateDayToHours;
@@ -38,14 +43,7 @@ public class GameMath : MonoBehaviour
         tmpDay = DateTime.Now.Day - PlayerPrefs.GetInt("Day");
         tmpHour =  DateTime.Now.Hour - PlayerPrefs.GetInt("Hour");
         tmpMinute = DateTime.Now.Minute - PlayerPrefs.GetInt("Minute");
-        tmpSecond = DateTime.Now.Second - PlayerPrefs.GetInt("Second");
 
-        Debug.Log("Year " + tmpYear);
-        Debug.Log("Month " + tmpMonth);
-        Debug.Log("Day " + tmpDay);
-        Debug.Log("Hour " + tmpHour);
-        Debug.Log("Minute " + tmpMinute);
-        Debug.Log("Second " + tmpSecond);
     }
 
     public int CalculateHappienessAndHungerLoss()
@@ -53,8 +51,8 @@ public class GameMath : MonoBehaviour
         for (int i = 0; i < timeValue; i++)
         {
             if (i % 14 == 1) returnHappienessAndHungerLoss++;
-            Debug.Log(returnHappienessAndHungerLoss);
         }
+        timeValue = 0;
         return returnHappienessAndHungerLoss;
     }
 }

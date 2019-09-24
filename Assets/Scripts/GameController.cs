@@ -14,11 +14,19 @@ public class GameController : MonoBehaviour
     public StateMachineManager stateMachineManager;
     public GameObject canvas;
     float t = 0;
+    private GameMath gameMath;
+    private TimeCalculations timeCalculations;
     public void Start()
     {
         inputManager = GetComponent<InputManager>();
         uiController = GetComponent<UIController>();
         stateMachineManager = GetComponent<StateMachineManager>();
+        gameMath = GetComponent<GameMath>();
+        timeCalculations = GetComponent<TimeCalculations>();
+
+        //Making sure player and ui take damage when the game boot up. TODO Add player. 
+        CallingGameMathForHungerAndHappienessLoss();
+
     }
 
     public void Update()
@@ -48,6 +56,14 @@ public class GameController : MonoBehaviour
         uiController.UIControllerUpdate();
 
         t += Time.deltaTime;
+
+        if(timeCalculations.GetNowTime() > timeCalculations.GetTimeRules())
+        {
+            //TODO Add so player take damages 
+            uiController.UIMathGainAndLooseHunger(-1);
+            uiController.UIMathGainAndLooseHappieness(-1);
+            timeCalculations.AddTimeToTimeRules();
+        }
 
     }
 
@@ -131,4 +147,10 @@ public class GameController : MonoBehaviour
         canvas.SetActive(canvasBool);
     }
 
+    private void CallingGameMathForHungerAndHappienessLoss()
+    {
+        int happienessAndHungerLossValue = gameMath.CalculateHappienessAndHungerLoss();
+        uiController.UIMathGainAndLooseHunger(-happienessAndHungerLossValue);
+        uiController.UIMathGainAndLooseHappieness(-happienessAndHungerLossValue);
+    }
 }

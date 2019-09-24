@@ -7,10 +7,8 @@ public class TimeCalculations : MonoBehaviour
 {
     private DateTime now;
     private DateTime timeRules;
-    private DateTime lastPlayed;
     private readonly Double minutsToAdd = 14.00;
-    private readonly Double secondsToAdd = 24.00;
-    private PlayerPrefs timeSave;
+  
     void Start()
     {
         now = DateTime.Now;
@@ -22,6 +20,11 @@ public class TimeCalculations : MonoBehaviour
     }
 
     public void Eating()
+    {
+        AddTimeToTimeRules();
+    }
+
+    public void Playing()
     {
         AddTimeToTimeRules();
     }
@@ -39,6 +42,6 @@ public class TimeCalculations : MonoBehaviour
 
     public void AddTimeToTimeRules()
     {
-        timeRules = DateTime.Now.AddMinutes(minutsToAdd).AddSeconds(secondsToAdd) ;
+        timeRules = DateTime.Now.AddMinutes(minutsToAdd);
     }
 }
