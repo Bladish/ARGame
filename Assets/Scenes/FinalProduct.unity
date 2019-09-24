@@ -943,20 +943,12 @@ PrefabInstance:
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1611801952, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
---- !u!1 &1849194849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 818810895738513970, guid: 3a811717ad7793b4cbf65bcc2933b028,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849194848}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1849194850 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7415305700124416174, guid: 3a811717ad7793b4cbf65bcc2933b028,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849194848}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1849194851 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1253020198869960406, guid: 3a811717ad7793b4cbf65bcc2933b028,

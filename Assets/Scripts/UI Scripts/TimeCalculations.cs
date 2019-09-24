@@ -42,7 +42,7 @@ public class TimeCalculations : MonoBehaviour
 
     public void AddTimeToTimeRules()
     {
-        timeRules = DateTime.Now.AddSeconds(minutsToAdd);
+        timeRules = DateTime.Now.AddMinutes(minutsToAdd);
     }
 
 }

@@ -31,6 +31,8 @@ GameObject:
   - component: {fileID: 48408522}
   - component: {fileID: 1133696324}
   - component: {fileID: 1421208929}
+  - component: {fileID: 55621992}
+  - component: {fileID: 55621991}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -227,7 +229,6 @@ MonoBehaviour:
   playerPlay: {fileID: 1654037533}
   playerIdle: {fileID: 1654037531}
   tweens: {fileID: 48408521}
-  mainAnchorHandler: {fileID: 0}
 --- !u!114 &1654037536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c6fc665a4709045975bcfda41ffcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenParticle: {fileID: 3845797871800670407, guid: 57283054831761e4aafd3b7669fa81e5,
+  loveParticle: {fileID: 3845797871800670407, guid: 57283054831761e4aafd3b7669fa81e5,
+    type: 3}
+  toneParticle: {fileID: 3692525718552299684, guid: 5bdb372a897d4874c9691fb78a83a356,
     type: 3}
   ease: 1
 --- !u!114 &48408522
@@ -377,3 +380,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeValue: 0
+--- !u!114 &55621992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612387532048272093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a241c613011b1b24c8fbddc92d607253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &55621991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612387532048272093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccc48e79bc5574ea4ebacc32d30149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

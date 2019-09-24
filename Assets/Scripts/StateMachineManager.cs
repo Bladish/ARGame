@@ -95,7 +95,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                             break;
                         case 2:
                             Debug.Log("test");
-                            
+                            //player.spawnedPlayer.gameObject.transform.localScale = new Vector3(Random.Range(0.1f, 2f), Random.Range(0.1f, 0.6f), Random.Range(1f, 2f));
                             break;
                     }
                 }
