@@ -14,11 +14,6 @@ public class GameMath : MonoBehaviour
     public int timeValue;
     int returnHappienessAndHungerLoss;
     
-    void Awake()
-    {
-        GetingGameState();
-        CalculateLoadGameState();
-    }
     public void CalculateLoadGameState()
     {
         if (tmpYear > 0 || tmpMonth > 0) timeValue = 14000;
