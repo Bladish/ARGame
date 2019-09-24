@@ -14,10 +14,12 @@ public class Player : MonoBehaviour
     public static Player instance;
     [HideInInspector]
     public Vector3 startPos;
+    Rigidbody playerRb;
 
     private void Awake()
     {
         instance = this;
+
     }
 
 
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
         {
             playerPosition = anchorPosition;
             playerRotation = anchorRotation;
-            spawnedPlayer = Instantiate(player, playerPosition, playerRotation);           
+            spawnedPlayer = Instantiate(player, new Vector3(playerPosition.x, playerPosition.y + 0.05f, playerPosition.z), playerRotation);           
             startPos = playerPosition;
         }
         else Debug.Log("Player " + spawnedPlayer.transform.position.ToString());
@@ -74,7 +76,11 @@ public class Player : MonoBehaviour
         //spawnedPlayer.transform.DORotate(new Vector3(0, 360, 0), 2, RotateMode.FastBeyond360).SetRelative(true).SetLoops(1, LoopType.Restart).SetEase(Ease.Linear);
         //spawnedPlayer.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 3).SetRelative(true).SetLoops(-1, LoopType.Restart).SetEase(Ease.InFlash);
     }
-
+    public Rigidbody GetPlayerRb()
+    {
+        playerRb = spawnedPlayer.GetComponent<Rigidbody>();
+        return playerRb;
+    }
     /*
     public void Squeeze()
     {
@@ -90,5 +96,5 @@ public class Player : MonoBehaviour
         mySequence.Append(spawnedPlayer.transform.DOScale(new Vector3(width, height, playerZ), 0.1f));
     }
     */
-    
+
 }

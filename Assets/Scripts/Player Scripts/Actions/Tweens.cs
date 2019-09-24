@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class Tweens : MonoBehaviour
 {
-    public ParticleSystem tweenParticle;
-
+    public ParticleSystem loveParticle;
+    public ParticleSystem toneParticle;
     float width;
     float height;
     float t = 1;
@@ -21,16 +21,6 @@ public class Tweens : MonoBehaviour
             width = player.spawnedPlayer.transform.localScale.x;
             height = player.spawnedPlayer.transform.localScale.y;
         }
-    }
-
-    void Update()
-    {
-        //t += Time.deltaTime;
-        //if (Input.GetKeyDown(KeyCode.E) && t > 0.8f)
-        //{
-        //    StartCoroutine(timeDelay());
-        //    t = 0;
-        //}
     }
 
     private void PlayerScale(GameObject player)
@@ -88,7 +78,7 @@ public class Tweens : MonoBehaviour
     {
         //PlayerScaleExplode();
         yield return new WaitForSeconds(1.4f);
-        tweenParticle.Play();
+        loveParticle.Play();
     }
 
     public void PetPlayer(GameObject player) {

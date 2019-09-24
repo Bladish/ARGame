@@ -30,11 +30,11 @@ public class StateMachineManager : MonoBehaviour
     public PlayerIdle playerIdle;
     [HideInInspector]
     public Tweens tweens;
-    //[HideInInspector]
-    public MainAnchorHandler mainAnchorHandler;
     #endregion
     float time;
-
+    float idleTimer;
+    float jumpTimer;
+    Rigidbody playerRb;
     public void Start()
     {
         #region GetComponents
@@ -45,26 +45,61 @@ public class StateMachineManager : MonoBehaviour
         playerPlay = GetComponent<PlayerPlay>();
         playerIdle = GetComponent<PlayerIdle>();
         tweens = GetComponent<Tweens>();
-        mainAnchorHandler = GetComponent<MainAnchorHandler>();
         #endregion
+
+        //player.spawnedPlayer.gameObject.transform.localScale = new Vector3(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10));
     }
 
 public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, GameObject anchor, float t)
     {
-        Debug.Log(player.spawnedPlayer.transform.rotation);
         Debug.Log(playerState);
         t += Time.deltaTime;
         time += Time.deltaTime;
+        idleTimer += Time.deltaTime;
         switch (playerState)
         {
             case PlayerState.Idle:
-                //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, random spinn, random barrelroll
-                playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
+                //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, 
+                //random spinn, random barrelroll
+
                 if (player.spawnedPlayer != null)
-                playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
+                    playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
 
+                if (idleTimer > 5)
+                {
+                    switch (IdleStateRandomizer())
+                    {
+                        case 0:
+                            playerRb = player.GetPlayerRb();
+                            Debug.Log("Jump");
+                            jumpTimer += Time.deltaTime;
+                            if (jumpTimer < 3)
+                            {
+                                if (time > 1)
+                                {
+                                    playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
+                                    time = 0;
+                                }
+                            }
+                            else if (jumpTimer > 3)
+                            {
+                                jumpTimer = 0;
+                                idleTimer = 0;
+                            }
+
+                            break;
+                        case 1:
+                            Debug.Log("Move");
+                            playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
+
+                            break;
+                        case 2:
+                            Debug.Log("test");
+                            
+                            break;
+                    }
+                }
                 break;
-
             case PlayerState.PlayerLook:
                 if (spawnedToy != null)
                 {
@@ -91,11 +126,6 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             case PlayerState.PlayerMove:
                 if (spawnedToy != null)
                 {
-                    if (time > 1f)
-                    {
-                        //tweens.PlayerWalk(player.spawnedPlayer);
-                        time = 0;
-                    }
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedToy.transform.position);
                     if (t > 3)
                     {
@@ -104,12 +134,6 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 }
                 if (spawnedFood != null)
                 {
-                    //if (time > 0.5f)
-                    //{
-                    //    tweens.PlayerWalk(player.spawnedPlayer);
-                    //    time = 0;
-                    //}
-
                     playerMove.PlayerMoveTo(player.spawnedPlayer, spawnedFood.transform.position);
                     if (t > 3)
                     {                      
@@ -121,9 +145,18 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
 
             case PlayerState.Play:
                 //Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
-                tweens.tweenParticle.Play();
-                if (t > 6)
+                tweens.loveParticle.Play();
+                if (t < 6)
                 {
+                    if (time > 1)
+                    {
+                        tweens.PlayerPeck(player.spawnedPlayer);
+                        time = 0;
+                    }
+                }
+                else if (t > 6)
+                {
+                    Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
                     playerState = PlayerState.Idle;
                 }
                 break;
@@ -140,7 +173,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 }
                 else if (t > 6)
                 {
-                    Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                    Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
                     playerState = PlayerState.Idle;
                 }
 
@@ -160,4 +193,9 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
         }
     }
 
+    public int IdleStateRandomizer()
+    {
+        int randomNum = Random.Range(0, 3);
+        return randomNum;
+    }
 }
