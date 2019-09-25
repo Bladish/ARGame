@@ -63,13 +63,14 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             case PlayerState.Idle:
                 //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, 
                 //random spinn, random barrelroll
-                if (player.GetHappienessPoints() <= 0  || player.GetHungerPoints() <= 0)
+                if (player.GetHappienessPoints() <= 0 || player.GetHungerPoints() <= 0)
                 {
-                    playerState  = PlayerState.PlayerDie;
+                    playerState = PlayerState.PlayerDie;
                 }
-             #region PlayerIDLE
+                #region PlayerIDLE
                 if (idleTimer > 4)
                 {
+                    Debug.Log(randomizeInt());
                     anotherTimer += Time.deltaTime;
                     switch (randomizeInt())
                     {
@@ -106,8 +107,8 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                             {
                                 if (time > 1)
                                 {
-                                    Quaternion target = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
-                                    player.spawnedPlayer.transform.rotation = Quaternion.Slerp(player.spawnedPlayer.transform.rotation, target , 1);
+                                    //Quaternion target = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+                                    //player.spawnedPlayer.transform.rotation = Quaternion.Slerp(player.spawnedPlayer.transform.rotation, target , 1);
                                     time = 0;
                                 }
                             }

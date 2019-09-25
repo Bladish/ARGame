@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -37,16 +38,21 @@ public class GameController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("CheckIfGameIsSaved") != 1)
         {
-            int startHappieness = Random.Range(50, 80);
-            int startHunger = Random.Range(50, 80);
-            player.PlayerGainHappienessPoints(startHappieness);
-            player.PlayerGainHungerPoints(startHunger);
-            uiController.uiMath.HungerGains(startHunger);
-            uiController.uiMath.HappienessGains(startHappieness);
+            SetGameStart();
         }
 
         CallingGameMathForHungerAndHappienessLoss();
         
+    }
+
+    public void SetGameStart()
+    {
+        int startHappieness = UnityEngine.Random.Range(50, 80);
+        int startHunger = UnityEngine.Random.Range(50, 80);
+        player.PlayerGainHappienessPoints(startHappieness);
+        player.PlayerGainHungerPoints(startHunger);
+        uiController.uiMath.HungerGains(startHunger);
+        uiController.uiMath.HappienessGains(startHappieness);
     }
 
     public void Update()
