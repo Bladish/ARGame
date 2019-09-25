@@ -31,8 +31,10 @@ public class GameWorld : MonoBehaviour
     {
         toggleGenerateWorldButton = GameObject.Find("ToggleGenerateWorldButton").GetComponent<Button>().GetComponent<Image>();
         toggleGenerateWorldButton.color = Color.green;
-		tutorialText = GameObject.Find("TutorialText");	
+		tutorialText = GameObject.Find("TutorialText");
+	
 		tutorialText.SetActive(true);
+		Debug.Log(tutorialText);
     }
 
     public void UpdateGameWorld()
