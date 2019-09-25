@@ -138,6 +138,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1acd53d540ad2e4fac5a80f19727cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &241026434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31,
+    type: 3}
+  m_PrefabInstance: {fileID: 1897005504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241026412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c6cd3a0b0ae6a4484ac30cda064532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &899244168
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,13 +529,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 241026412}
-    - target: {fileID: 1590817840, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 510
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590817840, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -238
+    - target: {fileID: 1590817841, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 241026434}
+    - target: {fileID: 1590817841, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetGame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
@@ -652,6 +664,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: arCamera
+      value: 
+      objectReference: {fileID: 1688608558}
     - target: {fileID: 612387532048272090, guid: 994605a252d2cb04281773375d59aa31,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -711,14 +727,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1221320090}
-    - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: arCamera
-      value: 
-      objectReference: {fileID: 1688608558}
-    - target: {fileID: 1654037535, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: changeInt
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: happyBarMeter
       value: 
