@@ -4,6 +4,7 @@ using UnityEngine;
 using GoogleARCore;
 using GoogleARCore.Examples.Common;
 using System;
+using UnityEngine.UI;
 
 /// <author>
 /// Jonathan Aronsson Olsson
@@ -19,6 +20,13 @@ public class GameWorld : MonoBehaviour
     public List<DetectedPlane> planeList = new List<DetectedPlane>();
     public Camera arCamera;
     public bool toggle;
+    private Image toggleGenerateWorldButton;
+
+    public void Start()
+    {
+        toggleGenerateWorldButton = GameObject.Find("ToggleGenerateWorldButton").GetComponent<Button>().GetComponent<Image>();
+        toggleGenerateWorldButton.color = Color.green;
+    }
 
     public void UpdateGameWorld()
     {
@@ -41,10 +49,37 @@ public class GameWorld : MonoBehaviour
     public void ToggleTracking()
     {
         toggle = !toggle;
+        ChangeColor();
         GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
         for (int i = 0; i < planes.Length; i++)
         {
             planes[i].GetComponent<DetectedPlaneVisualizer>().enabled = toggle;
+        }
+    }
+
+    public void DestroyWorld()
+    {
+        GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
+        for (int i = 0; i < planes.Length; i++)
+        {
+            Destroy(planes[i].gameObject);
+        }
+    }
+
+    public void ChangeColor()
+    {
+        switch(toggle)
+        {
+            case true:
+                Debug.Log("World Generation Enabled");
+                toggleGenerateWorldButton.color = Color.red;
+                break;
+            case false:
+                Debug.Log("World Generation Disabled");
+                toggleGenerateWorldButton.color = Color.green;
+                break;
+            default:
+                break;
         }
     }
 }
