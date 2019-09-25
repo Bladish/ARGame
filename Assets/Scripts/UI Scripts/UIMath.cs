@@ -51,5 +51,10 @@ public class UIMath : UIController
         return playing;
     }
 
+    public void LifeTime()
+    {
+
+    }
+
     #endregion
 }

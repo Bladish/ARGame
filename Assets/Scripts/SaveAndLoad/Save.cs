@@ -46,4 +46,15 @@ public class Save : MonoBehaviour
         Debug.Log("Game Saved");
         saveToPlayerPrefs.Clear();
     }
+
+    public void OrginalGameDate()
+    {
+        PlayerPrefs.SetInt("OrginalStartYear", DateTime.Now.Year);
+        PlayerPrefs.SetInt("OrginalStartMonth", DateTime.Now.Month);
+        PlayerPrefs.SetInt("OrginalStartDay", DateTime.Now.Day);
+        PlayerPrefs.SetInt("OrginalStartHour", DateTime.Now.Hour);
+        PlayerPrefs.SetInt("OrginalStartMinute", DateTime.Now.Minute);
+        PlayerPrefs.SetInt("OrginalStartSecond", DateTime.Now.Second);
+        PlayerPrefs.SetInt("OrginalStartBool", 1);
+    }
 }

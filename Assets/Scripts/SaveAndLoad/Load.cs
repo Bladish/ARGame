@@ -8,10 +8,12 @@ public class Load : MonoBehaviour
     public static DateTime loadedGameTime;
     public static int loadedHunger;
     public static int loadedHappieness;
+    public static DateTime OrginalGameDate;
   
     void Awake()
     {
-        LoadGameState();
+        if(PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1) LoadGameState();
+        if (PlayerPrefs.GetInt("OrginalStartBool") == 1) LoadOrignalGameDate();
     }
     public void LoadGameState()
     {
@@ -19,5 +21,10 @@ public class Load : MonoBehaviour
         loadedHunger = PlayerPrefs.GetInt("Health");
         loadedHappieness = PlayerPrefs.GetInt("Happieness");
         Debug.Log("Loaded Game time " + loadedGameTime + " Health " + loadedHunger + " Happieness " + loadedHappieness);
+    }
+
+    public void LoadOrignalGameDate()
+    {
+        OrginalGameDate = new DateTime(PlayerPrefs.GetInt("OrginalStartYear"), PlayerPrefs.GetInt("OrginalStartMonth"), PlayerPrefs.GetInt("OrginalStartDay"), PlayerPrefs.GetInt("OrginalStartHour"), PlayerPrefs.GetInt("OrginalStartMinute"), PlayerPrefs.GetInt("OrginalStartSecond"));
     }
 }
