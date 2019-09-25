@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
             SetGameStart();
         }
 
+        if (PlayerPrefs.GetInt("OrginalStartBool") != 1) save.OrginalGameDate();
         CallingGameMathForHungerAndHappienessLoss();
         
     }
@@ -58,6 +59,8 @@ public class GameController : MonoBehaviour
         player.PlayerGainHungerPoints(startHunger);
         uiController.uiMath.HungerGains(startHunger);
         uiController.uiMath.HappienessGains(startHappieness);
+        save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), DateTime.Now);
+        save.OrginalGameDate();
     }
 
     public void Update()

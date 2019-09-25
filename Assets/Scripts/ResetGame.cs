@@ -6,7 +6,6 @@ using GoogleARCore;
 public class ResetGame : MonoBehaviour
 {
     GameController gameController;
-
     void Start()
     {
         gameController = GetComponent<GameController>();
