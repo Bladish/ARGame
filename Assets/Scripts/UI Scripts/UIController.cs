@@ -33,8 +33,6 @@ public class UIController : MonoBehaviour
         //eat = GetComponent<Eat>();
         //entertainment = GetComponent<Entertainment>();
         //Numbers below shoud come from GameController
-        uiMath.HungerGains(100);
-        uiMath.HappienessGains(100);
     }
 
     private void SetBars()

@@ -24,6 +24,7 @@ public class Save : MonoBehaviour
         keysToPlayerPrefs.Add("Second");
         keysToPlayerPrefs.Add("Health");
         keysToPlayerPrefs.Add("Happieness");
+        keysToPlayerPrefs.Add("CheckIfGameIsSaved");
     }
 
     public void SaveGameState(int hunger, int happieness, DateTime dateTime)

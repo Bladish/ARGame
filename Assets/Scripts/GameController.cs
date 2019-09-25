@@ -20,6 +20,18 @@ public class GameController : MonoBehaviour
     private Load load;
     private Player player;
 
+    public void Awake()
+    {
+        if (PlayerPrefs.GetInt("CheckIfGameIsSaved") != 1)
+        {
+            int startHappieness = Random.Range(50, 80);
+            int startHunger = Random.Range(50, 80);
+            player.PlayerGainHappienessPoints(startHappieness);
+            player.PlayerGainHungerPoints(startHunger);
+            uiController.uiMath.HungerGains(startHunger);
+            uiController.uiMath.HappienessGains(startHappieness);
+        }
+    }
     public void Start()
     {
         inputManager = GetComponent<InputManager>();
@@ -35,7 +47,7 @@ public class GameController : MonoBehaviour
         gameMath.GetingGameState();
         gameMath.CalculateLoadGameState();
         CallingGameMathForHungerAndHappienessLoss();
-
+        
     }
 
     public void Update()
