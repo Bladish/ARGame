@@ -181,11 +181,6 @@ public class GameController : MonoBehaviour
                     default:
                         break;
                 }
-                //inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
-                //if (inputManager.rayManager.rayHit.collider.CompareTag("Player"))
-                //{
-                //    Debug.Log("l0l");
-                //}
 
             }
             else

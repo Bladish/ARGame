@@ -34,6 +34,7 @@ public class StateMachineManager : MonoBehaviour
     float time;
     float idleTimer;
     float anotherTimer;
+    int randomInt;
     Rigidbody playerRb;
     ParticleSystem currentParticle;
     public void Start()
@@ -53,81 +54,52 @@ public class StateMachineManager : MonoBehaviour
 
 public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawnedToy, GameObject anchor, float t)
     {
-        Debug.Log(playerState);
         t += Time.deltaTime;
         time += Time.deltaTime;
         idleTimer += Time.deltaTime;
-        
+
+        if (player.GetHappienessPoints() <= 0 || player.GetHungerPoints() <= 0)
+        {
+            playerState = PlayerState.PlayerDie;
+        }
 
         switch (playerState)
         {
             case PlayerState.Idle:
-                //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, 
-                //random spinn, random barrelroll
-                if (player.GetHappienessPoints() <= 0 || player.GetHungerPoints() <= 0)
-                {
-                    playerState = PlayerState.PlayerDie;
-                }
+
                 #region PlayerIDLE
                 if (idleTimer > 4)
                 {
-                    Debug.Log(randomizeInt());
-                    anotherTimer += Time.deltaTime;
-                    switch (randomizeInt())
-                    {
-                        case 0:
-                            Debug.Log("JUMPING");
-                            playerRb = player.GetPlayerRb();
-                            if (anotherTimer < 3)
-                            {
-                                if (time > 1)
-                                {
-                                playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
-                                time = 0;
-                                }
-                            }
-                            else if (anotherTimer > 3)
-                            {
-                                idleTimer = 0;
-                                anotherTimer = 0;
-                            }
-                            break;
-                        case 1:
-                            Debug.Log("Moving");
-                            playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
-                            playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
-                            if (anotherTimer > 3)
-                            {
-                                idleTimer = 0;
-                                anotherTimer = 0;
-                            }
-                            break;
-                        case 2:
-                            Debug.Log("Spin me round round");
-                            if (anotherTimer < 3)
-                            {
-                                if (time > 1)
-                                {
-                                    //Quaternion target = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
-                                    //player.spawnedPlayer.transform.rotation = Quaternion.Slerp(player.spawnedPlayer.transform.rotation, target , 1);
-                                    time = 0;
-                                }
-                            }
-                            else if (anotherTimer > 3)
-                            {
-                                idleTimer = 0;
-                                anotherTimer = 0;
-                            }
-                            break;
-                        case 3:
-                            break;
-                        default:
-                            break;
-                    }
+                    randomInt = Random.Range(0, 2);
+                    idleTimer = 0;
+                }
+                anotherTimer += Time.deltaTime;
+                switch (randomInt)
+                {
+                    case 0:
+                        playerRb = player.GetPlayerRb();
+                        //Jumping
+                        if (time > 1)
+                        {
+                        playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
+                        time = 0;
+                        }
+                        break;
+                    case 1:
+                        //Nesting
+                        playerRotate.RotateObjectTowardAnotherObject(player.spawnedPlayer, anchor);
+                        playerMove.PlayerMoveTo(player.spawnedPlayer, player.startPos);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
                 }
                 #endregion
-
                 break;
+                
             case PlayerState.PlayerLook:
                 if (spawnedToy != null)
                 {
@@ -167,7 +139,6 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                     {                      
                         playerState = PlayerState.Eating;
                     }
-
                 }
                 break;
 
@@ -219,15 +190,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             default:
                 break;
         }
-
-
     }
 
-    int randomInt;
-    public int randomizeInt()
-    {
-        randomInt = Random.Range(0, 4);
-        return randomInt;
-    }
 }
 

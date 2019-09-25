@@ -517,6 +517,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1897005505}
+    - target: {fileID: 447993934, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590817840, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 307.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590817840, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -611.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795862583, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -459
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795862583, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -295
+      objectReference: {fileID: 0}
     - target: {fileID: 2088146808, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -50
@@ -553,19 +573,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1611801953, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 241026418}
-    - target: {fileID: 1590817840, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 307.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1590817840, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -611.11
-      objectReference: {fileID: 0}
     - target: {fileID: 551494227, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795862582, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -609,6 +621,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1611801953, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 241026418}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a811717ad7793b4cbf65bcc2933b028, type: 3}
 --- !u!1 &1221320090 stripped
@@ -731,6 +747,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: arCamera
+      value: 
+      objectReference: {fileID: 1688608558}
     - target: {fileID: 612387532048272093, guid: 994605a252d2cb04281773375d59aa31,
         type: 3}
       propertyPath: m_Name
@@ -795,10 +815,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1221320090}
-    - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: arCamera
-      value: 
-      objectReference: {fileID: 1688608558}
     - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: happyBarMeter
       value: 
