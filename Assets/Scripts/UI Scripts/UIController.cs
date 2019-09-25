@@ -49,16 +49,4 @@ public class UIController : MonoBehaviour
         //40- 60 yellow
         // 0-40 red
     }
-
-    public void LifeLossForPlayer(int i)
-    {
-       uiMath.HappinessLoss(i);
-       uiMath.HungerLoss(i);
-    }
-
-    public void LifeLossForPlayerOnGameStart(int i)
-    {
-        uiMath.HappinessLoss(i);
-        uiMath.HungerLoss(i);
-    }
 }

@@ -44,7 +44,12 @@ public class GameController : MonoBehaviour
         }
 
         if (PlayerPrefs.GetInt("OrginalStartBool") != 1) save.OrginalGameDate();
-        CallingGameMathForHungerAndHappienessLoss();
+
+        if (PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1)
+        {
+            CallingGameMathForHungerAndHappienessLoss();
+        }
+            
         
     }
     public void ResetGame()
@@ -53,9 +58,10 @@ public class GameController : MonoBehaviour
     }
     public void SetGameStart()
     {
-        player.PlayerLossHungerPoints(0);
-        player.PlayerLossHappienessPoints(0);
-        uiController.LifeLossForPlayer(0);
+        player.PlayerLossHungerPoints(100);
+        player.PlayerLossHappienessPoints(100);
+        uiController.uiMath.HappinessLoss(100);
+        uiController.uiMath.HungerLoss(100);
         int startHappieness = UnityEngine.Random.Range(50, 80);
         int startHunger = UnityEngine.Random.Range(50, 80);
         player.PlayerGainHappienessPoints(startHappieness);
@@ -110,7 +116,8 @@ public class GameController : MonoBehaviour
         {
             player.PlayerLossHappienessPoints(1);
             player.PlayerLossHungerPoints(1);
-            uiController.LifeLossForPlayer(1);
+            uiController.uiMath.HappinessLoss(1);
+            uiController.uiMath.HungerLoss(1);
             Debug.Log("PlayerLoosing HP");
             timeCalculations.AddTimeToTimeRules();
         }
@@ -201,7 +208,8 @@ public class GameController : MonoBehaviour
     private void CallingGameMathForHungerAndHappienessLoss()
     {
         int happienessAndHungerLossValue = gameMath.CalculateHappienessAndHungerLoss();
-        uiController.LifeLossForPlayerOnGameStart(happienessAndHungerLossValue);
+        uiController.uiMath.HappinessLoss(happienessAndHungerLossValue);
+        uiController.uiMath.HungerLoss(happienessAndHungerLossValue);
         player.PlayerLossHappienessPoints(happienessAndHungerLossValue);
         player.PlayerLossHungerPoints(happienessAndHungerLossValue);
     }
