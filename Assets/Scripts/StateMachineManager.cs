@@ -34,7 +34,6 @@ public class StateMachineManager : MonoBehaviour
     float time;
     float idleTimer;
     float anotherTimer;
-    public int changeInt;
     Rigidbody playerRb;
     public void Start()
     {
@@ -69,18 +68,17 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 if (idleTimer > 4)
                 {
                     anotherTimer += Time.deltaTime;
-                    switch (changeInt)
+                    switch (randomizeInt())
                     {
                         case 0:
                             Debug.Log("JUMPING");
                             playerRb = player.GetPlayerRb();
-
                             if (anotherTimer < 3)
                             {
                                 if (time > 1)
                                 {
-                                    playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
-                                    time = 0;
+                                playerRb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
+                                time = 0;
                                 }
                             }
                             else if (anotherTimer > 3)
@@ -115,6 +113,8 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                                 idleTimer = 0;
                                 anotherTimer = 0;
                             }
+                            break;
+                        case 3:
                             break;
                         default:
                             break;
@@ -214,25 +214,15 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             default:
                 break;
         }
+
+
     }
 
-
+    int randomInt;
+    public int randomizeInt()
+    {
+        randomInt = Random.Range(0, 4);
+        return randomInt;
+    }
 }
 
-
-/*
-                if (t< 6)
-                {
-                    if (time > 1)
-                    {
-                        tweens.PlayerPeck(player.spawnedPlayer);
-                        time = 0;
-                    }
-                }
-                else if (t > 6)
-                {
-                    Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
-playerState = PlayerState.Idle;
-                }
-
-    */
