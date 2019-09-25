@@ -53,6 +53,9 @@ public class GameController : MonoBehaviour
     }
     public void SetGameStart()
     {
+        player.PlayerLossHungerPoints(0);
+        player.PlayerLossHappienessPoints(0);
+        uiController.LifeLossForPlayer(0);
         int startHappieness = UnityEngine.Random.Range(50, 80);
         int startHunger = UnityEngine.Random.Range(50, 80);
         player.PlayerGainHappienessPoints(startHappieness);
@@ -61,6 +64,8 @@ public class GameController : MonoBehaviour
         uiController.uiMath.HappienessGains(startHappieness);
         save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), DateTime.Now);
         save.OrginalGameDate();
+        Debug.Log("Player Happiness " + startHappieness);
+        Debug.Log("Player Hunger " + startHunger);
     }
 
     public void Update()

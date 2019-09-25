@@ -18,5 +18,6 @@ public class ResetGame : MonoBehaviour
         PlayerPrefs.DeleteAll();
         gameController.SetGameStart();
         Debug.Log("RESTART");
+
     }
 }
