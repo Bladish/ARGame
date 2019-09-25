@@ -63,7 +63,10 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
             case PlayerState.Idle:
                 //Make a Randomiser between diffirent AI behavior. Random Walk, random jump, random animation, 
                 //random spinn, random barrelroll
-
+                if (player.GetHappienessPoints() <= 0  || player.GetHungerPoints() <= 0)
+                {
+                    playerState  = PlayerState.PlayerDie;
+                }
              #region PlayerIDLE
                 if (idleTimer > 4)
                 {
