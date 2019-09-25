@@ -22,17 +22,8 @@ public class GameWorld : MonoBehaviour
 
     public void UpdateGameWorld()
     {
-        //CheckIfMotionIsTracking();
         FindPlaceToSpawnPlayer();
     }
-
-    //private void CheckIfMotionIsTracking()
-    //{
-    //    if (Session.Status != SessionStatus.Tracking)
-    //    {
-    //        return;
-    //    }
-    //}
     
     private void FindPlaceToSpawnPlayer()
     {
@@ -49,11 +40,8 @@ public class GameWorld : MonoBehaviour
 
     public void ToggleTracking()
     {
-        // Make isSurfaceDetected to false to disable plane detection code
         toggle = !toggle;
-        // Tag DetectedPlaneVisualizer prefab to Plane(or anything else)
         GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
-        // In DetectedPlaneVisualizer we have multiple polygons so we need to loop and diable DetectedPlaneVisualizer script attatched to that prefab.
         for (int i = 0; i < planes.Length; i++)
         {
             planes[i].GetComponent<DetectedPlaneVisualizer>().enabled = toggle;
