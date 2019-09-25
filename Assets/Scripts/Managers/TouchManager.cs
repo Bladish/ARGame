@@ -17,13 +17,13 @@ public class TouchManager : MonoBehaviour
 
     public void UpdateTouch()
     {
-        if (InstantPreviewInput.touchCount < 1 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+        if (Input.touchCount < 1 && (screenTouch = Input.GetTouch(0)).phase != TouchPhase.Began)
         {
             return;
         }
-        else if (InstantPreviewInput.touchCount > 0 && (screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
+        else if (Input.touchCount > 0 && (screenTouch = Input.GetTouch(0)).phase == TouchPhase.Began)
         {
-            screenTouch = InstantPreviewInput.GetTouch(0);
+            screenTouch = Input.GetTouch(0);
         }
     }
 
@@ -34,7 +34,7 @@ public class TouchManager : MonoBehaviour
     }
     public int GetTouchIndex()
     {
-        touchIndex = InstantPreviewInput.GetTouch(0).fingerId;
+        touchIndex = Input.GetTouch(0).fingerId;
         return touchIndex;
     }
     

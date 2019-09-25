@@ -42,8 +42,8 @@ public class GameWorld : MonoBehaviour
     
     private void FindPlaceToSpawnPlayer()
     {
-        if (toggle)
-        {
+        //if (toggle)
+        //{
 			
 			Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
             for (int i = 0; i < planeList.Count; i++)
@@ -51,6 +51,11 @@ public class GameWorld : MonoBehaviour
                 GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
                 newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
             }
+        //}
+        GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
+        for (int i = 0; i < planes.Length; i++)
+        {
+            planes[i].GetComponent<DetectedPlaneVisualizer>().enabled = toggle;
         }
     }
 
@@ -59,11 +64,7 @@ public class GameWorld : MonoBehaviour
 		tutorialText.SetActive(false);
 		toggle = !toggle;
         ChangeColor();
-        GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
-        for (int i = 0; i < planes.Length; i++)
-        {
-            planes[i].GetComponent<DetectedPlaneVisualizer>().enabled = toggle;
-        }
+
     }
 
     public void DestroyWorld()

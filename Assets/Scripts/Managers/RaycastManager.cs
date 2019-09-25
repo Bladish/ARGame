@@ -29,7 +29,7 @@ public class RaycastManager : MonoBehaviour
         {
             if (hit.Trackable is FeaturePoint || hit.Trackable is DetectedPlane)
             {
-                if (InstantPreviewInput.touchCount > 0 && InstantPreviewInput.GetTouch(0).phase == TouchPhase.Began)
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     //Debug.Log("Touched position: " + hit.Pose.position);
                 }
@@ -41,7 +41,7 @@ public class RaycastManager : MonoBehaviour
 
     public RaycastHit UpdateUnityRayCast(Touch touch)
     {
-        Ray ray = Camera.main.ScreenPointToRay(InstantPreviewInput.GetTouch(0).position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
         if (Physics.Raycast(ray, out rayHit))
         {

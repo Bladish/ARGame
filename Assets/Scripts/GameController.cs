@@ -128,16 +128,15 @@ public class GameController : MonoBehaviour
     private void RayCastAndTouchWithSpawnLogic() {
         //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
 
-        if (InstantPreviewInput.touchCount < 1 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase != TouchPhase.Began)
+        if (Input.touchCount < 1 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase != TouchPhase.Began)
         {
-
+            return;
         }
-        else if (InstantPreviewInput.touchCount > 0 && (inputManager.touchManager.screenTouch = InstantPreviewInput.GetTouch(0)).phase == TouchPhase.Began)
+        else if (Input.touchCount > 0 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase == TouchPhase.Began)
         {
             if (AnchorSingelton.instance == null)
             {
                 VisualizeCanvas(true);
-
                 inputManager.anchorHandler.SpawnAnchor(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
                 if (stateMachineManager.player.spawnedPlayer == null)
                 {
@@ -145,10 +144,10 @@ public class GameController : MonoBehaviour
                 }
                 inputManager.anchorHandler.SetAnchorAsParent(inputManager.anchorHandler.visualAnchorClone);
                 inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
+                stateMachineManager.playerState = StateMachineManager.PlayerState.Idle;
             }   
             else if (AnchorSingelton.instance != null)
             {
-                    
                 VisualizeCanvas(true);
 
                 switch (inputManager.buttonStateMachine.buttonState)
@@ -190,11 +189,6 @@ public class GameController : MonoBehaviour
             }
         }
     }
-
-    //public void Remove() {
-    //    anchorHandler.DetachAnchor();
-    //    Destroy(player.spawnedPlayer);
-    //}
 
     private void VisualizeCanvas(bool canvasBool) {
         canvas.SetActive(canvasBool);
