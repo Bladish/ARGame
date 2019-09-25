@@ -18,6 +18,7 @@ public class GameWorld : MonoBehaviour
     public GameObject planePrefab;
     public List<DetectedPlane> planeList = new List<DetectedPlane>();
     public Camera arCamera;
+    public bool toggle;
 
     public void UpdateGameWorld()
     {
@@ -35,11 +36,27 @@ public class GameWorld : MonoBehaviour
     
     private void FindPlaceToSpawnPlayer()
     {
-        Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
-        for (int i = 0; i < planeList.Count; i++)
+        if (toggle)
         {
-            GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
-            newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);            
+            Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
+            for (int i = 0; i < planeList.Count; i++)
+            {
+                GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
+                newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
+            }
+        }
+    }
+
+    public void ToggleTracking()
+    {
+        // Make isSurfaceDetected to false to disable plane detection code
+        toggle = !toggle;
+        // Tag DetectedPlaneVisualizer prefab to Plane(or anything else)
+        GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
+        // In DetectedPlaneVisualizer we have multiple polygons so we need to loop and diable DetectedPlaneVisualizer script attatched to that prefab.
+        for (int i = 0; i < planes.Length; i++)
+        {
+            planes[i].GetComponent<DetectedPlaneVisualizer>().enabled = toggle;
         }
     }
 }
