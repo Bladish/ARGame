@@ -50,10 +50,20 @@ public class GameController : MonoBehaviour
         if (inputManager.objectSpawnHandler.foodList.Count > 0)
         {
             inputManager.objectSpawnHandler.UpdateDestroyFood();
+            if (inputManager.objectSpawnHandler.t == 0)
+            {
+                uiController.uiMath.HungerGains(20);
+                player.PlayerGainHungerPoints(20);
+            }
         }
         if (inputManager.objectSpawnHandler.toyList.Count > 0)
         {
             inputManager.objectSpawnHandler.UpdateDestroyToy();
+            if (inputManager.objectSpawnHandler.t == 0)
+            {
+                uiController.uiMath.HappienessGains(20);
+                player.PlayerGainHappienessPoints(20);
+            }
         }
             
         //Player stateMachine

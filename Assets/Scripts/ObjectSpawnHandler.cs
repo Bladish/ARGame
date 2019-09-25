@@ -15,7 +15,7 @@ public class ObjectSpawnHandler : MonoBehaviour
     public StateMachineManager stateMachineManager;
     [HideInInspector]
     public float foodTimer = 5, toyTimer = 5;
-    private float t = 0;
+    public float t = 0;
 
     private void Start()
     {
