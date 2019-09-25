@@ -35,6 +35,7 @@ public class StateMachineManager : MonoBehaviour
     float idleTimer;
     float anotherTimer;
     Rigidbody playerRb;
+    ParticleSystem currentParticle;
     public void Start()
     {
         #region GetComponents
@@ -171,19 +172,19 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 break;
 
             case PlayerState.Play:
-                //Instantiate(tweens.tweenParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
-                tweens.loveParticle.Play();
+
                 if (t < 6)
                 {
                     if (time > 1)
                     {
+                        currentParticle  = Instantiate(tweens.toneParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                        currentParticle.Play();
                         tweens.PlayerPeck(player.spawnedPlayer);
                         time = 0;
                     }
                 }
                 else if (t > 6)
                 {
-                    Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
                     playerState = PlayerState.Idle;
                 }
                 break;
@@ -200,7 +201,7 @@ public void StateMachineManagerUpdate(GameObject spawnedFood, GameObject spawned
                 }
                 else if (t > 6)
                 {
-                    Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
+                    currentParticle = Instantiate(tweens.loveParticle, player.spawnedPlayer.transform.position, player.spawnedPlayer.transform.rotation);
                     playerState = PlayerState.Idle;
                 }
 

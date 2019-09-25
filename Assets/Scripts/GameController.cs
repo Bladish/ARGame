@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     private Save save;
     private Load load;
     private Player player;
+    private ResetGame resetGame;
 
     public void Start()
     {
@@ -35,6 +36,7 @@ public class GameController : MonoBehaviour
         load.LoadGameState();
         gameMath.GetingGameState();
         gameMath.CalculateLoadGameState();
+        resetGame = GetComponent<ResetGame>();
 
         if (PlayerPrefs.GetInt("CheckIfGameIsSaved") != 1)
         {
@@ -44,7 +46,10 @@ public class GameController : MonoBehaviour
         CallingGameMathForHungerAndHappienessLoss();
         
     }
-
+    public void ResetGame()
+    {
+        resetGame.Reset(stateMachineManager.player.spawnedPlayer, inputManager.anchorHandler.visualAnchorClone, inputManager.anchorHandler.mainAnchor);
+    }
     public void SetGameStart()
     {
         int startHappieness = UnityEngine.Random.Range(50, 80);

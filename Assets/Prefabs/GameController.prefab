@@ -33,6 +33,7 @@ GameObject:
   - component: {fileID: 1421208929}
   - component: {fileID: 55621992}
   - component: {fileID: 55621991}
+  - component: {fileID: 241026413}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MonoBehaviour:
   planePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 3}
   arCamera: {fileID: 0}
+  toggle: 0
 --- !u!114 &1654037526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,6 @@ MonoBehaviour:
   buttonStateMachine: {fileID: 1654037536}
   objectSpawnHandler: {fileID: 1654037540}
   baws: {fileID: 48408522}
-  generateWorldToggle: 0
 --- !u!114 &1654037530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +315,7 @@ MonoBehaviour:
   stateMachineManager: {fileID: 0}
   foodTimer: 8
   toyTimer: 8
+  t: 0
 --- !u!114 &1365687109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,5 +404,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faccc48e79bc5574ea4ebacc32d30149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &241026413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612387532048272093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94169e4faf4e562488733d10aa26950b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

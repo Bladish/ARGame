@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
 using GoogleARCore.Examples.Common;
+using TMPro;
 using System;
 using UnityEngine.UI;
 
 /// <author>
 /// Jonathan Aronsson Olsson
+/// Majorly edited by
+/// Michael Håkansson
 /// ARCore DetectedPlaneGenerator Template
 /// </author>
 /// <summary>
@@ -21,11 +24,15 @@ public class GameWorld : MonoBehaviour
     public Camera arCamera;
     public bool toggle;
     private Image toggleGenerateWorldButton;
+	private GameObject tutorialText;
+
 
     public void Start()
     {
         toggleGenerateWorldButton = GameObject.Find("ToggleGenerateWorldButton").GetComponent<Button>().GetComponent<Image>();
         toggleGenerateWorldButton.color = Color.green;
+		tutorialText = GameObject.Find("TutorialText");	
+		tutorialText.SetActive(true);
     }
 
     public void UpdateGameWorld()
@@ -37,7 +44,8 @@ public class GameWorld : MonoBehaviour
     {
         if (toggle)
         {
-            Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
+			
+			Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
             for (int i = 0; i < planeList.Count; i++)
             {
                 GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
@@ -48,7 +56,8 @@ public class GameWorld : MonoBehaviour
 
     public void ToggleTracking()
     {
-        toggle = !toggle;
+		tutorialText.SetActive(false);
+		toggle = !toggle;
         ChangeColor();
         GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
         for (int i = 0; i < planes.Length; i++)
