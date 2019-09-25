@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 /// <author>
 /// Jonathan Aronsson Olsson
+/// Majorly edited by
+/// Michael Håkansson
 /// ARCore DetectedPlaneGenerator Template
 /// </author>
 /// <summary>
