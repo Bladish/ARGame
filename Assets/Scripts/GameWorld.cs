@@ -21,7 +21,6 @@ public class GameWorld : MonoBehaviour
     public List<GameObject> currentPlanes = new List<GameObject>();
     public GameObject planePrefab;
     public List<DetectedPlane> planeList = new List<DetectedPlane>();
-    public Camera arCamera;
     public bool toggle;
     private Image toggleGenerateWorldButton;
 	private GameObject tutorialText;
@@ -35,23 +34,20 @@ public class GameWorld : MonoBehaviour
 		tutorialText.SetActive(true);
     }
 
-    public void UpdateGameWorld()
+    public void Update()
     {
         FindPlaceToSpawnPlayer();
     }
     
     private void FindPlaceToSpawnPlayer()
     {
-        //if (toggle)
-        //{
-			
-			Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
-            for (int i = 0; i < planeList.Count; i++)
-            {
-                GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
-                newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
-            }
-        //}
+		Session.GetTrackables<DetectedPlane>(planeList, TrackableQueryFilter.New);
+        for (int i = 0; i < planeList.Count; i++)
+        {
+            GameObject newPlane = Instantiate(planePrefab, Vector3.zero, Quaternion.identity);
+            newPlane.GetComponent<DetectedPlaneVisualizer>().Initialize(planeList[i]);
+        }
+     
         GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
         for (int i = 0; i < planes.Length; i++)
         {
@@ -59,37 +55,37 @@ public class GameWorld : MonoBehaviour
         }
     }
 
-    public void ToggleTracking()
-    {
-		tutorialText.SetActive(false);
-		toggle = !toggle;
-        ChangeColor();
+  //  public void ToggleTracking()
+  //  {
+		//tutorialText.SetActive(false);
+		//toggle = !toggle;
+  //      ChangeColor();
 
-    }
+  //  }
 
-    public void DestroyWorld()
-    {
-        GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
-        for (int i = 0; i < planes.Length; i++)
-        {
-            Destroy(planes[i].gameObject);
-        }
-    }
+  //  public void DestroyWorld()
+  //  {
+  //      GameObject[] planes = GameObject.FindGameObjectsWithTag("Plane");
+  //      for (int i = 0; i < planes.Length; i++)
+  //      {
+  //          Destroy(planes[i].gameObject);
+  //      }
+  //  }
 
-    public void ChangeColor()
-    {
-        switch(toggle)
-        {
-            case true:
-                Debug.Log("World Generation Enabled");
-                toggleGenerateWorldButton.color = Color.red;
-                break;
-            case false:
-                Debug.Log("World Generation Disabled");
-                toggleGenerateWorldButton.color = Color.green;
-                break;
-            default:
-                break;
-        }
-    }
+    //public void ChangeColor()
+    //{
+    //    switch(toggle)
+    //    {
+    //        case true:
+    //            Debug.Log("World Generation Enabled");
+    //            toggleGenerateWorldButton.color = Color.red;
+    //            break;
+    //        case false:
+    //            Debug.Log("World Generation Disabled");
+    //            toggleGenerateWorldButton.color = Color.green;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
 }

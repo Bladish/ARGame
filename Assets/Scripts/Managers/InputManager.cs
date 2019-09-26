@@ -46,15 +46,4 @@ public class InputManager : MonoBehaviour
         baws = gameObject.GetComponent<BAWS>();
         #endregion      
     }
-
-
-
-    public void UpdateInputManager()
-    {
-        gameWorld.UpdateGameWorld();
-        buttonStateMachine.ButtonStateMachineUpdate();        
-    }
-
-
-
 }

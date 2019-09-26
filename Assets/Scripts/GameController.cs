@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     private Player player;
     private ResetGame resetGame;
 
+
     public void Start()
     {
         inputManager = GetComponent<InputManager>();
@@ -59,12 +60,10 @@ public class GameController : MonoBehaviour
     {
         //Inputmanager
         timeCalculations.TimeCalculationsUpdate();
+        SetButtonState();
         RayCastAndTouchWithSpawnLogic();
-        inputManager.UpdateInputManager();
-        //if (stateMachineManager.player.spawnedPlayer == null)
-        //{
-        //    inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
-        //}
+        t += Time.deltaTime;
+
         if (inputManager.objectSpawnHandler.foodList.Count > 0)
         {
             inputManager.objectSpawnHandler.UpdateDestroyFood();
@@ -72,6 +71,7 @@ public class GameController : MonoBehaviour
             {
                 uiController.uiMath.HungerGains(20);
                 player.PlayerGainHungerPoints(20);
+                save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
             }
         }
         if (inputManager.objectSpawnHandler.toyList.Count > 0)
@@ -81,6 +81,7 @@ public class GameController : MonoBehaviour
             {
                 uiController.uiMath.HappienessGains(20);
                 player.PlayerGainHappienessPoints(20);
+                save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
             }
         }
             
@@ -100,8 +101,6 @@ public class GameController : MonoBehaviour
             timeCalculations.AddTimeToTimeRules();
         }
 
-        t += Time.deltaTime;
-
         uiController.UIControllerUpdate();
 
     }
@@ -111,7 +110,7 @@ public class GameController : MonoBehaviour
 
         if (Input.touchCount < 1 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase != TouchPhase.Began)
         {
-            return;
+            
         }
         else if (Input.touchCount > 0 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase == TouchPhase.Began)
         {
@@ -123,50 +122,10 @@ public class GameController : MonoBehaviour
                 {
                     stateMachineManager.player.CreatPlayer(inputManager.anchorHandler.mainAnchor.transform.position, inputManager.anchorHandler.mainAnchor.transform.rotation);
                 }
+
                 inputManager.anchorHandler.SetAnchorAsParent(inputManager.anchorHandler.visualAnchorClone);
                 inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
                 stateMachineManager.playerState = StateMachineManager.PlayerState.Idle;
-            }   
-            else if (AnchorSingelton.instance != null)
-            {
-                VisualizeCanvas(true);
-
-                switch (inputManager.buttonStateMachine.buttonState)
-                {
-                    case ButtonStateMachine.ButtonState.IDLEBUTTON:
-                        break;
-                    case ButtonStateMachine.ButtonState.FOODBUTTON:
-                        if (t > 2)
-                        {
-                            inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
-                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
-                            t = 0;
-                        }
-                        break;
-                    case ButtonStateMachine.ButtonState.PLAYBUTTON:
-                        if (t > 2)
-                        {
-                            inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
-                            stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
-                            t = 0;
-                        }
-                        break;
-                    case ButtonStateMachine.ButtonState.PETBUTTON:
-                        inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
-                        if (inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch).transform.tag == "Player")
-                        {
-                            stateMachineManager.tweens.PetPlayer(stateMachineManager.player.spawnedPlayer);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-            else
-            {
-                VisualizeCanvas(false);
-                return;
             }
         }
     }
@@ -191,10 +150,10 @@ public class GameController : MonoBehaviour
 
     public void SetGameStart()
     {
-        player.PlayerLossHungerPoints(100);
-        player.PlayerLossHappienessPoints(100);
-        uiController.uiMath.HappinessLoss(100);
-        uiController.uiMath.HungerLoss(100);
+        player.PlayerLossHungerPoints((player.GetHungerPoints() - player.GetHungerPoints()) -1);
+        player.PlayerLossHappienessPoints((player.GetHappienessPoints() - player.GetHappienessPoints()) -1);
+        uiController.uiMath.HappinessLoss((player.GetHappienessPoints() - player.GetHappienessPoints()) -1); ;
+        uiController.uiMath.HungerLoss((player.GetHungerPoints() - player.GetHungerPoints()) -1);
         int startHappieness = Random.Range(50, 80);
         int startHunger = Random.Range(50, 80);
         player.PlayerGainHappienessPoints(startHappieness);
@@ -204,5 +163,44 @@ public class GameController : MonoBehaviour
         uiController.UIControllerUpdate();
         save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
         save.OrginalGameDate();
+    }
+
+    public void SetButtonState()
+    {
+        
+        VisualizeCanvas(true);
+
+        switch (inputManager.buttonStateMachine.buttonState)
+        {
+            case ButtonStateMachine.ButtonState.IDLEBUTTON:
+                break;
+            case ButtonStateMachine.ButtonState.FOODBUTTON:
+                if (t > 2)
+                {
+                    inputManager.objectSpawnHandler.SpawnFood(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                    stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
+                    t = 0;
+                }
+                break;
+            case ButtonStateMachine.ButtonState.PLAYBUTTON:
+                if (t > 2)
+                {
+                    inputManager.objectSpawnHandler.SpawnToy(inputManager.rayManager.UpdateWorldRayCast(inputManager.touchManager.GetTouch()));
+                    stateMachineManager.playerState = StateMachineManager.PlayerState.PlayerLook;
+                    t = 0;
+                }
+                break;
+            case ButtonStateMachine.ButtonState.PETBUTTON:
+                inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch);
+                if (inputManager.rayManager.UpdateUnityRayCast(inputManager.touchManager.screenTouch).transform.tag == "Player")
+                {
+                    stateMachineManager.tweens.PetPlayer(stateMachineManager.player.spawnedPlayer);
+                }
+                break;
+            default:
+                break;
+        }
+
+        return;
     }
 }

@@ -24,28 +24,6 @@ public class ButtonStateMachine : MonoBehaviour
         stateMachineManager = GetComponent<StateMachineManager>();
     }
 
-    public ButtonState ButtonStateMachineUpdate()
-    {
-        switch (buttonState)
-        {
-            case ButtonState.IDLEBUTTON:
-                Debug.Log("Pressed the Idle Button");
-                break;
-            case ButtonState.FOODBUTTON:
-                Debug.Log("Pressed the Food Button");
-                break;
-            case ButtonState.PLAYBUTTON:
-                Debug.Log("Pressed the Play Button");
-                break;
-            case ButtonState.PETBUTTON:
-                Debug.Log("Pressed the Pet Button");
-                break;
-            default:
-                break;
-        }
-        return buttonState;
-    }
-
     public void PetButton()
     {
         buttonState = ButtonState.PETBUTTON;
