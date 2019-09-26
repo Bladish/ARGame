@@ -60,9 +60,9 @@ public class GameController : MonoBehaviour
     {
         //Inputmanager
         timeCalculations.TimeCalculationsUpdate();
-        SetButtonState();
-        RayCastAndTouchWithSpawnLogic();
         t += Time.deltaTime;
+        RayCastAndTouchWithSpawnLogic();
+        
 
         if (inputManager.objectSpawnHandler.foodList.Count > 0)
         {
@@ -108,11 +108,11 @@ public class GameController : MonoBehaviour
     private void RayCastAndTouchWithSpawnLogic() {
         //If touch, place main anchor at raycast, spawn player at main anchor, set player as child to anchor
 
-        if (Input.touchCount < 1 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase != TouchPhase.Began)
-        {
+        //if (Input.touchCount < 1 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase != TouchPhase.Began)
+        //{
             
-        }
-        else if (Input.touchCount > 0 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase == TouchPhase.Began)
+        //}
+        if (Input.touchCount > 0 && (inputManager.touchManager.screenTouch = Input.GetTouch(0)).phase == TouchPhase.Began)
         {
             if (AnchorSingelton.instance == null)
             {
@@ -127,6 +127,7 @@ public class GameController : MonoBehaviour
                 inputManager.anchorHandler.SetAnchorAsParent(stateMachineManager.player.spawnedPlayer);
                 stateMachineManager.playerState = StateMachineManager.PlayerState.Idle;
             }
+            else SetButtonState();
         }
     }
 
