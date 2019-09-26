@@ -37,11 +37,11 @@ public class Save : MonoBehaviour
         saveToPlayerPrefs.Add(lastPlayedSecond = dateTime.Second);
         saveToPlayerPrefs.Add(hunger);
         saveToPlayerPrefs.Add(happieness);
+        saveToPlayerPrefs.Add(1);
 
         for (int i = 0; i < keysToPlayerPrefs.Count; i++)
         {
             PlayerPrefs.SetInt(keysToPlayerPrefs[i], saveToPlayerPrefs[i]);
-            
         }
         Debug.Log("Game Saved");
         saveToPlayerPrefs.Clear();

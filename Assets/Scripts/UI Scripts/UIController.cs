@@ -18,35 +18,22 @@ public class UIController : MonoBehaviour
     [HideInInspector]
     public UIMath uiMath;
     
-
-
     //  TODO: when working rename to UIUpdate() and link in GameController 
     public void UIControllerUpdate()
     {
         SetBars();
     }
+
     //Numbers below shoud come from GameController
     void Start()
     {
         uiView = GetComponent<UIView>();
         uiMath = GetComponent<UIMath>();
-        //eat = GetComponent<Eat>();
-        //entertainment = GetComponent<Entertainment>();
-        //Numbers below shoud come from GameController
     }
 
     private void SetBars()
     {
         uiView.SetHungerBarMeter(uiMath.GetEating());
         uiView.SetHappyBarSize(uiMath.GetPlaying());
-    }
-    
-    void HappinessColor ()
-    {
-        //checks the % of happiness
-        //changes the color  of happybar 
-        // 60-100 green
-        //40- 60 yellow
-        // 0-40 red
     }
 }

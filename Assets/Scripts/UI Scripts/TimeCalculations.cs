@@ -14,7 +14,7 @@ public class TimeCalculations : MonoBehaviour
         now = DateTime.Now;
     }
 
-    private void Update()
+    public void TimeCalculationsUpdate()
     {
         now = DateTime.Now;
     }

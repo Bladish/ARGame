@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
     }
 
     public void CreatPlayer(Vector3 anchorPosition, Quaternion anchorRotation)
@@ -96,5 +95,11 @@ public class Player : MonoBehaviour
     public int GetHungerPoints()
     {
         return hungerPoints;
+    }
+
+    public void SetHungerAndHappienessPoints(int hunger, int happieness)
+    {
+        hungerPoints = hunger;
+        happienessPoints = happieness;
     }
 }

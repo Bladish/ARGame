@@ -25,7 +25,6 @@ public class UIMath : UIController
     {
         eating +=  gains;
         eating = Mathf.Clamp(eating, 0, 100);
-        Debug.Log("Hunger: " + eating + " gains" + gains);
     }
     #endregion
 
@@ -40,7 +39,6 @@ public class UIMath : UIController
     {
         playing += gains;
         playing = Mathf.Clamp(playing, 0, 100);
-        Debug.Log("HappYYYY: " + eating + " HAPPYGAINS" + gains);
     }
 
     public int GetEating()
@@ -52,11 +50,11 @@ public class UIMath : UIController
     {
         return playing;
     }
-
-    public void LifeTime()
+    
+    public void SetHungerAndHappienessUI(int hunger, int happieness)
     {
-
+        eating = hunger;
+        playing = happieness;
     }
-
     #endregion
 }

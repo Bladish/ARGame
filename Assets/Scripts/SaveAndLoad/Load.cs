@@ -10,11 +10,6 @@ public class Load : MonoBehaviour
     public static int loadedHappieness;
     public static DateTime OrginalGameDate;
   
-    void Awake()
-    {
-        if(PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1) LoadGameState();
-        if (PlayerPrefs.GetInt("OrginalStartBool") == 1) LoadOrignalGameDate();
-    }
     public void LoadGameState()
     {
         loadedGameTime = new DateTime(PlayerPrefs.GetInt("Year"), PlayerPrefs.GetInt("Month"), PlayerPrefs.GetInt("Day"), PlayerPrefs.GetInt("Hour"), PlayerPrefs.GetInt("Minute"), PlayerPrefs.GetInt("Second"));

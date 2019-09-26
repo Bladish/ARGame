@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
-using System;
 
 public class GameController : MonoBehaviour
 {
@@ -32,11 +31,20 @@ public class GameController : MonoBehaviour
         save = GetComponent<Save>();
         load = GetComponent<Load>();
         player = GetComponent<Player>();
-        //Making sure player and ui take damage when the game boot up. TODO Add player. 
-        load.LoadGameState();
-        gameMath.GetingGameState();
-        gameMath.CalculateLoadGameState();
         resetGame = GetComponent<ResetGame>();
+
+        if (PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1)
+        {
+            load.LoadGameState();
+            player.SetHungerAndHappienessPoints(PlayerPrefs.GetInt("Hunger"), PlayerPrefs.GetInt("Happieness"));
+            uiController.uiMath.SetHungerAndHappienessUI(PlayerPrefs.GetInt("Health"), PlayerPrefs.GetInt("Happieness"));
+            uiController.UIControllerUpdate();
+            gameMath.GetingGameState();
+            gameMath.CalculateLoadGameState();
+            CallingGameMathForHungerAndHappienessLoss();
+        }
+
+        if (PlayerPrefs.GetInt("OrginalStartBool") == 1) load.LoadOrignalGameDate();
 
         if (PlayerPrefs.GetInt("CheckIfGameIsSaved") != 1)
         {
@@ -45,40 +53,14 @@ public class GameController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("OrginalStartBool") != 1) save.OrginalGameDate();
 
-        if (PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1)
-        {
-            CallingGameMathForHungerAndHappienessLoss();
-        }
-            
-        
     }
-    public void ResetGame()
-    {
-        resetGame.Reset(stateMachineManager.player.spawnedPlayer, inputManager.anchorHandler.visualAnchorClone, inputManager.anchorHandler.mainAnchor);
-    }
-    public void SetGameStart()
-    {
-        player.PlayerLossHungerPoints(100);
-        player.PlayerLossHappienessPoints(100);
-        uiController.uiMath.HappinessLoss(100);
-        uiController.uiMath.HungerLoss(100);
-        int startHappieness = UnityEngine.Random.Range(50, 80);
-        int startHunger = UnityEngine.Random.Range(50, 80);
-        player.PlayerGainHappienessPoints(startHappieness);
-        player.PlayerGainHungerPoints(startHunger);
-        uiController.uiMath.HungerGains(startHunger);
-        uiController.uiMath.HappienessGains(startHappieness);
-        save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), DateTime.Now);
-        save.OrginalGameDate();
-        Debug.Log("Player Happiness " + startHappieness);
-        Debug.Log("Player Hunger " + startHunger);
-    }
-
+   
     public void Update()
     {
         //Inputmanager
-        inputManager.UpdateInputManager();
+        timeCalculations.TimeCalculationsUpdate();
         RayCastAndTouchWithSpawnLogic();
+        inputManager.UpdateInputManager();
         //if (stateMachineManager.player.spawnedPlayer == null)
         //{
         //    inputManager.baws.Resize(stateMachineManager.player.spawnedPlayer, (float)uiController.uiMath.GetEating());
@@ -105,11 +87,7 @@ public class GameController : MonoBehaviour
         //Player stateMachine
         stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy, inputManager.anchorHandler.visualAnchorClone, t);
 
-
-        //Saving Game State. TODO to get player hunger and happieness
-        if (timeCalculations.GetNowTime() > timeCalculations.GetTimeRules()) save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
         //UI Controller
-        uiController.UIControllerUpdate();
 
         //Player And UI Update
         if (timeCalculations.GetNowTime() > timeCalculations.GetTimeRules())
@@ -118,10 +96,13 @@ public class GameController : MonoBehaviour
             player.PlayerLossHungerPoints(1);
             uiController.uiMath.HappinessLoss(1);
             uiController.uiMath.HungerLoss(1);
-            Debug.Log("PlayerLoosing HP");
+            save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
             timeCalculations.AddTimeToTimeRules();
         }
-            t += Time.deltaTime;
+
+        t += Time.deltaTime;
+
+        uiController.UIControllerUpdate();
 
     }
 
@@ -190,6 +171,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void ResetGame()
+    {
+        resetGame.Reset(stateMachineManager.player.spawnedPlayer, inputManager.anchorHandler.visualAnchorClone, inputManager.anchorHandler.mainAnchor);
+    }
+
     private void VisualizeCanvas(bool canvasBool) {
         canvas.SetActive(canvasBool);
     }
@@ -201,5 +187,22 @@ public class GameController : MonoBehaviour
         uiController.uiMath.HungerLoss(happienessAndHungerLossValue);
         player.PlayerLossHappienessPoints(happienessAndHungerLossValue);
         player.PlayerLossHungerPoints(happienessAndHungerLossValue);
+    }
+
+    public void SetGameStart()
+    {
+        player.PlayerLossHungerPoints(100);
+        player.PlayerLossHappienessPoints(100);
+        uiController.uiMath.HappinessLoss(100);
+        uiController.uiMath.HungerLoss(100);
+        int startHappieness = Random.Range(50, 80);
+        int startHunger = Random.Range(50, 80);
+        player.PlayerGainHappienessPoints(startHappieness);
+        player.PlayerGainHungerPoints(startHunger);
+        uiController.uiMath.HungerGains(startHunger);
+        uiController.uiMath.HappienessGains(startHappieness);
+        uiController.UIControllerUpdate();
+        save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
+        save.OrginalGameDate();
     }
 }

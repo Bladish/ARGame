@@ -13,7 +13,17 @@ public class GameMath : MonoBehaviour
     int calculateDayToHours;
     public int timeValue;
     int returnHappienessAndHungerLoss;
-    
+
+    public void GetingGameState()
+    {
+        tmpYear = DateTime.Now.Year - PlayerPrefs.GetInt("Year");
+        tmpMonth = DateTime.Now.Month - PlayerPrefs.GetInt("Month");
+        tmpDay = DateTime.Now.Day - PlayerPrefs.GetInt("Day");
+        tmpHour = DateTime.Now.Hour - PlayerPrefs.GetInt("Hour");
+        tmpMinute = DateTime.Now.Minute - PlayerPrefs.GetInt("Minute");
+
+    }
+
     public void CalculateLoadGameState()
     {
         if (tmpYear > 0 || tmpMonth > 0) timeValue = 14000;
@@ -29,16 +39,6 @@ public class GameMath : MonoBehaviour
             }
         }
         if (tmpHour > 0) timeValue = tmpHour * 60 + tmpMinute;
-    }
-
-    public void GetingGameState()
-    {
-        tmpYear = DateTime.Now.Year - PlayerPrefs.GetInt("Year");
-        tmpMonth = DateTime.Now.Month - PlayerPrefs.GetInt("Month");
-        tmpDay = DateTime.Now.Day - PlayerPrefs.GetInt("Day");
-        tmpHour =  DateTime.Now.Hour - PlayerPrefs.GetInt("Hour");
-        tmpMinute = DateTime.Now.Minute - PlayerPrefs.GetInt("Minute");
-
     }
 
     public int CalculateHappienessAndHungerLoss()
