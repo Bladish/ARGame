@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIView : UIController
 {
+    public TextMeshProUGUI lifeTime;
     public GameObject happyBarMeter;
     public GameObject hungerBarMeter;
     private int height = 30;
@@ -25,5 +27,4 @@ public class UIView : UIController
         var hungerBarMeterRectTransform = hungerBarMeter.transform as RectTransform;
         hungerBarMeterRectTransform.sizeDelta = new Vector2(hungerWidth, height);
     }
-
 }

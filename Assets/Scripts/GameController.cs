@@ -52,9 +52,6 @@ public class GameController : MonoBehaviour
         {
             SetGameStart();
         }
-
-        if (PlayerPrefs.GetInt("OrginalStartBool") != 1) save.OrginalGameDate();
-
     }
    
     public void Update()
@@ -63,7 +60,7 @@ public class GameController : MonoBehaviour
         timeCalculations.TimeCalculationsUpdate();
         t += Time.deltaTime;
         RayCastAndTouchWithSpawnLogic();
-        
+        uiController.uiView.lifeTime.text ="Days: " + timeCalculations.lifeTimeDays.ToString() + " Hours: " + timeCalculations.lifeTimeHours.ToString() + " Minutes: " + timeCalculations.lifeTimeMinutes.ToString();
 
         if (inputManager.objectSpawnHandler.foodList.Count > 0)
         {

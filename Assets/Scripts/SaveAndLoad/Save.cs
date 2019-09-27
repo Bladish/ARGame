@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Save : MonoBehaviour
 {
-
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("OrginalStartBool") != 1) OrginalGameDate();
+    }
     public void SaveGameState(int hunger, int happieness, DateTime dateTime)
     {
         PlayerPrefs.SetInt(("Year"), dateTime.Year);
