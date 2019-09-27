@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if(PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1)
+        {
+            hungerPoints = PlayerPrefs.GetInt("Health");
+            happienessPoints = PlayerPrefs.GetInt("Happieness");
+        }
     }
 
     public void CreatPlayer(Vector3 anchorPosition, Quaternion anchorRotation)
@@ -71,7 +76,7 @@ public class Player : MonoBehaviour
 
     public void PlayerLossHungerPoints(int i)
     {
-        hungerPoints -= i;
+        hungerPoints += -i;
         hungerPoints = Mathf.Clamp(hungerPoints, 0, 100);
     }
 
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
 
     public void PlayerLossHappienessPoints(int i)
     {
-        happienessPoints -= i;
+        happienessPoints += -i;
         happienessPoints = Mathf.Clamp(happienessPoints, 0, 100);
     }
 

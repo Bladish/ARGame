@@ -21,7 +21,10 @@ public class GameController : MonoBehaviour
     private Player player;
     private ResetGame resetGame;
 
-
+    void Awake()
+    {
+        canvas.SetActive(false);
+    }
     public void Start()
     {
         inputManager = GetComponent<InputManager>();
@@ -37,8 +40,6 @@ public class GameController : MonoBehaviour
         if (PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1)
         {
             load.LoadGameState();
-            player.SetHungerAndHappienessPoints(PlayerPrefs.GetInt("Hunger"), PlayerPrefs.GetInt("Happieness"));
-            uiController.uiMath.SetHungerAndHappienessUI(PlayerPrefs.GetInt("Health"), PlayerPrefs.GetInt("Happieness"));
             uiController.UIControllerUpdate();
             gameMath.GetingGameState();
             gameMath.CalculateLoadGameState();
@@ -151,10 +152,10 @@ public class GameController : MonoBehaviour
 
     public void SetGameStart()
     {
-        player.PlayerLossHungerPoints((player.GetHungerPoints() - player.GetHungerPoints()) -1);
-        player.PlayerLossHappienessPoints((player.GetHappienessPoints() - player.GetHappienessPoints()) -1);
-        uiController.uiMath.HappinessLoss((player.GetHappienessPoints() - player.GetHappienessPoints()) -1); ;
-        uiController.uiMath.HungerLoss((player.GetHungerPoints() - player.GetHungerPoints()) -1);
+        player.PlayerLossHungerPoints(100);
+        player.PlayerLossHappienessPoints(100);
+        uiController.uiMath.HappinessLoss(100); ;
+        uiController.uiMath.HungerLoss(100);
         int startHappieness = Random.Range(50, 80);
         int startHunger = Random.Range(50, 80);
         player.PlayerGainHappienessPoints(startHappieness);

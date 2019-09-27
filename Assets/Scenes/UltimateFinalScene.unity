@@ -396,6 +396,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8076194680425206934, guid: 3a811717ad7793b4cbf65bcc2933b028,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1253020198869960406, guid: 3a811717ad7793b4cbf65bcc2933b028,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -756,15 +761,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: arCamera
-      value: 
-      objectReference: {fileID: 1688608558}
     - target: {fileID: 612387532048272093, guid: 994605a252d2cb04281773375d59aa31,
         type: 3}
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 1654037525, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: arCamera
+      value: 
+      objectReference: {fileID: 1688608558}
+    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1221320090}
     - target: {fileID: 612387532048272090, guid: 994605a252d2cb04281773375d59aa31,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -820,10 +829,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1654037524, guid: 994605a252d2cb04281773375d59aa31, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1221320090}
     - target: {fileID: 1654037537, guid: 994605a252d2cb04281773375d59aa31, type: 3}
       propertyPath: happyBarMeter
       value: 

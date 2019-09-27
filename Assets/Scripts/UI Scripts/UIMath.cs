@@ -13,11 +13,20 @@ public class UIMath : UIController
 {
     public int eating;
     public int playing;
+
+    void Awake()
+    {
+        if (PlayerPrefs.GetInt("CheckIfGameIsSaved") == 1)
+        {
+            eating = PlayerPrefs.GetInt("Health");
+            playing = PlayerPrefs.GetInt("Happieness");
+        }
+    }
     
     #region Hunger
     public void HungerLoss(int lossValue)
     {
-        eating -= lossValue;
+        eating += -lossValue;
         eating = Mathf.Clamp(eating, 0, 100);
     }
 
@@ -31,7 +40,7 @@ public class UIMath : UIController
     #region Happiness
     public void HappinessLoss(int lossValue)
     {
-        playing -= lossValue;
+        playing += -lossValue;
         playing = Mathf.Clamp(playing, 0, 100);
     }
 
