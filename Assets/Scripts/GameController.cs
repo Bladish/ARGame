@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
                 save.SaveGameState(player.GetHungerPoints(), player.GetHappienessPoints(), timeCalculations.GetNowTime());
             }
         }
-            
+
         //Player stateMachine
         stateMachineManager.StateMachineManagerUpdate(inputManager.objectSpawnHandler.spawnedFood, inputManager.objectSpawnHandler.spawnedToy, inputManager.anchorHandler.visualAnchorClone, t);
 
@@ -101,6 +101,13 @@ public class GameController : MonoBehaviour
 
         uiController.UIControllerUpdate();
 
+        if (player.spawnedPlayer != null && player.spawnedPlayer.transform.position.y < -5)
+        {
+            player.PlayerLossHappienessPoints(100);
+            player.PlayerLossHungerPoints(100);
+            uiController.uiMath.HappinessLoss(100);
+            uiController.uiMath.HungerLoss(100);
+        }
     }
 
     private void RayCastAndTouchWithSpawnLogic() {
